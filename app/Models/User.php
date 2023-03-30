@@ -41,4 +41,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+    //Relacion con Grupo
+    // 1 usuario puede tener o estar en muchos grupos
+    public function groups(){
+        return $this->hasMany(Group::class);
+    }
+
+
+
+
+
+
 }
