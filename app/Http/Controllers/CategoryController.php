@@ -14,7 +14,13 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+
+        $categorias = Category::all();
+
+
+
+
+        return view('admin.categories.index' , compact('categorias'));
     }
 
     /**
@@ -24,7 +30,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -36,6 +42,19 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+
+
+        $request->validate([
+            'nombre' => 'required|unique:categories,nombre|string|min:1'
+        ]);
+
+        $categoria = Category::create([
+            'nombre' => $request->nombre
+        ]);
+
+        return redirect()->route('admin.categories.index' , compact('categoria'))->with('info' , 'Categoria Creada');
+
+
     }
 
     /**
@@ -46,7 +65,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return view('admin.categories.show' , compact('category'));
+
     }
 
     /**
@@ -57,7 +77,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit' , compact('category'));
+
     }
 
     /**
@@ -70,6 +91,19 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         //
+
+        
+        $request->validate([
+            'nombre' => ['required' , 'string' , 'min:1' , 'unique:categories,nombre,'.$category->id]
+        ]);
+
+        $category->update($request->all());
+
+        return redirect()->route('admin.categories.index' , compact('category'))->with('info' , 'Categoria Actualizada');
+
+
+
+
     }
 
     /**
@@ -81,5 +115,12 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+
+
+        $category->delete();
+
+        return redirect()->route('admin.categories.index')->with('info' , 'Categoria Eliminada');
+
+
     }
 }

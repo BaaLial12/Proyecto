@@ -13,6 +13,13 @@ class Category extends Model
 
 
 
+    public function getRouteKeyName()
+    {
+        return "nombre";
+    }
+
+
+
     //Relacion con Plataforma
 
     //1 categoria puede estar en mas de 1 plataforma

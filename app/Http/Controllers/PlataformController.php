@@ -15,6 +15,14 @@ class PlataformController extends Controller
     public function index()
     {
         //
+
+
+        $plataformas = Plataform::all();
+
+        return view('admin.plataforms.index' , compact('plataformas'));
+
+
+
     }
 
     /**
@@ -25,6 +33,8 @@ class PlataformController extends Controller
     public function create()
     {
         //
+        return view('admin.plataforms.create');
+
     }
 
     /**
@@ -47,6 +57,10 @@ class PlataformController extends Controller
     public function show(Plataform $plataform)
     {
         //
+
+        return view('admin.plataforms.show' , compact('plataform'));
+
+
     }
 
     /**
@@ -58,6 +72,11 @@ class PlataformController extends Controller
     public function edit(Plataform $plataform)
     {
         //
+
+        return view('admin.plataforms.edit' , compact('plataform'));
+
+
+
     }
 
     /**
