@@ -18,9 +18,15 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+//Cambio de ruta para que el que quiera acceder a mi pagina web tenga que estar logueado si o si
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
 
 
 //Route::resource('categories' , CategoryController::class)->names('admin.categories');
@@ -35,7 +41,7 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/marketplace' , function (){
-        return view('marketplace');
+        return view('marketplace.index');
     })->name('marketplace');
 });
 
