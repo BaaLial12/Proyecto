@@ -36,6 +36,43 @@ Route::middleware([
 });
 
 
+
+Route::get('/login-facebook', function () {
+    return Socialite::driver('facebook')->redirect();
+});
+
+Route::get('/facebook-callback', function () {
+    $user = Socialite::driver('facebook')->user();
+
+    $userExists = User::where('external_id' , $user->id)->where('external_auth' , 'facebook')->first();
+ 
+
+    if($userExists){
+        Auth::login($userExists);
+    } else{
+       $userNuevo = User::create([
+            'name' => $user->name,
+            'email' => $user->email,
+            'avatar' => $user->avatar,
+            'external_id' => $user->id,
+            'external_auth' => 'facebook',
+
+
+        ]);
+
+        Auth::login($userNuevo);
+
+    }
+
+
+    return redirect('/dashboard');
+    // $user->token
+});
+
+
+
+
+
 Route::get('/login-google', function () {
     return Socialite::driver('google')->redirect();
 });

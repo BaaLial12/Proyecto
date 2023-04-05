@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
@@ -14,6 +16,12 @@
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
+
+            <p>Inicio sesion con :</p>
+                <a href="login-google"><i class="fa-brands fa-google"></i></a>
+                <a href="login-facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="login-apple"><i class="fa-brands fa-apple"></i></a>
+
 
             <div>
                 <x-label for="email" value="{{ __('Email') }}" />
