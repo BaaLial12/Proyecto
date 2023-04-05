@@ -23,7 +23,7 @@ class PlataformSeeder extends Seeder
 
         Plataform::create([
             'nombre' => 'Netflix',
-            'logo'=> 'xxx',
+            'logo'=> Storage::url('plataformas/Netflix.png'),
             'capacidad' => '3',
             'suscripcion' => '18.99',
             'descripcion' => 'Disfruta de Netflix, películas y series en streaming en tu smart TV, consola, PC, Mac, móvil, tablet y más dispositivos.',
@@ -32,7 +32,7 @@ class PlataformSeeder extends Seeder
 
         Plataform::create([
             'nombre' => 'Spotify',
-            'logo'=> 'xxx',
+            'logo'=> Storage::url('plataformas/Spotify.png'),
             'capacidad' => '3',
             'suscripcion' => '40',
             'descripcion' => 'xxxx',
@@ -42,7 +42,7 @@ class PlataformSeeder extends Seeder
 
         Plataform::create([
             'nombre' => 'NordVPN',
-            'logo'=> Storage::url('/public/plataformas/hola.png'), //MODIFICAR
+            'logo'=> Storage::url('plataformas/NordVPN.png'), //MODIFICAR
             'capacidad' => '3',
             'suscripcion' => '50',
             'descripcion' => 'Navega de forma segura, en todas las circunstancias. Las tecnologías de vanguardia utilizadas por NordVPN sirven como escudos contra piratas informáticos u otro malware, también te protegen cuando usas redes públicas de Wi-Fi e incluso bloquean anuncios molestos.',
@@ -52,7 +52,7 @@ class PlataformSeeder extends Seeder
 
         Plataform::create([
             'nombre' => 'Nintendo Switch',
-            'logo'=> 'xxx',
+            'logo'=> Storage::url('plataformas/switch.png'),
             'capacidad' => '3',
             'suscripcion' => '60',
             'descripcion' => 'Disfruta del juego en línea, mantiene automáticamente tus datos guardados en línea, usa la aplicación para smartphone y obtiene ofertas exclusivas solo para suscriptores.',

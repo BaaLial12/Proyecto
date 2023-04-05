@@ -7,15 +7,20 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-        <!-- Styles -->
-        @livewireStyles
+         <!-- Fonts -->
+         <link rel="preconnect" href="https://fonts.bunny.net">
+         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+ 
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
+         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ 
+ 
+         <!-- Scripts -->
+         @vite(['resources/css/app.css', 'resources/js/app.js'])
+ 
+         <!-- Styles -->
+         @livewireStyles
     </head>
     <body class="font-sans antialiased">
         <x-banner />

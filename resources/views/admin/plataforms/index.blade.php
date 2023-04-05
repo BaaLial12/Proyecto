@@ -10,9 +10,9 @@
 
 <div class="card">
     <div class="card-header">
-        <a class="btn btn-success" href="{{route('admin.categories.create')}}">Crear Categoria</a>
+        <a class="btn btn-success" href="{{route('admin.plataforms.create')}}">Crear Plataforma</a>
     </div>
-    <div class="card-body">
+    <div class="table-responsive">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -32,15 +32,15 @@
                     <tr>
                         <td>{{$item->id}}</td>
                         <td>{{$item->nombre}}</td>
-                        <td>{{$item->logo}}</td>
+                        <td><img class="img-fluid" src="{{ url($item->logo) }}" /></td>
                         <td>{{$item->capacidad}}</td>
-                        <td>{{$item->suscripcion}}</td>
+                        <td>{{$item->suscripcion}}€</td>
                         <td>{{$item->category->nombre}}</td>
                         <td width="10px">
-                            <a class="btn btn-primary" href="{{route('admin.categories.edit' , $item)}}">Editar</a>
+                            <a class="btn btn-primary" href="{{route('admin.plataforms.edit' , $item)}}">Editar</a>
                         </td>
                         <td width="10px">
-                            <form action="{{route('admin.categories.destroy' , $item)}}" method="POST">
+                            <form action="{{route('admin.plataforms.destroy' , $item)}}" method="POST">
                                 @method('DELETE')
                                 @csrf
 

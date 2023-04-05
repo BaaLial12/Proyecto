@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Plataform;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PlataformController extends Controller
 {
@@ -33,7 +35,12 @@ class PlataformController extends Controller
     public function create()
     {
         //
-        return view('admin.plataforms.create');
+
+
+        $categorias = Category::pluck('nombre' , 'id')->toArray();
+
+
+        return view('admin.plataforms.create' , compact('categorias'));
 
     }
 
@@ -100,5 +107,8 @@ class PlataformController extends Controller
     public function destroy(Plataform $plataform)
     {
         //
+        Storage::delete($plataform->logo);
+        $plataform->delete();
+        return redirect()->route('admin.plataforms.index')->with('info' , 'Plataforma Eliminada');
     }
 }
