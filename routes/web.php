@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Models\Category;
+use App\Models\Plataform;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -41,7 +43,9 @@ Route::middleware([
     })->name('dashboard');
 
     Route::get('/marketplace' , function (){
-        return view('marketplace.index');
+        $plataformas = Plataform::all();
+        $categorias = Category::all();
+        return view('marketplace.index' , compact('categorias' , 'plataformas'));
     })->name('marketplace');
 });
 
@@ -55,7 +59,7 @@ Route::get('/facebook-callback', function () {
     $user = Socialite::driver('facebook')->user();
 
     $userExists = User::where('external_id' , $user->id)->where('external_auth' , 'facebook')->first();
- 
+
 
     if($userExists){
         Auth::login($userExists);
@@ -86,12 +90,12 @@ Route::get('/facebook-callback', function () {
 Route::get('/login-google', function () {
     return Socialite::driver('google')->redirect();
 });
- 
+
 Route::get('/google-callback', function () {
     $user = Socialite::driver('google')->user();
 
     $userExists = User::where('external_id' , $user->id)->where('external_auth' , 'google')->first();
- 
+
 
     if($userExists){
         Auth::login($userExists);
