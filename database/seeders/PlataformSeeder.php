@@ -23,7 +23,7 @@ class PlataformSeeder extends Seeder
 
         Plataform::create([
             'nombre' => 'Netflix',
-            'logo'=> Storage::url('plataformas/Netflix.png'),
+            'logo'=> asset(Storage::url('plataformas/Netflix.png')),
             'capacidad' => '3',
             'suscripcion' => '18.99',
             'descripcion' => 'Disfruta de Netflix, películas y series en streaming en tu smart TV, consola, PC, Mac, móvil, tablet y más dispositivos.',
