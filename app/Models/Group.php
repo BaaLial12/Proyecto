@@ -13,9 +13,9 @@ class Group extends Model
 
 
 
-    //Relacion 1 grupo pertenece a 1 usuario
-    public function user(){
-        return $this->belongsTo(User::class);
+    //Relacion en 1 grupo hya muchos usuarios
+    public function users(){
+        return $this->belongsToMany(User::class);
     }
 
 

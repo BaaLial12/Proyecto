@@ -63,4 +63,16 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+
+    //RELACION N : M CON GROUP
+
+    public function groups(){
+        return $this->belongsToMany(Group::class);
+    }
+
+
+
+
 }

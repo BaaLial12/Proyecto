@@ -8,7 +8,7 @@
                 <div class="row">
                     @foreach ($plataformas->where('category_id', $categoria->id) as $plataforma)
                         <div class="col-md-4">
-                            <div class="card mb-4">
+                            <div class="btn btn card mb-4">
                                 <div class="card-body">
                                     <h5 class="card-title"><strong>{{ $plataforma->nombre }}</strong></h5>
                                     <p class="card-text">Apartir de : {{round($plataforma->suscripcion/$plataforma->capacidad, 2) }}€</p>
