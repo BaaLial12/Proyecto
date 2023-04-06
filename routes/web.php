@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Models\Category;
 use App\Models\Plataform;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -25,23 +27,19 @@ use Laravel\Socialite\Facades\Socialite;
 // });
 
 //Cambio de ruta para que el que quiera acceder a mi pagina web tenga que estar logueado si o si
+//Aparte me llevare una variable llamada contador a la vista dashboard donde le dira al usuario logueado la cantidad de plataformas que esta compartiendo
 Route::get('/', function () {
-    return view('dashboard');
+    $contador = auth()->user()->groups()->count();
+    return view('dashboard' , compact('contador'));
 })->middleware(['auth'])->name('dashboard');
 
 
-
-//Route::resource('categories' , CategoryController::class)->names('admin.categories');
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
     Route::get('/marketplace' , function (){
         $plataformas = Plataform::all();
         $categorias = Category::all();
