@@ -16,7 +16,7 @@ class UserIndex extends Component
 
 
     //Esta variable me servira para buscar a un usuario
-    public string $busqueda='';
+    public string $busqueda='Hola paco';
 
 
 
