@@ -6,8 +6,12 @@ use App\Http\Controllers\Admin\HomeController;
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PlataformController;
+use App\Http\Controllers\Admin\UserController;
 
 Route::get('' , [HomeController::class , 'index'])->name('admin.home');
+
+
+Route::resource('users', UserController::class)->only(['index' , 'edit' , 'update'])->names('admin.users');
 
 
 //Creamos la ruta resource para poder hacer el CRUD de CATEGORIAS

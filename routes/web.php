@@ -77,7 +77,7 @@ Route::get('/facebook-callback', function () {
     }
 
 
-    return redirect('/dashboard');
+    return redirect('/');
     // $user->token
 });
 
@@ -104,6 +104,40 @@ Route::get('/google-callback', function () {
             'avatar' => $user->avatar,
             'external_id' => $user->id,
             'external_auth' => 'google',
+
+
+        ]);
+
+        Auth::login($userNuevo);
+
+    }
+
+
+    return redirect('/');
+    // $user->token
+});
+
+
+
+Route::get('/login-github', function () {
+    return Socialite::driver('github')->redirect();
+});
+
+Route::get('/github-callback', function () {
+    $user = Socialite::driver('github')->user();
+
+    $userExists = User::where('external_id' , $user->id)->where('external_auth' , 'github')->first();
+
+
+    if($userExists){
+        Auth::login($userExists);
+    } else{
+       $userNuevo = User::create([
+            'name' => $user->name,
+            'email' => $user->email,
+            'avatar' => $user->avatar,
+            'external_id' => $user->id,
+            'external_auth' => 'github',
 
 
         ]);
