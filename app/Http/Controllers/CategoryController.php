@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+
+
+    //Con esto lo que hacemos es que solamente las permisonas con el permiso admin.home puedan acceder a todo lo relacionado con Category
+    public function __construct()
+    {
+        $this->middleware('can:admin.home');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +33,7 @@ class CategoryController extends Controller
     }
 
 
-   
+
 
     /**
      * Show the form for creating a new resource.
@@ -95,7 +104,7 @@ class CategoryController extends Controller
     {
         //
 
-        
+
         $request->validate([
             'nombre' => ['required' , 'string' , 'min:1' , 'unique:categories,nombre,'.$category->id]
         ]);

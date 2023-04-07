@@ -10,6 +10,15 @@ use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
+
+
+    //Con esto lo que hacemos es que solamente las permisonas con el permiso admin.home puedan acceder a todo lo relacionado con User
+    public function __construct()
+    {
+        $this->middleware('can:admin.home');
+    }
+
+
     /**
      * Display a listing of the resource.
      *

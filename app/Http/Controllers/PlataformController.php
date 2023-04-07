@@ -9,6 +9,16 @@ use Illuminate\Support\Facades\Storage;
 
 class PlataformController extends Controller
 {
+
+
+    //Con esto lo que hacemos es que solamente las permisonas con el permiso admin.home puedan acceder a todo lo relacionado con Plataform
+    public function __construct()
+    {
+        $this->middleware('can:admin.home');
+    }
+
+
+
     /**
      * Display a listing of the resource.
      *
