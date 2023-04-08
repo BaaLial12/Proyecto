@@ -14,12 +14,19 @@ class Plataform extends Model
 
 
 
-    //Relacion con categories 
+    //Relacion con categories
     // 1 plataforma tiene 1 categoria
 
     public function category(){
         return $this->belongsTo(Category::class);
     }
 
+
+    //Relacion con grupos
+    // 1 plataforma puede estar en muchos grupos
+
+    public function groups(){
+        return $this->hasMany(Group::class);
+    }
 
 }

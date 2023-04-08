@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GroupController;
 use App\Models\Category;
 use App\Models\Plataform;
 use App\Models\User;
@@ -147,6 +148,12 @@ Route::get('/github-callback', function () {
     }
 
 
-    return redirect('/dashboard');
+    return redirect('/');
     // $user->token
 });
+
+
+
+
+Route::get('/plataform/{id}/grupos' , [GroupController::class , 'showGroups'])->name('groups.show');
+
