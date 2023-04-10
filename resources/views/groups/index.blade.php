@@ -1,9 +1,9 @@
 <x-app-layout>
-
-    a
-
     Hola
-    {{$grupos}}
+    {{$id->nombre}}
+
+    
+
 
 
 

@@ -21,12 +21,10 @@ class GroupController extends Controller
     public function showGroups(Plataform $id){
 
 
-        $grupos = Group::where('plataform_id' , $id)->get();
+        $grupos = Group::where('plataform_id','=' , $id);
         //hay que paginarlo
-
-
-
-        return view('groups.index' , compact('grupos'));
+        // $grupos = Group::all();
+        return view('groups.index' , compact('grupos' , 'id'));
 
     }
 
@@ -38,6 +36,9 @@ class GroupController extends Controller
     public function create()
     {
         //
+
+        return view('groups.create');
+
     }
 
     /**

@@ -23,8 +23,8 @@ class GroupSeeder extends Seeder
 
 
         Group::create([
-            'capacidad' => '1',
-            'plataform_id' => Plataform::all()->random()->id ,
+            'capacidad' => '4',
+            'plataform_id' => '1' ,
             'user_id' => User::all()->random()->id
         ]);
 

@@ -29,11 +29,14 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UserSeeder::class);
 
+
         User::factory(1)->create();
 
-        
+
         $this->call(CategorySeeder::class);
         $this->call(PlataformSeeder::class);
+        $this->call(GroupSeeder::class);
+
 
     }
 }
