@@ -3,6 +3,9 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         Tus Suscripciones ({{$contador}})
         </h2>
+        <a class="btn btn-primary" href="{{route('groups.create')}}">
+            <i class="fas fa-add">Crear Grupo</i>
+        </a>
     </x-slot>
 
     <div class="py-12">

@@ -18,6 +18,12 @@
                     <x-nav-link href="{{ route('marketplace') }}" :active="request()->routeIs('marketplace')">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </x-nav-link>
+                    <x-nav-link href="{{route('groups.create')}}" class="btn btn-warning rounded-circle ml-5">
+                        <i class="fas fa-add">Crear Grupo</i>
+                    </x-nav-link>
+
+
+
                 </div>
             </div>
 
