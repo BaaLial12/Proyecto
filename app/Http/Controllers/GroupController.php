@@ -21,9 +21,19 @@ class GroupController extends Controller
     public function showGroups(Plataform $id){
 
 
-        $grupos = Group::where('plataform_id',  $id->id)->get();
-        //hay que paginarlo
-        return view('groups.index' , compact('grupos' , 'id'));
+
+
+
+        $grupos = Group::where('plataform_id',  $id->id)->withCount('users')->get();
+
+
+        foreach ($grupos as $grupo) {
+            $sitios_totales = $grupo->plataform->capacidad;
+
+        }
+
+
+        return view('groups.index' , compact('grupos' , 'id' , 'sitios_totales' ));
 
     }
 

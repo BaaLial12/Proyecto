@@ -15,7 +15,7 @@
                                     <div class="card-body" >
                                         <h5 class="card-title"><strong>{{ $plataforma->nombre }}</strong></h5>
                                         <p class="card-text" style="margin-top: 30px">Apartir de : {{round($plataforma->suscripcion/$plataforma->capacidad, 2) }}€</p>
-                                        <a href="{{route('groups.show' , $plataforma->id)}}">Ver grupos</a>
+                                        <a href="{{route('groups.showGroups' , $plataforma->id )}}">Ver grupos</a>
                                     </div>
                                 </div>
                             </div>

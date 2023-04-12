@@ -2,7 +2,7 @@
     {{-- A good traveler has no fixed plans and is not intent upon arriving. --}}
 
 
-    <input type="text" wire:model="search" placeholder="Buscar plataforma...">
+    <input type="text" wire:model="search" placeholder="Buscar plataforma..." class="">
     <ul>
         @foreach ($platforms as $platform)
             <li>{{ $platform->nombre }}</li>

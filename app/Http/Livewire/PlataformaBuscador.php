@@ -17,7 +17,7 @@ class PlataformaBuscador extends Component
     public function render()
     {
 
-        $this->platforms= Plataform::where('nombre' , 'LIKE' , $this->search)
+        $this->platforms= Plataform::where('nombre' , 'LIKE' , '%'.$this->search.'%')
                             ->get();
 
 
