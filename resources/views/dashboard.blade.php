@@ -4,43 +4,36 @@
         Tus Suscripciones ({{$contador}})
         </h2>
 
-
-        <div class="row">
-
-            @foreach ($grupos as $grupo )
-
-            <div class="col-6">
-
-                <div class="card card-frame">
-                    <div class="card-header">
-                        <img class="img-fluid img-thumbnail" src="{{$grupo->plataform->logo}}" alt="{{$grupo->plataform->nombre}}">
-                        <div class="row">
-                                <div class="col-3">
-                                    {{$grupo->plataform->nombre}}
-                                </div>
-                                <div class="col-3">
-                                    {{count($grupo->users)}}/{{$grupo->plataform->capacidad}}
-                                </div>
+        @foreach ($grupos as $grupo )
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+              <div class="card">
+                <img src="{{$grupo->plataform->logo}}" alt="{{$grupo->plataform->nombre}}" class="card-img-top border-2"
+                  alt="Hollywood Sign on The Hill" />
+                <div class="card-body">
+                  <h5 class="card-title">{{$grupo->plataform->nombre}}</h5>
+                  <p class="card-text">
+                    Precio por miembro : {{($grupo->plataform->suscripcion)/($grupo->plataform->capacidad)}}€
+                  </p>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">Miembros : {{count($grupo->users)}}/{{$grupo->plataform->capacidad}}</p>
                         </div>
 
                     </div>
-                    <div class="card-body">
-                        {{$grupo}}
+
+                    <div class="row">
+                        <div class="col align-content-center text-center">
+                            <a class="btn btn-secondary" href="{{('')}}">Administrar Suscripcion</a>
+                        </div>
                     </div>
-
-                    <div class="card-footer">
-                        {{$grupo}}
-                    </div>
-
-
-                </div>
-                @endforeach
-
             </div>
-
-
-
+              </div>
+            </div>
         </div>
+        @endforeach
 
 
 
@@ -48,9 +41,7 @@
 
 
 
-        <a class="btn btn-primary" href="{{route('groups.create')}}">
-            <i class="fas fa-add">Crear Grupo</i>
-        </a>
+
     </x-slot>
 
     <div class="py-12">
