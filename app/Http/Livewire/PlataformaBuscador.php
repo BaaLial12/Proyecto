@@ -24,3 +24,4 @@ class PlataformaBuscador extends Component
         return view('livewire.plataforma-buscador');
     }
 }
+
