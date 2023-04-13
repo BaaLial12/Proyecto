@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GroupController;
 use App\Models\Category;
+use App\Models\Group;
 use App\Models\Plataform;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -31,7 +32,8 @@ use Laravel\Socialite\Facades\Socialite;
 //Aparte me llevare una variable llamada contador a la vista dashboard donde le dira al usuario logueado la cantidad de plataformas que esta compartiendo
 Route::get('/', function () {
     $contador = auth()->user()->groups()->count();
-    return view('dashboard' , compact('contador'));
+    $grupos = Group::where('user_id' , auth()->user()->id)->get();
+    return view('dashboard' , compact('contador' , 'grupos'));
 })->middleware(['auth'])->name('dashboard');
 
 

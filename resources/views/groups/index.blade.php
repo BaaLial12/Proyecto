@@ -7,9 +7,4 @@
             <p>Capacidad del grupo {{$sitios_totales}}</p>
             <p> Usuarios en grupo {{count($grupo->users)}}</p>
     @endforeach
-    {{-- {{$grupos[0]}} --}}
-
-
-
-
 </x-app-layout>
