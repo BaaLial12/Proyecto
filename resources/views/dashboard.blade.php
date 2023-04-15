@@ -9,11 +9,11 @@
             <div class="col">
               <div class="card">
                 <img src="{{$grupo->plataform->logo}}" alt="{{$grupo->plataform->nombre}}" class="card-img-top border-2"
-                  alt="" />
+                  alt="{{$grupo->plataform->nombre}}" />
                 <div class="card-body">
                   <h5 class="card-title">{{$grupo->plataform->nombre}}</h5>
                   <p class="card-text">
-                    Precio por miembro : {{($grupo->plataform->suscripcion)/($grupo->plataform->capacidad)}}€
+                    Precio por miembro : {{round(($grupo->plataform->suscripcion)/($grupo->plataform->capacidad),2)}}€
                   </p>
                 </div>
                 <div class="card-footer">
@@ -26,7 +26,7 @@
 
                     <div class="row">
                         <div class="col align-content-center text-center">
-                            <a class="btn btn-secondary" href="{{('')}}">Administrar Suscripcion</a>
+                            <a class="btn btn-secondary" href="{{route('groups.administration' , $grupo->id)}}">Administrar Suscripcion</a>
                         </div>
                     </div>
             </div>

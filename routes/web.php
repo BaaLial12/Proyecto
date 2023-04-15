@@ -155,9 +155,9 @@ Route::get('/github-callback', function () {
 });
 
 
+Route::resource('groups' , GroupController::class);
 
 
 Route::get('/plataform/{id}/grupos' , [GroupController::class , 'showGroups'])->name('groups.showGroups');
 
-Route::resource('groups' , GroupController::class);
-
+Route::get('groups/administration/{grupo}' , [GroupController::class , 'administration'])->name('groups.administration');

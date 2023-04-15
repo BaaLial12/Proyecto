@@ -5,12 +5,12 @@
         @if ($search !== '')
           <ul class="platforms-list list-group position-absolute w-100 mt-1 ">
             @foreach ($platforms as $platform)
-              <li class="platform-item list-group-item-action list-group-item-danger cursor-pointer">{{ $platform->nombre }}</li>
+              <a class="platform-item list-group-item-action list-group-item-danger cursor-pointer">{{ $platform->nombre }}</a>
             @endforeach
           </ul>
         @endif
       </div>
 
 
-      
+
 </div>

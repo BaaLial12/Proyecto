@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Group;
 use App\Models\Plataform;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GroupController extends Controller
 {
@@ -105,4 +106,35 @@ class GroupController extends Controller
     {
         //
     }
+
+
+
+
+    public function administration($group){
+
+
+        //Con find lo que hacemos es buscar un registro por su id , en la tabla group y devuelve el modelo asociado a ese registro
+        $grupo = Group::find($group);
+
+
+
+        // $usuario_pro = Auth::user()->id;
+
+
+        // if($usuario_pro!=$group->user_id){
+        // } else{
+        //     return view('dashboard');
+
+        // }
+
+
+        return view('groups.administration' , compact('grupo'));
+
+
+    }
+
+
+
+
+
 }
