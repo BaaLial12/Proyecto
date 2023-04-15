@@ -9,7 +9,7 @@
             <div class="col">
               <div class="card">
                 <img src="{{$grupo->plataform->logo}}" alt="{{$grupo->plataform->nombre}}" class="card-img-top border-2"
-                  alt="Hollywood Sign on The Hill" />
+                  alt="" />
                 <div class="card-body">
                   <h5 class="card-title">{{$grupo->plataform->nombre}}</h5>
                   <p class="card-text">
