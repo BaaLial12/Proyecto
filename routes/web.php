@@ -8,7 +8,6 @@ use App\Models\Group;
 use App\Models\Plataform;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -32,7 +31,11 @@ use Laravel\Socialite\Facades\Socialite;
 //Aparte me llevare una variable llamada contador a la vista dashboard donde le dira al usuario logueado la cantidad de plataformas que esta compartiendo
 Route::get('/', function () {
     $contador = auth()->user()->groups()->count();
-    $grupos = Group::where('user_id' , auth()->user()->id)->get();
+    $grupos = Group::where('user_id', auth()->user()->id)
+                ->orWhereHas('users', function($query) {
+                    $query->where('user_id', auth()->user()->id);
+                })->get();
+
     return view('dashboard' , compact('contador' , 'grupos'));
 })->middleware(['auth'])->name('dashboard');
 
@@ -161,3 +164,5 @@ Route::resource('groups' , GroupController::class);
 Route::get('/plataform/{id}/grupos' , [GroupController::class , 'showGroups'])->name('groups.showGroups');
 
 Route::get('groups/administration/{grupo}' , [GroupController::class , 'administration'])->name('groups.administration');
+
+Route::get('/unirse-grupo/{id}', [GroupController::class, 'joinGroup'])->name('unirse-grupo');

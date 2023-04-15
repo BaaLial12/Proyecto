@@ -86,6 +86,17 @@
                 </div>
             </div>
         </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="fs-6">&copy; 2023 Nombre, Inc. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+
+
+
     </footer>
 
 </body>

@@ -19,7 +19,8 @@ class GroupController extends Controller
         //
     }
 
-    public function showGroups(Plataform $id){
+    public function showGroups(Plataform $id)
+    {
 
 
 
@@ -30,12 +31,10 @@ class GroupController extends Controller
 
         foreach ($grupos as $grupo) {
             $sitios_totales = $grupo->plataform->capacidad;
-
         }
 
 
-        return view('groups.index' , compact('grupos' , 'id' , 'sitios_totales' ));
-
+        return view('groups.index', compact('grupos', 'id', 'sitios_totales'));
     }
 
     /**
@@ -48,7 +47,6 @@ class GroupController extends Controller
         //
 
         return view('groups.create');
-
     }
 
     /**
@@ -110,7 +108,8 @@ class GroupController extends Controller
 
 
 
-    public function administration($group){
+    public function administration($group)
+    {
 
 
         //Con find lo que hacemos es buscar un registro por su id , en la tabla group y devuelve el modelo asociado a ese registro
@@ -128,13 +127,60 @@ class GroupController extends Controller
         // }
 
 
-        return view('groups.administration' , compact('grupo'));
-
-
+        return view('groups.administration', compact('grupo'));
     }
 
 
+    public function joinGroup($id)
+    {
+        // $grupo = Group::find($id);
+
+        // $user = Auth::user();
+        // //Vamos a verificar si el usuario ya esta en ese grupo o en un uno donde se comparta la misma plataform
+
+        // if ($grupo->users->contains($user)) {
+        //     return redirect()->route('dashboard')->with('warning', 'Ya estás en este grupo.');
+        //     dd("primero");
+        // }
+
+        // dd('salida');
+        // // Verificar si el grupo está lleno
+        // if ($grupo->users->count() >= $grupo->sitios_totales) {
+        //     return redirect()->route('dashboard')->with('warning', 'Lo sentimos, este grupo ya está lleno.');
+        //     dd('segundo');
+        // }
+        // dd('salida segundo');
 
 
+        // // $grupo->users()->attach($user->id);
 
+        // // $user->groups()->attach($grupo->id);
+        // // $grupo->users()->attach($user);
+        // $grupo->users()->syncWithoutDetaching($user->id);
+
+
+        // return redirect()->route('dashboard')->with('success', 'Te has unido al grupo exitosamente.');
+
+
+        $grupo = Group::find($id);
+
+        if (!$grupo) {
+            return redirect()->route('dashboard')->with('warning', 'Lo sentimos, este grupo no existe.');
+        }
+
+        $user = Auth::user();
+
+        if ($grupo->users->contains($user)) {
+            return redirect()->route('dashboard')->with('warning', 'Ya estás en este grupo.');
+        }
+
+        if ($grupo->users->count() >= $grupo->sitios_totales) {
+            return redirect()->route('dashboard')->with('warning', 'Lo sentimos, este grupo ya está lleno.');
+        }
+
+        // Si llega aquí, el usuario puede unirse al grupo
+        $grupo->users()->attach($user->id);
+
+        return redirect()->route('dashboard')->with('success', 'Te has unido al grupo exitosamente!');
+    }
 }
