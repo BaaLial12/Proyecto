@@ -162,7 +162,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="h4">{{ $grupo->plataform->nombre }} Price per Subscriber</h2>
-                        <p class="mb-0"><strong>{{round(($grupo->plataform->suscripcion)/($grupo->plataform->capacidad),2)}}€</strong></p>
+                        <p class="mb-0">
+                            <strong>{{ round($grupo->plataform->suscripcion / $grupo->plataform->capacidad, 2) }}€</strong>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -183,6 +185,23 @@
             </div>
         </div>
 
+
+        {{-- Falta ocultar el boton para que solo el admin del grupo pueda verlo   --}}
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <form action="{{ route('groups.destroy', $grupo->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <p class="text-danger">Eliminar la suscripción</p>
+                        </form>
+                        <button type="button" class="btn btn-danger ml-3 text-danger">Eliminar
+                            {{ $grupo->plataform->nombre }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 
