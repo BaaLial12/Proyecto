@@ -164,22 +164,26 @@ class GroupController extends Controller
 
         $grupo = Group::find($id);
 
+
         if (!$grupo) {
             return redirect()->route('dashboard')->with('warning', 'Lo sentimos, este grupo no existe.');
         }
 
         $user = Auth::user();
 
-        if ($grupo->users->contains($user)) {
+        $grupo->users()->attach($user);
+        dd();
+
+        if ($grupo->users()->contains('user_id' , $user)) {
             return redirect()->route('dashboard')->with('warning', 'Ya estás en este grupo.');
         }
 
-        if ($grupo->users->count() >= $grupo->sitios_totales) {
+        if ($grupo->users()->count() >= $grupo->sitios_totales) {
             return redirect()->route('dashboard')->with('warning', 'Lo sentimos, este grupo ya está lleno.');
         }
 
         // Si llega aquí, el usuario puede unirse al grupo
-        $grupo->users()->attach($user->id);
+        $grupo->users()->attach($user);
 
         return redirect()->route('dashboard')->with('success', 'Te has unido al grupo exitosamente!');
     }

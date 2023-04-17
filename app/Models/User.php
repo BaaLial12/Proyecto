@@ -69,7 +69,7 @@ class User extends Authenticatable
     //RELACION N : M CON GROUP
 
     public function groups(){
-        return $this->belongsToMany(Group::class);
+        return $this->belongsToMany(Group::class)->withTimestamps();
     }
 
 

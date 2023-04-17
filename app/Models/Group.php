@@ -15,7 +15,7 @@ class Group extends Model
 
     //Relacion en 1 grupo hya muchos usuarios
     public function users(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->withTimestamps();
     }
 
 

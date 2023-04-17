@@ -29,26 +29,6 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.home'])->assignRole($admin);
 
 
-        //Permisos para proteger las CATEGORIAS
-
-        Permission::create(['name' => 'admin.categories.index'])->assignRole($admin);
-        Permission::create(['name' => 'admin.categories.create'])->assignRole($admin);
-        Permission::create(['name' => 'admin.categories.edit'])->assignRole($admin);
-        Permission::create(['name' => 'admin.categories.destroy'])->assignRole($admin);
-
-
-
-
-
-        //Permisos para proteger las PLATAFORMAS
-
-        Permission::create(['name' => 'admin.plataforms.index'])->assignRole($admin);
-        Permission::create(['name' => 'admin.plataforms.create'])->assignRole($admin);
-        Permission::create(['name' => 'admin.plataforms.edit'])->assignRole($admin);
-        Permission::create(['name' => 'admin.plataforms.destroy'])->assignRole($admin);
-
-
-
         //Permisos para proteger los grupos (unicamente lo tendran los usuarios dueños del grupo)
 
         //Permission::create(['name' => 'admin.groups.index']);

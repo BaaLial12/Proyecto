@@ -186,6 +186,7 @@
         </div>
 
 
+        @role('Admin')
         {{-- Falta ocultar el boton para que solo el admin del grupo pueda verlo   --}}
         <div class="row mb-3">
             <div class="col-12">
@@ -197,6 +198,24 @@
                             <p class="text-danger">Eliminar la suscripción</p>
                         </form>
                         <button type="button" class="btn btn-danger ml-3 text-danger">Eliminar
+                            {{ $grupo->plataform->nombre }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endrole
+
+        {{-- Esto sera para los usuarios , para salir del grupo (HAY QUE MODIFICAR TODO) --}}
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <form action="{{ route('groups.destroy', $grupo->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <p class="text-danger">Abandonar Grupo</p>
+                        </form>
+                        <button type="button" class="btn btn-danger ml-3 text-danger">Abandonar
                             {{ $grupo->plataform->nombre }}</button>
                     </div>
                 </div>
