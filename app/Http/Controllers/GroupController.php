@@ -19,22 +19,28 @@ class GroupController extends Controller
         //
     }
 
-    public function showGroups(Plataform $id)
+    public function showGroups($plataforma)
     {
 
 
+        //A traves de pluck me cojo el id de la plataforma
+        $plataform_id = Plataform::where('nombre' , $plataforma)->pluck('id')->first();
 
+        //Comprobacion que el id exista , sino lo mandamos al mismo sitio
+        if(!$plataform_id){
+            return redirect()->route('marketplace');
 
-        $grupos = Group::where('plataform_id',  $id->id)->withCount('users')->get();
-
-
-        //Arreglar foreach , cuando no se comparte nunca una plataforma devuelve que no est definida sitios_totales
-        foreach ($grupos as $grupo) {
-            $sitios_totales = $grupo->plataform->capacidad;
         }
 
 
-        return view('groups.index', compact('grupos', 'id' , 'sitios_totales'));
+        //Con esto lo que hago es traerme todos los grupos que tienen de plataform_id la variable arriba creada y ademas cuento los usuarios
+        $grupos = Group::where('plataform_id',  $plataform_id)->withCount('users')->get();
+
+        //Me guardo en una variable los sitios totales(capacidad) de cada plataforma
+        $sitios_totales = Plataform::where('nombre' , $plataforma)->pluck('capacidad')->first();
+
+
+        return view('groups.index', compact('grupos', 'plataform_id' , 'sitios_totales'));
     }
 
     /**
