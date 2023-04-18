@@ -166,3 +166,5 @@ Route::get('/plataform/{id}/grupos' , [GroupController::class , 'showGroups'])->
 Route::get('groups/administration/{grupo}' , [GroupController::class , 'administration'])->name('groups.administration');
 
 Route::get('/unirse-grupo/{id}', [GroupController::class, 'joinGroup'])->name('unirse-grupo');
+
+Route::get('/marketplace/{nombre}' , [CategoryController::class , 'showbycategorie'])->name('show-plataforms-by-categorie');

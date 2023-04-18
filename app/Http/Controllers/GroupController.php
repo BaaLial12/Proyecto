@@ -45,7 +45,6 @@ class GroupController extends Controller
     public function create()
     {
         //
-
         return view('groups.create');
     }
 
@@ -161,20 +160,36 @@ class GroupController extends Controller
 
         // return redirect()->route('dashboard')->with('success', 'Te has unido al grupo exitosamente.');
 
-
+        $user = Auth::user()->id;
         $grupo = Group::find($id);
-
+        $users = $grupo->users;
 
         if (!$grupo) {
             return redirect()->route('dashboard')->with('warning', 'Lo sentimos, este grupo no existe.');
         }
 
-        $user = Auth::user();
+        $belongsToGroup = $grupo->users->contains($user);
 
-        $grupo->users()->attach($user);
-        dd();
+        dd($belongsToGroup);
 
-        if ($grupo->users()->contains('user_id' , $user)) {
+
+
+        //Me guarda el id del propietario
+        $propUser = $grupo->id;
+
+
+
+
+
+        // //Que se intente unir a su mismo grupo
+        if($grupo->user_id == $user){
+            return redirect()->route('dashboard')->with('warning', 'Te has intentado unir a tu grupo.');
+        }
+
+        //Que ya este en el grupo
+        dd($users);
+
+        if ($grupo->user_id) {
             return redirect()->route('dashboard')->with('warning', 'Ya estás en este grupo.');
         }
 

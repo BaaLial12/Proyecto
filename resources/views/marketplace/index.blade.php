@@ -3,7 +3,7 @@
 <div class="owl-carousel owl-theme mx-auto"> <!-- Agregar clase "mx-auto" -->
     @foreach ($categorias as $categoria)
         <div class="card text-center mb-4 mx-auto"> <!-- Agregar clase "text-center" y "mx-auto" -->
-            <div class="card-header" style="background-color: #5B5EA6"><strong>{{ $categoria->nombre }}</strong></div>
+            <div class="card-header" style="background-color: #5B5EA6"><strong>{{ $categoria->nombre }}</strong><a href="{{route('show-plataforms-by-categorie' , $categoria->nombre)}}"  class="float-right text-black">Ver Todo</a></div>
             <div class="card-body text-center" style="background-color: #F9AFAF">
                 <div class="slider">
 

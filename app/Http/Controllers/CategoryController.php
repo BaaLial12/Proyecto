@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Plataform;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -15,6 +16,14 @@ class CategoryController extends Controller
         $this->middleware('can:admin.home');
     }
 
+    //Funcion que me permitira enseñar al usuario un filtro de todas las plataformas en funcion de su categoria
+    public function showbycategorie($nombre){
+
+
+        $categoria_id = Category::where('nombre' , $nombre)->pluck('id')->first();
+        $plataforms_by_categorie = Plataform::all();
+        return view('marketplace.filterbycategorie' , compact('categoria_id' , 'plataforms_by_categorie'));
+    }
 
     /**
      * Display a listing of the resource.
