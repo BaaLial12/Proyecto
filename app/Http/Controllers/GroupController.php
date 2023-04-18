@@ -25,16 +25,16 @@ class GroupController extends Controller
 
 
 
-
         $grupos = Group::where('plataform_id',  $id->id)->withCount('users')->get();
 
 
+        //Arreglar foreach , cuando no se comparte nunca una plataforma devuelve que no est definida sitios_totales
         foreach ($grupos as $grupo) {
             $sitios_totales = $grupo->plataform->capacidad;
         }
 
 
-        return view('groups.index', compact('grupos', 'id', 'sitios_totales'));
+        return view('groups.index', compact('grupos', 'id' , 'sitios_totales'));
     }
 
     /**

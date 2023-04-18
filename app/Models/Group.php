@@ -9,7 +9,7 @@ class Group extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['capacidad' , 'plataform_id' , 'user_id'];
+    protected $fillable = ['capacidad' , 'plataform_id' , 'user_id' , 'credential_id'];
 
 
 
@@ -28,6 +28,11 @@ class Group extends Model
         return $this->belongsTo(User::class , 'user_id');
     }
 
+
+    //Relacion con credentials
+    public function credential(){
+        return $this->belongsTo(Credential::class);
+    }
 
 
 }

@@ -27,11 +27,12 @@ class GroupSeeder extends Seeder
 
             'capacidad' => 90,
             'plataform_id' => '1' ,
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'credential_id' => 1
         ]);
 
         $group->users()->attach($user);
-        
+
 
 
     }

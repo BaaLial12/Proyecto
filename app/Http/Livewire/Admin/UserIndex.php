@@ -16,7 +16,7 @@ class UserIndex extends Component
 
 
     //Esta variable me servira para buscar a un usuario
-    public string $busqueda='Hola paco';
+    public string $busqueda='';
 
 
 
@@ -24,7 +24,7 @@ class UserIndex extends Component
     public function render()
     {
         $users = User::where('name' , 'like' , "%{$this->busqueda}%")->
-                orWhere('email' , 'like' , "%{$this->busqueda}%")->paginate(1);
+                orWhere('email' , 'like' , "%{$this->busqueda}%")->paginate(10);
         return view('livewire.admin.user-index' , compact('users'));
     }
 
