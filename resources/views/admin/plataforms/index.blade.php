@@ -32,7 +32,7 @@
                     <tr>
                         <td>{{$item->id}}</td>
                         <td>{{$item->nombre}}</td>
-                        <td><img class="img-fluid" src="{{ url($item->logo) }}" /></td>
+                        <td><img class="img-fluid" src="{{ Storage::url($item->logo) }}" /></td>
                         <td>{{$item->capacidad}}</td>
                         <td>{{$item->suscripcion}}€</td>
                         <td>{{$item->category->nombre}}</td>
