@@ -7,17 +7,10 @@
 
 @section('content')
 
-    @if (session('info'))
-        <div class="alert alert-success">
-            <strong>{{session('info')}}</strong>
-        </div>
-
-    @endif
-
-
+   
     <div class="card">
         <div class="card-header">
-            <a class="btn btn-success" href="{{route('admin.categories.create')}}">Crear Categoria</a>
+            <a class="btn btn-success" href="{{ route('admin.categories.create') }}">Crear Categoria</a>
         </div>
         <div class="card-body">
             <table class="table table-striped">
@@ -31,21 +24,19 @@
 
 
                 <tbody>
-                    @foreach ($categorias as $item )
+                    @foreach ($categorias as $item)
                         <tr>
-                            <td>{{$item->id}}</td>
-                            <td>{{$item->nombre}}</td>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->nombre }}</td>
                             <td width="10px">
-                                <a class="btn btn-primary" href="{{route('admin.categories.edit' , $item)}}">Editar</a>
+                                <a class="btn btn-primary" href="{{ route('admin.categories.edit', $item) }}">Editar</a>
                             </td>
                             <td width="10px">
-                                <form action="{{route('admin.categories.destroy' , $item)}}" method="POST">
+                                <form action="{{ route('admin.categories.destroy', $item) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
 
                                     <button type="submit" class="btn btn-danger">Eliminar</button>
-
-
                                 </form>
                             </td>
                         </tr>
@@ -55,3 +46,53 @@
         </div>
     </div>
 @stop
+
+
+@section('plugins.Sweetalert2', true);
+{{-- Test Sweetalert2 Plugin --}}
+@push('js')
+
+    <script>
+        @if (session('error_msg'))
+            let timerInterval
+            Swal.fire({
+                icon: 'error',
+                title: '{{ session('error_msg') }}',
+                position: 'top-end',
+                timer: 2000,
+                timerProgressBar: true,
+                toast: true,
+                showConfirmButton: false,
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log('I was closed by the timer')
+                }
+            })
+        @endif
+
+        @if (session('success_msg'))
+            let timerInterval
+            Swal.fire({
+                icon: 'success',
+                title: '{{ session('success_msg') }}',
+                position: 'top-end',
+                timer: 2000,
+                timerProgressBar: true,
+                toast: true,
+                showConfirmButton: false,
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log('I was closed by the timer')
+                }
+            })
+        @endif
+    </script>
+@endpush

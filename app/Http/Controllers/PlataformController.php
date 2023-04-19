@@ -94,7 +94,7 @@ class PlataformController extends Controller
             'logo' => $img
         ]);
 
-        return redirect()->route('admin.plataforms.index')->with('info', 'Plataforma Creada');
+        return redirect()->route('admin.plataforms.index')->with('success_msg', 'Plataforma Creada');
 
 
 
@@ -178,7 +178,7 @@ class PlataformController extends Controller
             Storage::delete($img1);
         }
 
-            return redirect()->route('admin.plataforms.index')->with('info', 'Plataforma Actualizada');
+            return redirect()->route('admin.plataforms.index')->with('success_msg', 'Plataforma Actualizada');
 
 
 
@@ -198,6 +198,6 @@ class PlataformController extends Controller
         //
         Storage::delete($plataform->logo);
         $plataform->delete();
-        return redirect()->route('admin.plataforms.index')->with('info' , 'Plataforma Eliminada');
+        return redirect()->route('admin.plataforms.index')->with('success_msg' , 'Plataforma Eliminada');
     }
 }

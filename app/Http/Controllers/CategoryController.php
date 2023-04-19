@@ -73,7 +73,7 @@ class CategoryController extends Controller
             'nombre' => $request->nombre
         ]);
 
-        return redirect()->route('admin.categories.index' , compact('categoria'))->with('info' , 'Categoria Creada');
+        return redirect()->route('admin.categories.index' , compact('categoria'))->with('success_msg' , 'Categoria Creada');
 
 
     }

@@ -62,3 +62,53 @@
 
 @stop
 
+
+@section('plugins.Sweetalert2', true);
+{{-- Test Sweetalert2 Plugin --}}
+@push('js')
+
+    <script>
+        @if (session('error_msg'))
+            let timerInterval
+            Swal.fire({
+                icon: 'error',
+                title: '{{ session('error_msg') }}',
+                position: 'top-end',
+                timer: 2000,
+                timerProgressBar: true,
+                toast: true,
+                showConfirmButton: false,
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log('I was closed by the timer')
+                }
+            })
+        @endif
+
+        @if (session('success_msg'))
+            let timerInterval
+            Swal.fire({
+                icon: 'success',
+                title: '{{ session('success_msg') }}',
+                position: 'top-end',
+                timer: 2000,
+                timerProgressBar: true,
+                toast: true,
+                showConfirmButton: false,
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log('I was closed by the timer')
+                }
+            })
+        @endif
+    </script>
+@endpush
+

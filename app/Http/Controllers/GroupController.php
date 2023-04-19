@@ -203,6 +203,7 @@ class GroupController extends Controller
         if($grupo->users->contains($user)){
             return redirect()->route('dashboard')->with('error_msg', 'Ya perteneces a este grupo.');
         }
+        //TODO:19/04/2023 POR AQUI ME HE QUEDADO HAY QUE COMPROBAR QUE NO SEA LA MISMA PLATAFORMA 
 
         dd($grupo->plataform->id);
 
