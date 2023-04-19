@@ -6,6 +6,7 @@ use App\Models\Group;
 use App\Models\Plataform;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class GroupController extends Controller
 {
@@ -192,15 +193,27 @@ class GroupController extends Controller
 
         $user = Auth::user()->id;
         $grupo = Group::find($id);
+
+        //Primera comprobacion , que exista el grupo
+        if(!Group::where('id' , $id)->exists()){
+            return redirect()->route('dashboard')->with('error_msg', 'Lo sentimos, este grupo no existe.');
+        }
+
+        //Segunda comprobacion que el usuario no se intente unir a un grupo que ya es miembro
+        if($grupo->users->contains($user)){
+            return redirect()->route('dashboard')->with('error_msg', 'Ya perteneces a este grupo.');
+        }
+
+        dd($grupo->plataform->id);
+
+        if ($grupo->plataform->id) {
+        }
         $users = $grupo->users;
 
-        if (!$grupo) {
-            return redirect()->route('dashboard')->with('warning', 'Lo sentimos, este grupo no existe.');
-        }
+
 
         $belongsToGroup = $grupo->users->contains($user);
 
-        dd($belongsToGroup);
 
 
 
@@ -217,7 +230,6 @@ class GroupController extends Controller
         }
 
         //Que ya este en el grupo
-        dd($users);
 
         if ($grupo->user_id) {
             return redirect()->route('dashboard')->with('warning', 'Ya estás en este grupo.');
