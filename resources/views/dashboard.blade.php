@@ -8,7 +8,7 @@
             @foreach ($grupos as $grupo)
                 <div class="col mb-3">
                     <div class="card h-100">
-                        <img src="{{ $grupo->plataform->logo }}" alt="{{ $grupo->plataform->nombre }}"
+                        <img src="{{ Storage::url($grupo->plataform->logo) }}" alt="{{ $grupo->plataform->nombre }}"
                             class="card-img-top border-2" alt="{{ $grupo->plataform->nombre }}" />
                         <div class="card-body">
                             <h5 class="card-title">{{ $grupo->plataform->nombre }}</h5>
