@@ -120,7 +120,7 @@ class CategoryController extends Controller
 
         $category->update($request->all());
 
-        return redirect()->route('admin.categories.index' , compact('category'))->with('info' , 'Categoria Actualizada');
+        return redirect()->route('admin.categories.index' , compact('category'))->with('success_msg' , 'Categoria Actualizada');
 
 
 
@@ -140,7 +140,7 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return redirect()->route('admin.categories.index')->with('info' , 'Categoria Eliminada');
+        return redirect()->route('admin.categories.index')->with('success_msg' , 'Categoria Eliminada');
 
 
     }

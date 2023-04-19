@@ -7,9 +7,6 @@
                     @if ($plataforma->category_id == $categoria_id)
                     <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
                         <div class="card mb-4" style="background-color: #D8C3FF">
-                            <div class="card-header">
-                                <h5>Hola</h5>
-                            </div>
                             <div class="card-body" >
                                 <h5 class="card-title" style="font-size: 1.5rem"><strong>{{ $plataforma->nombre }}</strong></h5>
                                 <p class="card-text" style="margin-top: 30px; font-size: 1.2rem">A partir de: {{round($plataforma->suscripcion/$plataforma->capacidad, 2) }}€</p>

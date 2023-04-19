@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
+    <!-- Incluye la biblioteca de Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -53,6 +55,54 @@
     </div>
 
     @stack('modals')
+
+    @if (session('error_msg'))
+        <script>
+            let timerInterval
+            Swal.fire({
+                icon: 'error',
+                title: '{{ session('error_msg') }}',
+                position: 'top-end',
+                timer: 2000,
+                timerProgressBar: true,
+                toast: true,
+                showConfirmButton: false,
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log('I was closed by the timer')
+                }
+            })
+        </script>
+    @endif
+
+    @if (session('success_msg'))
+        <script>
+            let timerInterval
+            Swal.fire({
+                icon: 'success',
+                title: '{{ session('success_msg') }}',
+                position: 'top-end',
+                timer: 2000,
+                timerProgressBar: true,
+                toast: true,
+                showConfirmButton: false,
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log('I was closed by the timer')
+                }
+            })
+        </script>
+    @endif
+
+    @stack('js')
 
     @livewireScripts
 

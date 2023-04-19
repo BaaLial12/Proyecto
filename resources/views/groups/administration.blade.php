@@ -174,14 +174,17 @@
                         <h2 class="h4">{{ $grupo->plataform->nombre }} Credenciales</h2>
                         <div class="mb-3">
                             <label class="form-label">Email:</label>
-                            <input type="email" class="form-control" placeholder="Enter email" value="{{$grupo->credential->email}}" />
+                            <input type="email" class="form-control" placeholder="Enter email"
+                                value="{{ $grupo->credential->email }}" />
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Password:</label>
-                            <input id="password-input" type="password" class="form-control" placeholder="Enter password" value="{{$grupo->credential->password}}" />
+                            <input id="password-input" type="password" class="form-control" placeholder="Enter password"
+                                value="{{ $grupo->credential->password }}" />
                         </div>
                         <div class="mb-3 align-items-center">
-                            <button id="show-password-btn" class="btn btn-outline-dark" style="background-color: #00CDD0" type="button">Mostrar contraseña</button>
+                            <button id="show-password-btn" class="btn btn-outline-dark"
+                                style="background-color: #00CDD0" type="button">Mostrar contraseña</button>
                         </div>
 
 
@@ -191,41 +194,50 @@
         </div>
 
 
-        @role('Admin')
-        {{-- Falta ocultar el boton para que solo el admin del grupo pueda verlo   --}}
-        <div class="row mb-3">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body d-flex justify-content-between align-items-center">
-                        <form action="{{ route('groups.destroy', $grupo->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <p class="text-danger">Eliminar la suscripción</p>
-                        </form>
-                        <button type="button" class="btn btn-danger ml-3 text-danger">Eliminar
-                            {{ $grupo->plataform->nombre }}</button>
+        @if ($grupo->user_id == Auth::user()->id)
+            {{-- Falta ocultar el boton para que solo el admin del grupo pueda verlo   --}}
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="row card-body align-items-center">
+                            <div class="col-6 ">
+                                <p class="text-danger mr-auto mb-0">Eliminar Grupo</p>
+                            </div>
+                            <div class="col-6 text-center">
+                                <form action="{{ route('groups.destroy', $grupo->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger text-danger mr-auto">Abandonar
+                                        {{ $grupo->plataform->nombre }}</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        @endrole
+        @else
+            {{-- Esto sera para los usuarios(SOLAMENTE) , para salir del grupo FALTA CREAR FUNCION PARA SALIR DEL GRUPO --}}
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="row card-body align-items-center">
+                            <div class="col-6 ">
+                                <p class="text-danger mr-auto mb-0">Abandonar Grupo</p>
+                            </div>
+                            <div class="col-6 text-center">
+                                <form action="{{ route('groups.destroy', $grupo->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger text-danger mr-auto">Abandonar
+                                        {{ $grupo->plataform->nombre }}</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
 
-        {{-- Esto sera para los usuarios , para salir del grupo (HAY QUE MODIFICAR TODO) --}}
-        <div class="row mb-3">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body d-flex justify-content-between align-items-center">
-                        <form action="{{ route('groups.destroy', $grupo->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <p class="text-danger">Abandonar Grupo</p>
-                        </form>
-                        <button type="button" class="btn btn-danger ml-3 text-danger">Abandonar
-                            {{ $grupo->plataform->nombre }}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
 
@@ -235,12 +247,12 @@
         const showPasswordBtn = document.getElementById("show-password-btn");
 
         showPasswordBtn.addEventListener("click", () => {
-        if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-        } else {
-            passwordInput.type = "password";
-        }
-    });
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        });
     </script>
 
 

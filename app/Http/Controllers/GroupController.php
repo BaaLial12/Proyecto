@@ -107,7 +107,31 @@ class GroupController extends Controller
      */
     public function destroy(Group $group)
     {
-        //
+        //Me guardo el id del usuario que esta logueado
+        $user_id = Auth::user()->id;
+
+        //Me guardo en una variable todas las ids de grupos
+        $groups_ids = Group::all()->pluck('id')->toArray();
+
+        //Me guardo en una variable todas las ids de grupo que pertenecen al usuario logueado
+        $groups_ids_user = Group::where('user_id' , $user_id)->pluck('id')->toArray();
+
+
+        //Comprobamos que exista el id del grupo en todos los ids de grupos
+        if(!in_array($group->id , $groups_ids)){
+            return redirect()->route('dashboard')->with('error_msg', 'No puedes borrar algo que no existe ;( ');
+        }
+
+        //Si existe , comprobamos que le pertenenca al usuario logueado el group_id
+        if(!in_array($group->id , $groups_ids_user)){
+            return redirect()->route('dashboard')->with('error_msg', 'No eres propietario del grupo ');
+        }
+
+        //Si sale de todo esto significa , existe el grupo , el id del grupo pertenece al usuario logueado en forma de admin
+
+        $group->delete();
+        return redirect()->route('dashboard')->with('success_msg', 'Grupo eliminado');
+
     }
 
 

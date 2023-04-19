@@ -27,7 +27,7 @@
 
                             <div class="row">
                                 <div class="col align-content-center text-center">
-                                    <a class="btn btn-secondary"
+                                    <a class="btn btn-outline-dark" style="background-color: #00CDD0"
                                         href="{{ route('groups.administration', $grupo->id) }}">Administrar
                                         Suscripción</a>
                                 </div>
@@ -37,7 +37,13 @@
                 </div>
             @endforeach
         </div>
+
+
+
+
+
     </div>
+
 
 
 

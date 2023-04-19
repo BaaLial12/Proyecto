@@ -5,15 +5,12 @@
     <div class="search-container position-relative pt-10">
         <input type="text" wire:model="search" placeholder="Buscar plataforma..."
             class="search-input form-control rounded ">
-        @if ($search !== '')
+        @if ($search != '')
             <div class="card text-center mb-4 mx-auto mt-3">
                 <div class="row">
                     @foreach ($plataforms as $plataforma)
                         <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
                             <div class="card mb-4" style="background-color: #D8C3FF">
-                                <div class="card-header">
-                                    <h5>Hola</h5>
-                                </div>
                                 <div class="card-body">
                                     <h5 class="card-title" style="font-size: 1.5rem">
                                         <strong>{{ $plataforma->nombre }}</strong></h5>

@@ -1,6 +1,5 @@
 @extends('adminlte::page')
 @section('title', 'Stream Share')
-
 @section('content_header')
     <h1>Crear Categoria</h1>
 @stop
@@ -28,4 +27,5 @@
         </div>
     </div>
 @stop
+
 
