@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CredentialController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GroupController;
 use App\Models\Category;
@@ -160,6 +161,7 @@ Route::get('/github-callback', function () {
 
 Route::resource('groups' , GroupController::class);
 
+Route::get('/credential' , [CredentialController::class , 'update'])->name('credential-update');
 
 Route::get('/plataform/{nombre}/grupos' , [GroupController::class , 'showGroups'])->name('groups.showGroups');
 
@@ -168,3 +170,4 @@ Route::get('groups/administration/{grupo}' , [GroupController::class , 'administ
 Route::get('/unirse-grupo/{id}', [GroupController::class, 'joinGroup'])->name('unirse-grupo');
 
 Route::get('/marketplace/{nombre}' , [CategoryController::class , 'showbycategorie'])->name('show-plataforms-by-categorie');
+
