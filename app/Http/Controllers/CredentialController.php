@@ -16,6 +16,7 @@ class CredentialController extends Controller
 
         // dd($request->grupo);
 
+        //TODO: YA ESTA , AHORA HACER VALIDACIONES
         $grupo = Group::findOrFail($request->grupo);
 
 
