@@ -190,18 +190,17 @@
                                         style="background-color: #00CDD0" type="button">Mostrar credenciales</button>
                                 </div>
                             </div>
+                            @if ($grupo->user_id == Auth::user()->id)
                             <div class="col">
                                 <div class="mb-3 align-items-center">
                                     <button id="show-password-btn" class="btn btn-outline-dark"
-                                        style="background-color: #00CDD0" data-bs-toggle="modal" data-bs-target="#modal-edit-credentials" type="button">Actualizar
+                                        style="background-color: #00CDD0" data-bs-toggle="modal"
+                                        data-bs-target="#modal-edit-credentials" type="button">Actualizar
                                         credenciales</button>
                                 </div>
                             </div>
-
-
-
+                            @endif
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -275,44 +274,18 @@
 
     {{-- MODAL PARA CAMBIAR LAS CREDENCIALES --}}
     <!-- Modal -->
-    {{-- <div class="modal fade" id="modal-edit-credentials" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">INTRODUCE LAS CREDENCIALES DE   {{ $grupo->plataform->nombre }}</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="form-label">Email:</label>
-                        <input type="text" id="email-modal" class="form-control" placeholder="Enter email"
-                            value="{{ $grupo->credential->email }}" />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Password:</label>
-                        <input id="password-modal" type="text" class="form-control" placeholder="Enter password"
-                            value="{{ $grupo->credential->password }}" />
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger text-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <a href="{{route('credential-update' , $grupo)}}" class="btn btn-outline-dark" style="background-color: #00CDD0">
-                        <i class="fas fa-save"></i>Almacenar
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 
-    <div class="modal fade" id="modal-edit-credentials" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modal-edit-credentials" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">INTRODUCE LAS CREDENCIALES DE   {{ $grupo->plataform->nombre }}</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">INTRODUCE LAS CREDENCIALES DE
+                        {{ $grupo->plataform->nombre }}</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('credential-update')}}" method="GET">
+                    <form action="{{ route('credential-update') }}" method="GET">
                         @method('PUT')
                         @csrf
                         <label class="form-label">Email:</label>
@@ -322,20 +295,16 @@
                         <label class="form-label">Password:</label>
                         <input id="password-modal" type="text" class="form-control" placeholder="Enter password"
                             value="{{ $grupo->credential->password }}" name="password" />
-                            <input type="text" hidden value="{{$grupo->id}}" name="grupo">
+                        <input type="text" hidden value="{{ $grupo->id }}" name="grupo">
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger text-danger"
+                                data-bs-dismiss="modal">Cancelar</button>
                             <button type="submit" class="btn btn-outline-dark" style="background-color: #00CDD0">
                                 <i class="fas fa-save"></i>Almacenar
                             </button>
-
+                        </div>
                     </form>
-
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger text-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <a href="{{route('credential-update' , $grupo)}}" class="btn btn-outline-dark" style="background-color: #00CDD0">
-                        <i class="fas fa-save"></i>Almacenar
-                    </a>
                 </div>
             </div>
         </div>
