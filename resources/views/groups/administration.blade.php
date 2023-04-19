@@ -174,7 +174,7 @@
                         <h2 class="h4">{{ $grupo->plataform->nombre }} Credenciales</h2>
                         <div class="mb-3">
                             <label class="form-label">Email:</label>
-                            <input type="email" class="form-control" placeholder="Enter email"
+                            <input type="password" id="email-input" class="form-control" placeholder="Enter email"
                                 value="{{ $grupo->credential->email }}" />
                         </div>
                         <div class="mb-3">
@@ -182,11 +182,24 @@
                             <input id="password-input" type="password" class="form-control" placeholder="Enter password"
                                 value="{{ $grupo->credential->password }}" />
                         </div>
-                        <div class="mb-3 align-items-center">
-                            <button id="show-password-btn" class="btn btn-outline-dark"
-                                style="background-color: #00CDD0" type="button">Mostrar contraseña</button>
-                        </div>
 
+                        <div class="row text-center">
+                            <div class="col">
+                                <div class="mb-3 align-items-center">
+                                    <button id="show-credentials-btn" class="btn btn-outline-dark"
+                                        style="background-color: #00CDD0" type="button">Mostrar credenciales</button>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3 align-items-center">
+                                    <button id="show-password-btn" class="btn btn-outline-dark"
+                                        style="background-color: #00CDD0" type="button">Actualizar credenciales</button>
+                                </div>
+                            </div>
+
+
+
+                        </div>
 
                     </div>
                 </div>
@@ -244,13 +257,17 @@
 
     <script>
         const passwordInput = document.getElementById("password-input");
-        const showPasswordBtn = document.getElementById("show-password-btn");
+        const emailInput = document.getElementById("email-input");
+        const showPasswordBtn = document.getElementById("show-credentials-btn");
 
         showPasswordBtn.addEventListener("click", () => {
             if (passwordInput.type === "password") {
+                emailInput.type = "email";
                 passwordInput.type = "text";
             } else {
                 passwordInput.type = "password";
+                emailInput.type = "password";
+
             }
         });
     </script>
