@@ -28,7 +28,13 @@
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
+                    @if (!$this->user->avatar)
                     <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
+
+                    @else
+                    <img src="{{ $this->user->avatar }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
+
+                    @endif
                 </div>
 
                 <!-- New Profile Photo Preview -->
