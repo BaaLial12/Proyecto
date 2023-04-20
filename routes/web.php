@@ -159,13 +159,16 @@ Route::get('/github-callback', function () {
 });
 
 
+
 Route::resource('groups' , GroupController::class);
+
 
 Route::get('/credential' , [CredentialController::class , 'update'])->name('credential-update');
 
 Route::get('/plataform/{nombre}/grupos' , [GroupController::class , 'showGroups'])->name('groups.showGroups');
 
 Route::get('groups/administration/{grupo}' , [GroupController::class , 'administration'])->name('groups.administration');
+
 
 Route::get('/unirse-grupo/{id}', [GroupController::class, 'joinGroup'])->name('unirse-grupo');
 
