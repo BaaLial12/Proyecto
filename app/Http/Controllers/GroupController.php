@@ -100,7 +100,7 @@ class GroupController extends Controller
     {
         //Me guardo el id del usuario que esta logueado
         $user_id = Auth::user()->id;
-        //Me guardo el id de la plataforma que me ayudara luego 
+        //Me guardo el id de la plataforma que me ayudara luego
         $plataform_id = $group->plataform_id;
         //Me guardo en una variable todas las ids de grupos
         $groups_ids = Group::all()->pluck('id')->toArray();
@@ -111,16 +111,15 @@ class GroupController extends Controller
         if (!in_array($group->id, $groups_ids)) {
             return redirect()->route('dashboard')->with('error_msg', 'No puedes borrar algo que no existe ;( ');
         }
-        if($group->owner->id != $user_id && in_array($group->id , $groups_ids_user)){
+        if ($group->owner->id != $user_id && in_array($group->id, $groups_ids_user)) {
             // dd("No eres propietario pero estas en el grupo y quieres salir");
-            Auth::user()->groups()->wherePivot('group_id' , $group->id)->detach();
+            Auth::user()->groups()->wherePivot('group_id', $group->id)->detach();
             return redirect()->route('dashboard')->with('success_msg', 'Has salido del grupo');
         }
         if ($group->owner->id == $user_id && $group->id == $id_del_grupo_que_tiene_esa_id_plataforma->id) {
             $group->delete();
             return redirect()->route('dashboard')->with('success_msg', 'Grupo eliminado');
         }
-
     }
 
 
@@ -138,36 +137,14 @@ class GroupController extends Controller
 
     public function joinGroup($id)
     {
-        // $grupo = Group::find($id);
-
-        // $user = Auth::user();
-        // //Vamos a verificar si el usuario ya esta en ese grupo o en un uno donde se comparta la misma plataform
-
-        // if ($grupo->users->contains($user)) {
-        //     return redirect()->route('dashboard')->with('warning', 'Ya estás en este grupo.');
-        //     dd("primero");
-        // }
-
-        // dd('salida');
-        // // Verificar si el grupo está lleno
-        // if ($grupo->users->count() >= $grupo->sitios_totales) {
-        //     return redirect()->route('dashboard')->with('warning', 'Lo sentimos, este grupo ya está lleno.');
-        //     dd('segundo');
-        // }
-        // dd('salida segundo');
-
-
-        // // $grupo->users()->attach($user->id);
-
-        // // $user->groups()->attach($grupo->id);
-        // // $grupo->users()->attach($user);
-        // $grupo->users()->syncWithoutDetaching($user->id);
-
-
-        // return redirect()->route('dashboard')->with('success', 'Te has unido al grupo exitosamente.');
-
         $user = Auth::user()->id;
         $grupo = Group::find($id);
+
+        //Me guardo la plataform_id
+        $plataform_id = $grupo->plataform_id;
+
+        //Me guardo en un array todas las plataform_id que tiene un usuario
+        $plataforms_by_user = auth()->user()->groups()->pluck('plataform_id')->toArray();
 
         //Primera comprobacion , que exista el grupo
         if (!Group::where('id', $id)->exists()) {
@@ -178,47 +155,21 @@ class GroupController extends Controller
         if ($grupo->users->contains($user)) {
             return redirect()->route('dashboard')->with('error_msg', 'Ya perteneces a este grupo.');
         }
-        //TODO:19/04/2023 POR AQUI ME HE QUEDADO HAY QUE COMPROBAR QUE NO SEA LA MISMA PLATAFORMA
+
+        if (!in_array($plataform_id, $plataforms_by_user)) {
+            //Me guardo en una variable la capacidad de la plataforma en funcion del id de grupo que le esta pasando al intentar unirse
+            $capcidad_plataform = Plataform::where('id' , $plataform_id)->first();
+            //Comprobamos por ultimo que no este lleno el grupo
+            if($grupo->users()->count() > $capcidad_plataform->capacidad){
+                return redirect()->route('dashboard')->with('error_msg', 'Lo sentimos el grupo al que intentas unirte esta lleno!');
+            }
+            // Si llega aquí, el usuario puede unirse al grupo
+            $grupo->users()->attach($user);
+            return redirect()->route('dashboard')->with('success_msg', 'Te has unido al grupo exitosamente!');
 
 
-        dd($grupo->plataform->id);
-
-        if ($grupo->plataform->id) {
+        } else {
+            return redirect()->route('dashboard')->with('error_msg', 'Ya perteneces a un grupo que comparte esta plataforma.');
         }
-        $users = $grupo->users;
-
-
-
-        $belongsToGroup = $grupo->users->contains($user);
-
-
-
-
-        //Me guarda el id del propietario
-        $propUser = $grupo->id;
-
-
-
-
-
-        // //Que se intente unir a su mismo grupo
-        if ($grupo->user_id == $user) {
-            return redirect()->route('dashboard')->with('warning', 'Te has intentado unir a tu grupo.');
-        }
-
-        //Que ya este en el grupo
-
-        if ($grupo->user_id) {
-            return redirect()->route('dashboard')->with('warning', 'Ya estás en este grupo.');
-        }
-
-        if ($grupo->users()->count() >= $grupo->sitios_totales) {
-            return redirect()->route('dashboard')->with('warning', 'Lo sentimos, este grupo ya está lleno.');
-        }
-
-        // Si llega aquí, el usuario puede unirse al grupo
-        $grupo->users()->attach($user);
-
-        return redirect()->route('dashboard')->with('success', 'Te has unido al grupo exitosamente!');
     }
 }
