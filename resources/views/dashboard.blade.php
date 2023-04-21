@@ -10,20 +10,41 @@
                     <div class="card h-100">
                         <img src="{{ Storage::url($grupo->plataform->logo) }}" alt="{{ $grupo->plataform->nombre }}"
                             class="card-img-top border-2" alt="{{ $grupo->plataform->nombre }}" />
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $grupo->plataform->nombre }}</h5>
-                            <p class="card-text">
-                                Precio por miembro :
-                                {{ round($grupo->plataform->suscripcion / $grupo->plataform->capacidad, 2) }}€
-                            </p>
+                        <div class="row card-body align-items-center text-center">
+                            <div class="col col-md-3 col-lg-6 ">
+                                <h5 class="card-title">{{ $grupo->plataform->nombre }}</h5>
+                            </div>
+                            <div class="col col-md-8 col-lg-6 ">
+                                <p class="card-text">
+                                    Precio por miembro :
+                                    {{ round($grupo->plataform->suscripcion / $grupo->plataform->capacidad, 2) }}€
+                                </p>
+                            </div>
                         </div>
                         <div class="card-footer">
                             <div class="row">
+                                <div class="col-5">
+                                    <p class="card-text">Miembros: {{ count($grupo->users) }}/{{ $grupo->plataform->capacidad }}</p>
+                                </div>
                                 <div class="col">
-                                    <p class="card-text">Miembros :
-                                        {{ count($grupo->users) }}/{{ $grupo->plataform->capacidad }}</p>
+                                    <div class="row">
+                                        <div class="block-subscribers">
+                                            @foreach($grupo->users as $user)
+                                            <div class="block-subscribers__subscriber d-inline-block" bis_skin_checked="1">
+                                                <div class="circle-subscriber">
+                                                    @if (!$user->avatar)
+                                                    <img src="{{ $user->profile_photo_url}}" class="rounded-circle" alt="{{ $user->name }}" style="height: 3rem " data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="bottom" data-bs-content="{{ $user->name }}">
+                                                    @else
+                                                    <img src="{{ $user->avatar}}" class="rounded-circle " alt="{{ $user->name }}" style="height: 3rem" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="bottom" data-bs-content="{{ $user->name }}">
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
 
                             <div class="row">
                                 <div class="col align-content-center text-center">
@@ -75,3 +96,9 @@
     })();
 </script>
 <!--End of Tawk.to Script-->
+
+
+<script>
+const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+</script>

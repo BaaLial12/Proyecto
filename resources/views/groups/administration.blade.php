@@ -63,20 +63,70 @@
                                 </div>
                             </div>
                             @if ($grupo->user_id == Auth::user()->id)
-                            <div class="col">
-                                <div class="mb-3 align-items-center">
-                                    <button id="show-password-btn" class="btn btn-outline-dark"
-                                        style="background-color: #00CDD0" data-bs-toggle="modal"
-                                        data-bs-target="#modal-edit-credentials" type="button">Actualizar
-                                        credenciales</button>
+                                <div class="col">
+                                    <div class="mb-3 align-items-center">
+                                        <button id="show-password-btn" class="btn btn-outline-dark"
+                                            style="background-color: #00CDD0" data-bs-toggle="modal"
+                                            data-bs-target="#modal-edit-credentials" type="button">Actualizar
+                                            credenciales</button>
+                                    </div>
                                 </div>
-                            </div>
                             @endif
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="row mb-3 ">
+            <div class="col">
+                <div class="row border rounded" style="background-color: #291b44">
+                    <div class="col">
+                        <div class="row m-3" style="background-color: #3e3157">
+                            <div class="row text-center">
+                                <p class="text-white">Tu suscripcion de {{ $grupo->plataform->nombre }}€ te sale a
+                                    {{ round($grupo->plataform->suscripcion / $grupo->plataform->capacidad, 2) }} en lugar de
+                                    {{ $grupo->plataform->suscripcion }}€/mes.</p>
+                                <p class="text-white">Asi que te ahorras
+                                    {{ round($grupo->plataform->suscripcion - round($grupo->plataform->suscripcion / $grupo->plataform->capacidad, 2), 2) }}
+                                    €/mes!</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        @foreach ($grupo->users as $user)
+                            <div class="col-4 d-inline-block" bis_skin_checked="1">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    @if (!$user->avatar)
+                                        <img src="{{ $user->profile_photo_url }}" class="rounded-circle"
+                                            alt="{{ $user->name }}" style="height: 3rem " data-bs-toggle="popover"
+                                            data-bs-trigger="hover focus" data-bs-placement="bottom"
+                                            data-bs-content="{{ $user->name }}">
+                                    @else
+                                        <img src="{{ $user->avatar }}" class="rounded-circle " alt="{{ $user->name }}"
+                                            style="height: 3rem" data-bs-toggle="popover"
+                                            data-bs-trigger="focus" data-bs-placement="bottom" role="button"
+                                            data-bs-content="{{ $user->name }}">
+                                    @endif
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div class="row mt-4 mb-3">
+                        <div class="col-12 d-flex justify-content-center ">
+                            <a href="" class="btn btn-outline-dark" style="background-color: #00CDD0">
+                                <i class="fa-regular fa-comment-dots fa-flip-horizontal"></i>Mensaje al grupo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
 
         @if ($grupo->user_id == Auth::user()->id)
@@ -143,6 +193,18 @@
             }
         });
     </script>
+
+<script>
+    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+</script>
+
+<script>
+    const popover = new bootstrap.Popover('.popover-dismiss', {
+  trigger: 'focus'
+})
+</script>
+
 
     {{-- MODAL PARA CAMBIAR LAS CREDENCIALES --}}
     <!-- Modal -->
