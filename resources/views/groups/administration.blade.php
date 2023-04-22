@@ -84,8 +84,9 @@
                     <div class="col">
                         <div class="row m-3" style="background-color: #3e3157">
                             <div class="row text-center">
-                                <p class="text-white">Tu suscripcion de {{ $grupo->plataform->nombre }}€ te sale a
-                                    {{ round($grupo->plataform->suscripcion / $grupo->plataform->capacidad, 2) }} en lugar de
+                                <p class="text-white">Tu suscripcion de {{ $grupo->plataform->nombre }} te sale a
+                                    {{ round($grupo->plataform->suscripcion / $grupo->plataform->capacidad, 2) }}€ en
+                                    lugar de
                                     {{ $grupo->plataform->suscripcion }}€/mes.</p>
                                 <p class="text-white">Asi que te ahorras
                                     {{ round($grupo->plataform->suscripcion - round($grupo->plataform->suscripcion / $grupo->plataform->capacidad, 2), 2) }}
@@ -105,8 +106,8 @@
                                             data-bs-trigger="hover focus" data-bs-placement="bottom"
                                             data-bs-content="{{ $user->name }}">
                                     @else
-                                        <img src="{{ $user->avatar }}" class="rounded-circle " alt="{{ $user->name }}"
-                                            style="height: 3rem" data-bs-toggle="popover"
+                                        <img src="{{ $user->avatar }}" class="rounded-circle "
+                                            alt="{{ $user->name }}" style="height: 3rem" data-bs-toggle="popover"
                                             data-bs-trigger="focus" data-bs-placement="bottom" role="button"
                                             data-bs-content="{{ $user->name }}">
                                     @endif
@@ -177,6 +178,7 @@
     </div>
 
 
+    {{-- PARA MOSTRAR Y OCULTAR LAS CREDENCIALES --}}
     <script>
         const passwordInput = document.getElementById("password-input");
         const emailInput = document.getElementById("email-input");
@@ -194,16 +196,17 @@
         });
     </script>
 
-<script>
-    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
-    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
-</script>
+    {{-- COSAS PARA EL POPOVER --}}
+    <script>
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+    </script>
 
-<script>
-    const popover = new bootstrap.Popover('.popover-dismiss', {
-  trigger: 'focus'
-})
-</script>
+    <script>
+        const popover = new bootstrap.Popover('.popover-dismiss', {
+            trigger: 'focus'
+        })
+    </script>
 
 
     {{-- MODAL PARA CAMBIAR LAS CREDENCIALES --}}

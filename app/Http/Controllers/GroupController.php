@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Group;
 use App\Models\Plataform;
+use App\Notifications\GrupoBorrado;
+use App\Notifications\UsuarioSalioDeGrupo;
+use App\Notifications\UsuarioUnidoAGrupo;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -114,10 +118,16 @@ class GroupController extends Controller
         if ($group->owner->id != $user_id && in_array($group->id, $groups_ids_user)) {
             // dd("No eres propietario pero estas en el grupo y quieres salir");
             Auth::user()->groups()->wherePivot('group_id', $group->id)->detach();
+            $group->owner->notify(new UsuarioSalioDeGrupo($group->id , $group->plataform->nombre));
             return redirect()->route('dashboard')->with('success_msg', 'Has salido del grupo');
         }
         if ($group->owner->id == $user_id && $group->id == $id_del_grupo_que_tiene_esa_id_plataforma->id) {
             $group->delete();
+            "TODO:ME QUEDA HACERLO PARA QUE LE LLEGA UN EMAIL A CADA USUARIO DEL GRUPO";
+            // dd($group->users->toArray());
+            // foreach($group->users as $usuario){
+            //     $usuario->notify(new GrupoBorrado($group->plataform->nombre));
+            // }
             return redirect()->route('dashboard')->with('success_msg', 'Grupo eliminado');
         }
     }
@@ -165,8 +175,8 @@ class GroupController extends Controller
             }
             // Si llega aquí, el usuario puede unirse al grupo
             $grupo->users()->attach($user);
+            $grupo->owner->notify(new UsuarioUnidoAGrupo($grupo->id , $grupo->plataform->nombre));
             return redirect()->route('dashboard')->with('success_msg', 'Te has unido al grupo exitosamente!');
-
 
         } else {
             return redirect()->route('dashboard')->with('error_msg', 'Ya perteneces a un grupo que comparte esta plataforma.');
