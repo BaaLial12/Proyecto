@@ -46,7 +46,7 @@ class GrupoBorrado extends Notification
         return (new MailMessage)
         ->subject('Grupo Borrado')
         ->line('Hola!')
-        ->line('El grupo de .'.$this->plataform.' al que pertenecias ha sido borrado lamentablemente')
+        ->line('El grupo de '.$this->plataform.' al que pertenecias ha sido borrado lamentablemente')
         ->line('Si necesitas más información, por favor contáctanos.')
         ->line('Gracias por usar nuestra aplicación!');
     }

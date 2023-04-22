@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Group;
 use App\Models\Plataform;
+use App\Models\User;
 use App\Notifications\GrupoBorrado;
 use App\Notifications\UsuarioSalioDeGrupo;
 use App\Notifications\UsuarioUnidoAGrupo;
@@ -102,6 +103,7 @@ class GroupController extends Controller
      */
     public function destroy(Group $group)
     {
+        $grupo = Group::find($group->id);
         //Me guardo el id del usuario que esta logueado
         $user_id = Auth::user()->id;
         //Me guardo el id de la plataforma que me ayudara luego
@@ -122,12 +124,14 @@ class GroupController extends Controller
             return redirect()->route('dashboard')->with('success_msg', 'Has salido del grupo');
         }
         if ($group->owner->id == $user_id && $group->id == $id_del_grupo_que_tiene_esa_id_plataforma->id) {
+            //Necesito traerme todos los usuarios que estan en el grupo
+            $admin = $group->owner->id;
+            $users = Group::find($group->id)->users()->where('user_id' , '<>' , $admin)->get();
+            foreach($users as $user){
+                // dd($group->owner);
+                $user->notify(new GrupoBorrado($group->plataform->nombre));
+            }
             $group->delete();
-            "TODO:ME QUEDA HACERLO PARA QUE LE LLEGA UN EMAIL A CADA USUARIO DEL GRUPO";
-            // dd($group->users->toArray());
-            // foreach($group->users as $usuario){
-            //     $usuario->notify(new GrupoBorrado($group->plataform->nombre));
-            // }
             return redirect()->route('dashboard')->with('success_msg', 'Grupo eliminado');
         }
     }
