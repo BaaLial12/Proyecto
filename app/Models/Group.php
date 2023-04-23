@@ -35,4 +35,10 @@ class Group extends Model
     }
 
 
+    //Relacion con Message , 1 grupo tiene muchos mensajes
+    public function messages(){
+        return $this->hasMany(Message::class);
+    }
+
+
 }

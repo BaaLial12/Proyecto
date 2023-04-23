@@ -118,9 +118,14 @@
 
                     <div class="row mt-4 mb-3">
                         <div class="col-12 d-flex justify-content-center ">
-                            <a href="" class="btn btn-outline-dark" style="background-color: #00CDD0">
+                            {{-- <button type="button" class="btn btn-outline-dark" style="background-color: #00CDD0"
+                                data-toggle="modal" data-target="#chatModal">
                                 <i class="fa-regular fa-comment-dots fa-flip-horizontal"></i>Mensaje al grupo
-                            </a>
+                            </button> --}}
+                            <button type="button" class="btn btn-outline-dark" style="background-color: #00CDD0"
+                                data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                <i class="fa-regular fa-comment-dots fa-flip-horizontal"></i>Mensaje al grupo
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -246,6 +251,58 @@
             </div>
         </div>
     </div>
+    {{-- FIN MODAL CREDENCIALES --}}
+
+
+    {{-- MODAL PARA EL CHAT --}}
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="chatModalLabel">Chat del grupo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <div class="d-flex justify-content-center">
+                            <span aria-hidden="true">&times;</span>
+                        </div>
+                    </button>
+                </div>
+                {{-- <div class="modal-body">
+                    <!-- Aquí iría el código del chat -->
+                </div> --}}
+                <div class="modal-body p-3" style="height: 400px; overflow: auto;">
+                    <div class="d-flex flex-column align-items-start justify-content-start">
+                        @foreach ($messages as $message)
+                            <div class="chat-message{{ $message->user_id == Auth::id() ? ' ms-auto' : '' }}">
+                                <div class="chat-message-content bg-light rounded py-2 px-3 mb-2">
+                                    <div class="small text-muted">{{ $message->created_at->format('h:i A') }}</div>
+                                    <div class="text-muted">{{ $message->user->name }}</div>
+                                    <div class="text">{{ $message->message }}</div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <form method="POST" action="{{ route('messages.store', $grupo->id) }}">
+                        @csrf
+                        <input type="hidden" name="group_id" value="{{ $grupo->id }}">
+                        <div class="input-group">
+                            <input type="text" name="message" class="form-control"
+                                placeholder="Escribe un mensaje">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {{-- FIN MODAL CHAT --}}
 
 
 

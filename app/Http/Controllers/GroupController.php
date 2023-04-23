@@ -145,7 +145,8 @@ class GroupController extends Controller
     {
         //Con find lo que hacemos es buscar un registro por su id , en la tabla group y devuelve el modelo asociado a ese registro
         $grupo = Group::find($group);
-        return view('groups.administration', compact('grupo'));
+        $messages = $grupo->messages()->orderBy('created_at' , 'asc')->get();
+        return view('groups.administration', compact('grupo' , 'messages'));
     }
 
 
