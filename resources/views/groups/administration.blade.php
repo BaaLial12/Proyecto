@@ -273,10 +273,10 @@
                     <div class="d-flex flex-column align-items-start justify-content-start">
                         @foreach ($messages as $message)
                             <div class="chat-message{{ $message->user_id == Auth::id() ? ' ms-auto' : '' }}">
-                                <div class="chat-message-content bg-light rounded py-2 px-3 mb-2">
+                                <div class="chat-message-content {{$message->user_id == Auth::id() ? ' bg-info rounded py-2 px-3 mb-2' : 'bg-light rounded py-2 px-3 mb-2'}} ">
                                     <div class="small text-muted">{{ $message->created_at->format('h:i A') }}</div>
-                                    <div class="text-muted">{{ $message->user->name }}</div>
-                                    <div class="text">{{ $message->message }}</div>
+                                    <div class="{{ $message->user_id == Auth::id() ? 'text-white' : 'text-muted' }}">{{ $message->user->name}}</div>
+                                    <div class="text {{ $message->user_id == Auth::id() ? 'text-white' : '' }}">{{ $message->message }}</div>
                                 </div>
                             </div>
                         @endforeach
@@ -289,7 +289,7 @@
                         <div class="input-group">
                             <input type="text" name="message" class="form-control"
                                 placeholder="Escribe un mensaje">
-                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            <button type="submit" class="btn btn-outline-dark" style="background-color: #00CDD0">Enviar</button>
                         </div>
                     </form>
                 </div>
