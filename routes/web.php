@@ -5,6 +5,7 @@ use App\Http\Controllers\CredentialController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ServiceController;
 use App\Models\Category;
 use App\Models\Group;
 use App\Models\Plataform;
@@ -176,4 +177,6 @@ Route::get('/unirse-grupo/{id}', [GroupController::class, 'joinGroup'])->name('u
 Route::get('/marketplace/{nombre}' , [CategoryController::class , 'showbycategorie'])->name('show-plataforms-by-categorie');
 
 Route::post('/messages' , [MessageController::class , 'store'])->name('messages.store');
+
+Route::post('/services' , [ServiceController::class , 'store'])->name('services.store');
 
