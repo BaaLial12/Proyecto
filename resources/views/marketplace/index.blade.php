@@ -85,19 +85,19 @@
                                         <div class="col-md-6">
                                             <label for="nombre-servicio" class="form-label">Nombre del Servicio</label>
                                             <input type="text" name="nombre" id="nombre-servicio"
-                                                class="form-control" placeholder="Ex: Service">
+                                                class="form-control" placeholder="Ex: Service" required>
                                         </div>
                                         <div class="col-md-6 mt-2 mt-md-0">
                                             <label for="url-servicio" class="form-label">URL del Servicio</label>
                                             <input type="url" name="url" id="url-servicio" class="form-control"
-                                                placeholder="Ex: http://www.service.com">
+                                                placeholder="Ex: http://www.service.com" required>
                                         </div>
                                     </div>
                                     <div class="row mt-3">
                                         <div class="col-md-6">
                                             <label for="pagina-oferta" class="form-label">Página de la oferta</label>
                                             <input type="url" name="pagina" id="pagina-oferta" class="form-control"
-                                                placeholder="Ex: http://www.service.com/offer">
+                                                placeholder="Ex: http://www.service.com/offer" required>
                                         </div>
                                         <div class="col-md-6 mt-2 mt-md-0">
                                             <label for="categoria" class="form-label">Categoría</label>

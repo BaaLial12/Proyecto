@@ -42,7 +42,6 @@ class ServiceController extends Controller
             'url' => ['required' , 'url'],
             'pagina' => ['required' , 'url'],
             'categoria' => ['required' , 'exists:categories,id'],
-
         ]);
 
         Service::create([
