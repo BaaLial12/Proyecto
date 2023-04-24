@@ -269,9 +269,6 @@
                         </div>
                     </button>
                 </div>
-                {{-- <div class="modal-body">
-                    <!-- Aquí iría el código del chat -->
-                </div> --}}
                 <div class="modal-body p-3" style="height: 400px; overflow: auto;">
                     <div class="d-flex flex-column align-items-start justify-content-start">
                         @foreach ($messages as $message)
@@ -300,9 +297,22 @@
         </div>
     </div>
 
-
-
     {{-- FIN MODAL CHAT --}}
+
+
+    {{-- SCRIPT PARA BAJAR EL SCROLL AUTOMATICAMENTE AL FINAL --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var modal = document.getElementById('staticBackdrop');
+            modal.addEventListener('shown.bs.modal', function() {
+                var messagesContainer = modal.querySelector('.modal-body');
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            });
+        });
+    </script>
+
+
+
 
 
 

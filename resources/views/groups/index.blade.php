@@ -7,14 +7,21 @@
                         <div class="card">
                             <div class="card-body d-flex align-items-center">
                                 <div class="col-3">
-                                    <img src="{{ $grupo->owner->avatar }}" alt="Avatar de usuario"
-                                        class="img-fluid rounded-circle">
+                                    @if (!$grupo->owner->avatar)
+                                    <img src="{{ $grupo->owner->profile_photo_url }}" alt="Avatar de usuario"
+                                            class="img-fluid rounded-circle">
+                                    @else
+                                        <img src="{{ $grupo->owner->avatar }}" alt="Avatar de usuario"
+                                            class="img-fluid rounded-circle">
+                                    @endif
+
                                 </div>
                                 <div class="col-6">
                                     <h5 class="card-title mb-0"> <strong>{{ strtoupper($grupo->owner->name) }} </strong>
                                     </h5>
                                     <p class="card-text mb-0">Esta compartiendo
-                                        <strong>{{ strtoupper($grupo->plataform->nombre) }}</strong></p>
+                                        <strong>{{ strtoupper($grupo->plataform->nombre) }}</strong>
+                                    </p>
                                     <p class="card-text mb-0">
                                         <strong>{{ round($grupo->plataform->suscripcion / $grupo->plataform->capacidad, 2) }}€</strong><small>/Mes</small>
                                     </p>

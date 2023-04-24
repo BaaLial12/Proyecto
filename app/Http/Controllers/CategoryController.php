@@ -13,13 +13,11 @@ class CategoryController extends Controller
     //Con esto lo que hacemos es que solamente las permisonas con el permiso admin.home puedan acceder a todo lo relacionado con Category
     public function __construct()
     {
-        $this->middleware('can:admin.home');
+        $this->middleware('can:admin.home')->except('showbycategorie');
     }
 
     //Funcion que me permitira enseñar al usuario un filtro de todas las plataformas en funcion de su categoria
     public function showbycategorie($nombre){
-
-
         $categoria_id = Category::where('nombre' , $nombre)->pluck('id')->first();
         $plataforms_by_categorie = Plataform::all();
         return view('marketplace.filterbycategorie' , compact('categoria_id' , 'plataforms_by_categorie'));
