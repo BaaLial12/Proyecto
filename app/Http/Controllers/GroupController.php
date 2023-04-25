@@ -267,7 +267,7 @@ class GroupController extends Controller
     }
 
 
-
+    //Me saco en una funcion lo que tenia en el joinGroup
     public function joinGroupSuccess($group)
     {
         $user = Auth::user()->id;

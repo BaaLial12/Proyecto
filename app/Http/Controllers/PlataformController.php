@@ -31,10 +31,7 @@ class PlataformController extends Controller
 
         $plataformas = Plataform::all();
 
-        return view('admin.plataforms.index' , compact('plataformas'));
-
-
-
+        return view('admin.plataforms.index', compact('plataformas'));
     }
 
     /**
@@ -47,11 +44,10 @@ class PlataformController extends Controller
         //
 
 
-        $categorias = Category::pluck('nombre' , 'id')->toArray();
+        $categorias = Category::pluck('nombre', 'id')->toArray();
 
 
-        return view('admin.plataforms.create' , compact('categorias'));
-
+        return view('admin.plataforms.create', compact('categorias'));
     }
 
     /**
@@ -66,12 +62,12 @@ class PlataformController extends Controller
 
         //Validacion de campos
         $request->validate([
-        'nombre' => 'required|string|min:2|unique:plataforms,nombre',
-        'descripcion' => 'required|string|min:3',
-        'capacidad' => 'required|integer|min:1',
-        'suscripcion' => 'required|numeric|min:0',
-        'categoria' => 'required|exists:categories,id',
-        'imagen' => 'required|image|mimes:png|max:2048',
+            'nombre' => 'required|string|min:2|unique:plataforms,nombre',
+            'descripcion' => 'required|string|min:3',
+            'capacidad' => 'required|integer|min:1',
+            'suscripcion' => 'required|numeric|min:0',
+            'categoria' => 'required|exists:categories,id',
+            'imagen' => 'required|image|mimes:png|max:2048',
 
         ]);
 
@@ -94,10 +90,25 @@ class PlataformController extends Controller
             'logo' => $img
         ]);
 
+        $precio_segun_capacidad = (round($request->suscripcion / $request->capacidad, 2)) * 100;
+
+        $stripe = new \Stripe\StripeClient(
+            'sk_test_51N0gRELnKtweIPwLPkvOFOdBUJzlFjDyHKESg6bDhFn9erZ7AkyqtNxSVn0wLX7EG4qrKdJ4GpscTW4pvLYRMQGU0055QNZ8ur'
+        );
+        $stripe->products->create([
+            'name' => trim($request->nombre),
+            'description' => $request->descripcion,
+            'id' => $request->nombre,
+            'default_price_data' => [
+                'currency' => 'eur',
+                'unit_amount' => $precio_segun_capacidad,
+                'recurring' => ['interval' => 'month']
+
+            ],
+            'statement_descriptor' => $request->nombre . ' 1 mes'
+        ]);
+
         return redirect()->route('admin.plataforms.index')->with('success_msg', 'Plataforma Creada');
-
-
-
     }
 
     /**
@@ -110,9 +121,7 @@ class PlataformController extends Controller
     {
         //
 
-        return view('admin.plataforms.show' , compact('plataform'));
-
-
+        return view('admin.plataforms.show', compact('plataform'));
     }
 
     /**
@@ -125,11 +134,8 @@ class PlataformController extends Controller
     {
         //
 
-        $categorias = Category::pluck('nombre' , 'id')->toArray();
-        return view('admin.plataforms.edit' , compact('plataform' , 'categorias'));
-
-
-
+        $categorias = Category::pluck('nombre', 'id')->toArray();
+        return view('admin.plataforms.edit', compact('plataform', 'categorias'));
     }
 
     /**
@@ -146,45 +152,72 @@ class PlataformController extends Controller
 
         //Validacion de campos
         $request->validate([
-            'nombre' => 'required|string|min:2|unique:plataforms,nombre,'.$plataform->id,
+            'nombre' => 'required|string|min:2|unique:plataforms,nombre,' . $plataform->id,
             'descripcion' => 'required|string|min:3',
             'capacidad' => 'required|integer|min:1',
             'suscripcion' => 'required|numeric|min:0',
             'categoria' => 'required|exists:categories,id',
             'imagen' => 'nullable|image|mimes:png|max:2048',
 
-            ]);
+        ]);
 
-            //Si salimos de aqui las validaciones han ido bien
+        //Si salimos de aqui las validaciones han ido bien
 
-           //Si se ha subido una imagen se guarda en fotos , si no mantenemos la antigua
-            $img = ($request->imagen) ? $request->imagen->store('plataformas') : $plataform->logo;
-            $img1 = $plataform->logo;
+        //Si se ha subido una imagen se guarda en fotos , si no mantenemos la antigua
+        $img = ($request->imagen) ? $request->imagen->store('plataformas') : $plataform->logo;
+        $img1 = $plataform->logo;
+        $plan_id = $plataform->nombre;
 
-            //Actualizamos el registro en la BD
 
-            $plataform->update([
 
-                'nombre' => $request->nombre,
-                'descripcion' => $request->descripcion,
-                'capacidad' => $request->capacidad,
-                'suscripcion' => $request->suscripcion,
-                'category_id' => $request->categoria,
-                'logo' => $img
-            ]);
+        //Actualizamos el registro en la BD
 
-            //Comprobamos si hemos subido una imagen nueva para borrar la vieja
-             if($request->imagen){
+        $plataform->update([
+
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'capacidad' => $request->capacidad,
+            'suscripcion' => $request->suscripcion,
+            'category_id' => $request->categoria,
+            'logo' => $img
+        ]);
+
+        //Comprobamos si hemos subido una imagen nueva para borrar la vieja
+        if ($request->imagen) {
             Storage::delete($img1);
         }
 
-            return redirect()->route('admin.plataforms.index')->with('success_msg', 'Plataforma Actualizada');
+
+        $precio_segun_capacidad = (round($request->suscripcion / $request->capacidad, 2)) * 100;
+        $stripe = new \Stripe\StripeClient(
+            'sk_test_51N0gRELnKtweIPwLPkvOFOdBUJzlFjDyHKESg6bDhFn9erZ7AkyqtNxSVn0wLX7EG4qrKdJ4GpscTW4pvLYRMQGU0055QNZ8ur'
+        );
+        // $stripe->products->update(
+        //     $plan_id,
+        //     [
+        //         'name' => $request->nombre,
+        //         'description' => $request->descripcion,
+        //         'statement_descriptor' => $request->nombre . ' 1 mes',
+        //         'default_price' => $request->nombre
+        //     ]
+        // );
+
+        // $stripe->prices->update(
+        //     $plan_id,
+        //     [
+        //         'currency' => 'eur',
+        //         'unit_amount' => $precio_segun_capacidad,
+        //         'recurring' => ['interval' => 'month']
+
+        //     ]
+
+        // );
 
 
 
 
 
-
+        return redirect()->route('admin.plataforms.index')->with('success_msg', 'Plataforma Actualizada');
     }
 
     /**
@@ -197,7 +230,23 @@ class PlataformController extends Controller
     {
         //
         Storage::delete($plataform->logo);
+
+        $stripe = new \Stripe\StripeClient(
+            'sk_test_51N0gRELnKtweIPwLPkvOFOdBUJzlFjDyHKESg6bDhFn9erZ7AkyqtNxSVn0wLX7EG4qrKdJ4GpscTW4pvLYRMQGU0055QNZ8ur'
+        );
+        $plan_id = $plataform->nombre;
+
+        $stripe->prices->update(
+            $plan_id,
+            [
+                'unit_amount' => 0
+            ]
+            );
+
+        $stripe->products->delete($plan_id);
+
+        dd("Hola");
         $plataform->delete();
-        return redirect()->route('admin.plataforms.index')->with('success_msg' , 'Plataforma Eliminada');
+        return redirect()->route('admin.plataforms.index')->with('success_msg', 'Plataforma Eliminada');
     }
 }
