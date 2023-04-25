@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BillingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CredentialController;
 use App\Http\Controllers\DashboardController;
@@ -117,7 +118,9 @@ Route::get('/google-callback', function () {
 
         ]);
 
+        $userNuevo->createAsStripeCustomer();
         Auth::login($userNuevo);
+
 
     }
 
@@ -180,3 +183,7 @@ Route::post('/messages' , [MessageController::class , 'store'])->name('messages.
 
 Route::post('/services' , [ServiceController::class , 'store'])->name('services.store');
 
+//Ruta para que el usuario introduzca las tarjetas y protegida
+Route::get('/billings' , [BillingController::class , 'index'])
+->middleware('auth')
+->name('billings.index');

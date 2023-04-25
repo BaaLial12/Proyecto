@@ -26,10 +26,15 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        return User::create([
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+
+        //Con esto lo que hacemos es que cada usuario lo metera dentro de Stripe como potencial cliente
+        $user->createAsStripeCustomer();
+
+        return $user;
     }
 }

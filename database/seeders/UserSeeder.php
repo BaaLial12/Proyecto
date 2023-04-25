@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
 
 
 
-        User::create([
+       $user = User::create([
             'name' => 'David Ureña',
             'email' => 'bluberyasp161@gmail.com',
             'email_verified_at' => now(),
@@ -31,6 +31,7 @@ class UserSeeder extends Seeder
             'remember_token' => Str::random(10),
         ])->assignRole('admin');
 
+        $user->createAsStripeCustomer();
 
 
 

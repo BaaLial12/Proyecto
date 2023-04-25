@@ -26,7 +26,7 @@
             </div>
 
             <div class="ms-auto text-center mt-3">
-                
+
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -125,6 +125,10 @@
 
                             <x-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}
+                            </x-dropdown-link>
+
+                            <x-dropdown-link href="{{ route('billings.index') }}">
+                                Metodos de Pago
                             </x-dropdown-link>
 
                             @can('admin.home')

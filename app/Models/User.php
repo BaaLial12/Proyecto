@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use function Illuminate\Events\queueable;
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,6 +12,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
@@ -19,6 +22,7 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
     use HasRoles;
+    use Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -68,11 +72,19 @@ class User extends Authenticatable
 
     //RELACION N : M CON GROUP
 
-    public function groups(){
+    public function groups()
+    {
         return $this->belongsToMany(Group::class)->withTimestamps();
     }
 
 
-
-
+    //Nos servira para que cuando actualicemos el modelo User se modificara tambien en stripe , nombre , email etc
+    protected static function booted(): void
+    {
+        static::updated(queueable(function (User $customer) {
+            if ($customer->hasStripeId()) {
+                $customer->syncStripeCustomerDetails();
+            }
+        }));
+    }
 }
