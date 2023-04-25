@@ -183,6 +183,9 @@ Route::post('/messages' , [MessageController::class , 'store'])->name('messages.
 
 Route::post('/services' , [ServiceController::class , 'store'])->name('services.store');
 
+Route::get('/join-group-success/{group}', [GroupController::class, 'joinGroupSuccess'])->name('joinGroupSuccess');
+
+
 //Ruta para que el usuario introduzca las tarjetas y protegida
 Route::get('/billings' , [BillingController::class , 'index'])
 ->middleware('auth')

@@ -8,7 +8,7 @@
                             <div class="card-body d-flex align-items-center">
                                 <div class="col-3">
                                     @if (!$grupo->owner->avatar)
-                                    <img src="{{ $grupo->owner->profile_photo_url }}" alt="Avatar de usuario"
+                                        <img src="{{ $grupo->owner->profile_photo_url }}" alt="Avatar de usuario"
                                             class="img-fluid rounded-circle">
                                     @else
                                         <img src="{{ $grupo->owner->avatar }}" alt="Avatar de usuario"
