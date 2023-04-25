@@ -1,5 +1,5 @@
 <x-app-layout>
-
+@livewire('create-group')
     <div class="container">
         <div class="row mb-3">
             <div class="col">

@@ -323,6 +323,12 @@ return [
             'icon'        => 'fas fa-users',
 
         ],
+        [
+            'text'        => 'Services',
+            'route'         => 'admin.servicess.index',
+            'icon'        => 'fas fa-envelope',
+
+        ],
         ['header' => 'ADMINISTRADOR'],
         [
             'text' => 'Categorias',
