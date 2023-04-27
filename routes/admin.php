@@ -34,7 +34,7 @@ Route::post('plataforms' , [PlataformController::class , 'store'])->name('admin.
 
 Route::get('plataforms/{nombre}/edit' , [PlataformController::class , 'edit'])->name('admin.plataforms.edit');
 
-Route::get('plataforms/{nombre}/update' , [PlataformController::class , 'update'])->name('admin.plataforms.update');
+Route::put('plataforms/{nombre}/update' , [PlataformController::class , 'update'])->name('admin.plataforms.update');
 
 
 Route::delete('plataforms/{nombre}' , [PlataformController::class , 'destroy'])->name('admin.plataforms.destroy');

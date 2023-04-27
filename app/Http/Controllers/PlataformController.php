@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Models\Plataform;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Livewire\WithPagination;
+use Stripe\Stripe;
 
 class PlataformController extends Controller
 {
@@ -29,7 +31,8 @@ class PlataformController extends Controller
         //
 
 
-        $plataformas = Plataform::all();
+        $plataformas = Plataform::paginate(10);
+
 
         return view('admin.plataforms.index', compact('plataformas'));
     }
@@ -62,8 +65,8 @@ class PlataformController extends Controller
 
         //Validacion de campos
         $request->validate([
-            'nombre' => 'required|string|min:2|unique:plataforms,nombre',
-            'descripcion' => 'required|string|min:3',
+            'nombre' => 'required|string|min:2|max:17|unique:plataforms,nombre',
+            'descripcion' => 'required|string|min:5|max:22',
             'capacidad' => 'required|integer|min:1',
             'suscripcion' => 'required|numeric|min:0',
             'categoria' => 'required|exists:categories,id',
@@ -105,7 +108,7 @@ class PlataformController extends Controller
                 'recurring' => ['interval' => 'month']
 
             ],
-            'statement_descriptor' => $request->nombre . ' 1 mes'
+            'statement_descriptor' => 'Subs to : ' . $request->nombre
         ]);
 
         return redirect()->route('admin.plataforms.index')->with('success_msg', 'Plataforma Creada');
@@ -130,11 +133,15 @@ class PlataformController extends Controller
      * @param  \App\Models\Plataform  $plataform
      * @return \Illuminate\Http\Response
      */
-    public function edit(Plataform $plataform)
+    public function edit($plataform)
     {
         //
 
         $categorias = Category::pluck('nombre', 'id')->toArray();
+        $plataform = Plataform::where('nombre', $plataform)->first();
+        if ($plataform == null || !$plataform) {
+            return redirect()->route('admin.plataforms.index')->with('error_msg', 'La plataforma a la que intentas acceder no existe');
+        }
         return view('admin.plataforms.edit', compact('plataform', 'categorias'));
     }
 
@@ -145,9 +152,13 @@ class PlataformController extends Controller
      * @param  \App\Models\Plataform  $plataform
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Plataform $plataform)
+    public function update(Request $request, $plataform)
     {
         //
+        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+
+
+        $plataform = Plataform::where('nombre', $plataform)->first();
 
 
         //Validacion de campos
@@ -166,9 +177,17 @@ class PlataformController extends Controller
         //Si se ha subido una imagen se guarda en fotos , si no mantenemos la antigua
         $img = ($request->imagen) ? $request->imagen->store('plataformas') : $plataform->logo;
         $img1 = $plataform->logo;
-        $plan_id = $plataform->nombre;
 
 
+        $plan_id = $request->route('nombre');
+
+        $default_price = $stripe->products->retrieve($plataform->nombre);
+
+        // dd($default_price->default_price);
+
+
+
+        // dd("Hola");
 
         //Actualizamos el registro en la BD
 
@@ -189,33 +208,36 @@ class PlataformController extends Controller
 
 
         $precio_segun_capacidad = (round($request->suscripcion / $request->capacidad, 2)) * 100;
-        $stripe = new \Stripe\StripeClient(
-            'sk_test_51N0gRELnKtweIPwLPkvOFOdBUJzlFjDyHKESg6bDhFn9erZ7AkyqtNxSVn0wLX7EG4qrKdJ4GpscTW4pvLYRMQGU0055QNZ8ur'
+
+
+
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+        //Actualizamos la suscripcion
+        $stripe->products->update(
+            $plan_id,
+            [
+                'name' => $request->nombre,
+                'description' => $request->descripcion,
+                'statement_descriptor' => $request->nombre . ' 1 mes'
+            ],
+
         );
-        // $stripe->products->update(
-        //     $plan_id,
-        //     [
-        //         'name' => $request->nombre,
-        //         'description' => $request->descripcion,
-        //         'statement_descriptor' => $request->nombre . ' 1 mes',
-        //         'default_price' => $request->nombre
-        //     ]
-        // );
-
-        // $stripe->prices->update(
-        //     $plan_id,
-        //     [
-        //         'currency' => 'eur',
-        //         'unit_amount' => $precio_segun_capacidad,
-        //         'recurring' => ['interval' => 'month']
-
-        //     ]
-
-        // );
 
 
 
+        $stripe->prices->update(
+            $default_price->default_price,
+            ['active' => false]
+        );
 
+        $stripe->prices->create(
+            [
+                'unit_amount' => $precio_segun_capacidad,
+                'currency' => 'eur',
+                'recurring' => ['interval' => 'month'],
+                'product' => $request->nombre
+            ]
+        );
 
         return redirect()->route('admin.plataforms.index')->with('success_msg', 'Plataforma Actualizada');
     }
@@ -226,26 +248,26 @@ class PlataformController extends Controller
      * @param  \App\Models\Plataform  $plataform
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Plataform $plataform)
+    public function destroy($plataform)
     {
         //
+        $plataform = Plataform::where('id', $plataform)->first();
         Storage::delete($plataform->logo);
 
-        $stripe = new \Stripe\StripeClient(
-            'sk_test_51N0gRELnKtweIPwLPkvOFOdBUJzlFjDyHKESg6bDhFn9erZ7AkyqtNxSVn0wLX7EG4qrKdJ4GpscTW4pvLYRMQGU0055QNZ8ur'
+
+
+        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+
+        $stripe->products->update(
+
+            $plataform->nombre,
+            ['active' => false]
+
         );
-        $plan_id = $plataform->nombre;
 
-        $stripe->prices->update(
-            $plan_id,
-            [
-                'unit_amount' => 0
-            ]
-            );
 
-        $stripe->products->delete($plan_id);
 
-        dd("Hola");
+
         $plataform->delete();
         return redirect()->route('admin.plataforms.index')->with('success_msg', 'Plataforma Eliminada');
     }

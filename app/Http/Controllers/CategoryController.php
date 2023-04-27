@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
 
+    protected $paginationTheme = "bootstrap";
+
+
 
     //Con esto lo que hacemos es que solamente las permisonas con el permiso admin.home puedan acceder a todo lo relacionado con Category
     public function __construct()
@@ -31,7 +34,7 @@ class CategoryController extends Controller
     public function index()
     {
 
-        $categorias = Category::all();
+        $categorias = Category::orderBy('id')->paginate(3);
 
 
 
