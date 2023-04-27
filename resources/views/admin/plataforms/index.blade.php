@@ -37,7 +37,7 @@
                         <td>{{$item->suscripcion}}€</td>
                         <td>{{$item->category->nombre}}</td>
                         <td width="10px">
-                            <a class="btn btn-primary" href="{{route('admin.plataforms.edit' , $item)}}">Editar</a>
+                            <a class="btn btn-primary" href="{{route('admin.plataforms.edit' , $item->nombre)}}">Editar</a>
                         </td>
                         <td width="10px">
                             <form action="{{route('admin.plataforms.destroy' , $item)}}" method="POST">
