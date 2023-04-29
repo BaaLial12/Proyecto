@@ -218,7 +218,7 @@ class GroupController extends Controller
 
             Stripe::setApiKey(env('STRIPE_SECRET'));
 
-            // $platformName = "NETFLIX";
+            // $platformName = "Pruebita";
             $platformName = $grupo->plataform->nombre;
 
             $prices = Price::all(['active' => true, 'expand' => ['data.product']]);
