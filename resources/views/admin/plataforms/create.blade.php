@@ -11,7 +11,7 @@
 
             {!! Form::open(['route' => 'admin.plataforms.store' , 'files' => true]) !!}
 
-            <div class="form-group">
+            <div class="form-group d-flex flex-column">
                 {!! Form::label('nombre', 'Nombre') !!}
                 {!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Nombre de la Categoria']) !!}
 
@@ -20,7 +20,7 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group d-flex flex-column">
                 {!! Form::label('descripcion', 'Descripción') !!}
                 {!! Form::textarea('descripcion', null, ['class' => 'form-control', 'placeholder' => 'Descripción de la Categoria']) !!}
 
@@ -29,7 +29,7 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group d-flex flex-column">
                 {!! Form::label('capacidad', 'Capacidad') !!}
                 {!! Form::number('capacidad', null, ['class' => 'form-control', 'placeholder' => 'Capacidad de la Categoria']) !!}
 
@@ -38,7 +38,7 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group d-flex flex-column">
                 {!! Form::label('suscripcion', 'Suscripción') !!}
                 {!! Form::number('suscripcion', null, ['class' => 'form-control', 'placeholder' => 'Suscripción de la Categoria' , 'step' => '0.01']) !!}
 
@@ -47,7 +47,7 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group d-flex flex-column">
                 {!! Form::label('categoria', 'Categoría') !!}
                 {!! Form::select('categoria', $categorias, null, ['class' => 'form-control', 'placeholder' => 'Seleccione una categoría']) !!}
 
@@ -56,9 +56,9 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group d-flex flex-column">
                 {!! Form::label('imagen', 'Imagen (PNG)') !!}
-                {!! Form::file('imagen', ['class' => 'form-control-file', 'accept' => 'image/png', 'onchange' => 'previsualizarImagen(event)']) !!}
+                {!! Form::file('imagen', ['class' => 'form-control-file', 'accept' => 'image/png', 'onchange' => 'previsualizarImagen(event)' ]) !!}
                 <img id="imagen-previa" src="#" alt="Vista previa de la imagen" style="display: none; max-width: 400px; max-height: 400px; margin-top: 10px;">
                 @error('imagen')
                     <span class="text-danger">{{ $message }}</span>
@@ -72,6 +72,7 @@
         </div>
     </div>
 @stop
+
 
 {{-- SCRIPT PARA PREVISUALIZAR LA IMAGEN --}}
 <script>
@@ -93,10 +94,7 @@
 {{-- Necesito decidir si quedarme esto o ponerlo normal que es responsive --}}
 
 <style>
-    .form-group {
-    display: flex;
-    flex-direction: column;
-}
+
 
 @media screen and (min-width: 768px) {
     .form-group {
