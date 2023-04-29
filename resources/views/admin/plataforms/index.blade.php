@@ -32,7 +32,7 @@
                     <tr>
                         <td>{{$item->id}}</td>
                         <td>{{$item->nombre}}</td>
-                        <td><img class="img-fluid" src="{{ Storage::url($item->logo) }}" /></td>
+                        <td><img class="img-fluid img-thumbnail" src="{{ Storage::url($item->logo) }}" /></td>
                         <td>{{$item->capacidad}}</td>
                         <td>{{$item->suscripcion}}€</td>
                         <td>{{$item->category->nombre}}</td>
@@ -52,10 +52,10 @@
                     </tr>
                 @endforeach
             </tbody>
-
-
-
         </table>
+        <div class="card-footer">
+            {{$plataformas->links('pagination::bootstrap-5')}}
+        </div>
     </div>
 </div>
 
