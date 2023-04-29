@@ -328,7 +328,7 @@ return [
         ],
         [
             'text'        => 'Services',
-            'route'         => 'admin.servicess.index',
+            'route'         => 'admin.services.index',
             'icon'        => 'fas fa-envelope',
 
         ],
