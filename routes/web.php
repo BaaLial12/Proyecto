@@ -6,6 +6,7 @@ use App\Http\Controllers\CredentialController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\PlataformController;
 use App\Http\Controllers\ServiceController;
 use App\Models\Category;
 use App\Models\Group;
@@ -33,7 +34,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 //Cambio de ruta para que el que quiera acceder a mi pagina web tenga que estar logueado si o si
 //Aparte me llevare una variable llamada contador a la vista dashboard donde le dira al usuario logueado la cantidad de plataformas que esta compartiendo
-Route::get('/', function () {
+Route::get('/dashboard', function () {
     $contador = auth()->user()->groups()->count();
     $grupos = Group::where('user_id', auth()->user()->id)
                 ->orWhereHas('users', function($query) {
@@ -44,6 +45,13 @@ Route::get('/', function () {
 })->middleware(['auth'])->name('dashboard');
 
 
+Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect('/dashboard');
+    } else {
+        return view('welcome');
+    }
+})->name('welcome');
 
 Route::middleware([
     'auth:sanctum',
@@ -81,13 +89,13 @@ Route::get('/facebook-callback', function () {
 
 
         ]);
-
+        $userNuevo->createAsStripeCustomer();
         Auth::login($userNuevo);
 
     }
 
 
-    return redirect('/');
+    return redirect('/dashboard');
     // $user->token
 });
 
@@ -125,7 +133,7 @@ Route::get('/google-callback', function () {
     }
 
 
-    return redirect('/');
+    return redirect('/dashboard');
     // $user->token
 });
 
@@ -153,13 +161,13 @@ Route::get('/github-callback', function () {
 
 
         ]);
-
+        $userNuevo->createAsStripeCustomer();
         Auth::login($userNuevo);
 
     }
 
 
-    return redirect('/');
+    return redirect('/dashboard');
     // $user->token
 });
 
