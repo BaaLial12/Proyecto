@@ -9,30 +9,100 @@
 
 
 @section('content')
-{{-- TODO:MODIFICAR PARA QUE SEA EN FORMATO TABLA ES MAS UTIL QUE CARD --}}
-<div class="row">
-    @foreach($services as $service)
-        <div class="col-md-6 col-lg-4">
-            <div class="card shadow-sm mb-4">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="card-title mb-0">{{ $service->nombre }}</h5>
+    {{-- TODO:MODIFICAR PARA QUE SEA EN FORMATO TABLA ES MAS UTIL QUE CARD --}}
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="bg-gradient-gray-dark text-white text-sm leading-normal">
+                    <th>Nombre</th>
+                    <th>Página web</th>
+                    <th>Oferta URL</th>
+                    <th>Categoría</th>
+                    <th>Aprobar</th>
+                    <th>Rechazar</th>
+                </tr>
+            </thead>
+            <tbody class="text-gray-600 font-light">
+                @foreach ($services as $service)
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="py-3 px-6">{{ $service->nombre }}</td>
+                        <td class="py-3 px-6">{{ $service->url_service }}</td>
+                        <td class="py-3 px-6">{{ $service->url_offer }}</td>
+                        <td class="py-3 px-6">{{ $service->category->nombre }}</td>
+                        <td class="py-3 px-6">
+                            <x-adminlte-button theme="success" label="Aprobar" data-toggle="modal"
+                                data-target="#modalMin" />
+                        </td>
+                        <td class="py-3 px-6">
+                            <a class="btn btn-danger" href="{{ route('admin.servicess.destroy', $service) }}"
+                                class="text-white">
+                                <i class="fas fa-trash text-white"></i>Rechazar
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    {{-- Minimal --}}
+    <x-adminlte-modal id="modalMin" title="Rellena los datos de :  {{ $service->nombre }}">
+        <form action="{{route('admin.servicess.create')}}" method="POST">
+            @csrf
+            <div class="container-fluid mt-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="nombre" class="form-label">Nombre del servicio</label>
+                        <input type="text" class="form-control" name="nombre" id="nombre"
+                            value="{{ $service->nombre }}">
+                    </div>
+                    <div class="col-md-6 mt-2 mt-md-0">
+                        <label for="descripcion" class="form-label">Descripcion del servicio</label>
+                        <input type="text" class="form-control" name="descripcion" id="descripcion">
+                    </div>
                 </div>
-                <div class="card-body">
-                    <p class="card-text"><strong>Página web:</strong> {{ $service->url_service }}</p>
-                    <p class="card-text"><strong>Oferta URL:</strong> {{ $service->url_offer }}</p>
-                    <p class="card-text"><strong>Categoría:</strong> {{ $service->category->nombre }}</p>
+                <div class="row">
+                    <div class="col-md-6 mt-2">
+                        <label for="suscripcion" class="form-label">Precio de la servicio</label>
+                        <input type="number" name="suscripcion" id="suscripcion" step="0.01">
+                    </div>
+                    <div class="col-md-6 mt-2">
+                        <label for="capacidad" class="form-label">Capacidad del servicio</label>
+                        <input type="number" name="capacidad" id="capacidad" step="1">
+                    </div>
                 </div>
-                <div class="card-footer">
-                    <button class="btn btn-success me-2">Aprobar</button>
-                    <button class="btn btn-danger">Rechazar</button>
+                <div class="row">
+                    <div class="col-md-6 mt-2">
+                        <label for="categoria" class="form-label">Categoria del servicio</label>
+                        <select name="categoria" id="categoria" class="form-select">
+                            @foreach ($categorias as $categoria)
+                                <option value="{{ $categoria->id }}" {{ $service->category->nombre == $categoria->nombre ? 'selected' : '' }}>{{ $categoria->nombre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div>
-    @endforeach
-</div>
+            <x-slot name="footerSlot">
+                <button type="submit" class="btn btn-outline-dark mx-auto" style="background-color: #00CDD0">Enviar</button>
+            </x-slot>
+        </form>
+
+
+
+
+
+
+
+
+    </x-adminlte-modal>
+
+
+
 
 
 @endsection
+
 
 
 @section('footer')
@@ -41,5 +111,4 @@
     <div class="float-right d-none d-sm-inline-block" bis_skin_checked="1">
         <b>Version</b> 3.2.0
     </div>
-
 @endsection
