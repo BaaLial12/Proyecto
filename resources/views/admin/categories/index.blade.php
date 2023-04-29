@@ -7,7 +7,7 @@
 
 @section('content')
 
-   
+
     <div class="card">
         <div class="card-header">
             <a class="btn btn-success" href="{{ route('admin.categories.create') }}">Crear Categoria</a>
@@ -43,6 +43,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="card-footer">
+                {{$categorias->links('pagination::bootstrap-5')}}
+            </div>
         </div>
     </div>
 @stop
