@@ -189,7 +189,6 @@ Route::get('/marketplace/{nombre}' , [CategoryController::class , 'showbycategor
 
 Route::post('/messages' , [MessageController::class , 'store'])->name('messages.store');
 
-Route::post('/services' , [ServiceController::class , 'store'])->name('services.store');
 
 Route::get('/join-group-success/{group}', [GroupController::class, 'joinGroupSuccess'])->name('joinGroupSuccess');
 

@@ -43,4 +43,9 @@ Route::delete('plataforms/{nombre}' , [PlataformController::class , 'destroy'])-
 
 
 
-Route::resource('services', ServiceController::class)->names('admin.servicess');
+
+
+//Rutas para CRUD de service
+Route::get('services' , [ServiceController::class , 'index'])->name('admin.services.index');
+Route::delete('services/{id}' , [ServiceController::class, 'destroy'])->name('admin.services.destroy');
+Route::post('services/create' , [ServiceController::class , 'store'])->name('admin.services.create');
