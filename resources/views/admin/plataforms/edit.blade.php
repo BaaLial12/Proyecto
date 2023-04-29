@@ -9,7 +9,7 @@
     <div class="card">
         <div class="card-body">
 
-            {!! Form::model( $plataform, ['route' => ['admin.plataforms.update' , $plataform ] , 'files' => true , 'method' => 'put']) !!}
+            {!! Form::model( $plataform, ['route' => ['admin.plataforms.update' , $plataform->nombre ] , 'files' => true , 'method' => 'put']) !!}
 
             <div class="form-group">
                 {!! Form::label('nombre', 'Nombre') !!}
