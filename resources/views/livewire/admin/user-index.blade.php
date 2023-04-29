@@ -1,12 +1,9 @@
 <div>
     {{-- The whole world belongs to you. --}}
 
-
     <div class="card">
-
-
         <div class="card-header">
-            <input type="search" wire:model="busqueda" class="form-control"
+            <input type="search" wire:model="busqueda"  class="form-control"
                 placeholder="Ingrese el nombre o correo de un usuario">
         </div>
 
@@ -69,7 +66,7 @@
 
 
             <div class="card-footer">
-                {{ $users->links() }}
+                {{ $users->links('pagination::bootstrap-5') }}
             </div>
         @else
             <div class="card-body">
