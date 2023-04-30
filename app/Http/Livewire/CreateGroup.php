@@ -4,37 +4,42 @@ namespace App\Http\Livewire;
 
 use App\Models\Plataform;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class CreateGroup extends Component
 {
 
-    use WithPagination;
 
 
 
-    public $selectedPlataform = null;
-    public $capacities = [];
+    // public $selectedPlataform = null;
+    // public $capacidades = [];
+    public $plataforma = '';
+
+    public $capacidad = null;
+
+
 
     public function render()
     {
         $plataforms = Plataform::all();
 
+
+
+
         return view('livewire.create-group', compact('plataforms'));
     }
 
-    public function updatedSelectedPlataform($plataformId)
+
+    public function updatedPlataforma()
     {
-        if (!empty($plataformId)) {
-            $plataform = Plataform::find($plataformId);
-
-            $this->capacities = explode(',', $plataform->capacidad);
-        } else {
-            $this->capacities = [];
-        }
-
-        $this->dispatchBrowserEvent('plataformChanged', $this->capacities);
+        $this->capacidad = Plataform::where('id', $this->plataforma)->pluck('capacidad')->first();
     }
+
+
+
+
+
+
 
 
 

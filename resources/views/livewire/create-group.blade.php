@@ -6,7 +6,7 @@
     </button>
 
     <div class="modal fade z-1" id="createGroup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="3"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true" wire:ignore>
+        aria-labelledby="staticBackdropLabel" aria-hidden="true" wire:ignore.self>
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -19,7 +19,7 @@
                 <div class="modal-body p-3 text-center" style="height: 400px; overflow: auto;">
                     <div class="row" id="chatModalLabel">
                         <div class="col">
-                            <p>Sugerir un servicio</p>
+                            <p>Crear Grupo</p>
                         </div>
                     </div>
                     <div class="row bg-danger">
@@ -34,9 +34,10 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="nombre-servicio" class="form-label">Nombre del Servicio</label>
-                                    <select class="form-select" wire:model="selectedPlataform">
+                                    <select class="form-select" wire:model="plataforma">
+                                        <option value="">Selecciona una</option>
                                         @foreach ($plataforms as $plataform)
-                                            <option value="{{ $plataform->id}}">{{ $plataform->nombre }}</option>
+                                            <option value="{{ $plataform->id }}">{{ $plataform->nombre }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -45,10 +46,10 @@
                             <div class="row mt-3">
                                 <div class="col-md-6">
                                     <label for="nombre-servicio" class="form-label">Sitios disponibles</label>
-                                    <select id="capacities" name="capacities">
-                                        @foreach($capacities as $capacity)
-                                            <option value="{{ $capacity }}">{{ $capacity }}</option>
-                                        @endforeach
+                                    <select id="capacidades" name="capacidades" wire:model="capacidad">
+                                        @for ($i = 1; $i <= $capacidad; $i++)
+                                            <option value="{{ $i }}">{{ $i }}</option>
+                                        @endfor
                                     </select>
                                 </div>
                             </div>
@@ -75,24 +76,9 @@
 
     </div>
 
-    <script>
-        document.addEventListener('livewire:load', function () {
-            Livewire.on('plataformChanged', function (capacities) {
-                var select = document.getElementById('capacities');
-                select.innerHTML = '';
-                var defaultOption = document.createElement('option');
-                defaultOption.text = 'Selecciona una capacidad';
-                defaultOption.value = '';
-                select.add(defaultOption);
-                for (var i = 0; i < capacities.length; i++) {
-                    var option = document.createElement('option');
-                    option.text = capacities[i];
-                    option.value = capacities[i];
-                    select.add(option);
-                }
-            });
-        });
-    </script>
+
+
+
 
 
 
