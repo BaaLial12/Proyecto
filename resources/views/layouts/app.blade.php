@@ -114,7 +114,7 @@
                     <h5>Enlaces útiles</h5>
                     <ul class="list-unstyled">
                         <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Acerca de nosotros</a></li>
+                        <li><a href="{{route('aboutUs')}}">Acerca de nosotros</a></li>
                         <li><a href="#">Contáctanos</a></li>
                     </ul>
                 </div>
@@ -140,7 +140,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 text-center">
-                    <p class="fs-6">&copy; 2023 Nombre, Inc. Todos los derechos reservados.</p>
+                    <p class="fs-6">&copy; 2023 StreamShare, Inc. Todos los derechos reservados.</p>
                 </div>
             </div>
         </div>
