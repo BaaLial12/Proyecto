@@ -197,3 +197,8 @@ Route::get('/join-group-success/{group}', [GroupController::class, 'joinGroupSuc
 Route::get('/billings' , [BillingController::class , 'index'])
 ->middleware('auth')
 ->name('billings.index');
+
+
+Route::get('/aboutUs', function () {
+    return view('aboutUs');
+})->name('aboutUs');
