@@ -107,7 +107,7 @@
     @livewireScripts
 
 
-    <footer class="bg-dark text-white py-4">
+    <footer class="text-white py-4" style="background-color: #87CEFA">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
