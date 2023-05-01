@@ -28,7 +28,7 @@
                                 disponible para compartir. Envíanos la información a continuación.</p>
                         </div>
                     </div>
-                    <form method="POST" name="formulario-create" action="" class="d-flex justify-content-center">
+                    <form wire:submit.prevent="crearGrupo" class="d-flex justify-content-center">
                         @csrf
                         <div class="container-fluid mt-4">
                             <div class="row">
@@ -45,7 +45,8 @@
                             </div>
                             <div class="row mt-3">
                                 <div class="col-md-6">
-                                    <label for="nombre-servicio" class="form-label">Sitios disponibles</label>
+                                    <label for="nombre-servicio" class="form-label">Sitios disponibles(Contandote a
+                                        ti)</label>
                                     <select id="capacidades" name="capacidades" wire:model="capacidad">
                                         @for ($i = 1; $i <= $capacidad; $i++)
                                             <option value="{{ $i }}">{{ $i }}</option>

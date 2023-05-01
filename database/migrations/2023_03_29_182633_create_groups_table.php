@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('capacidad');
             $table->foreignId('plataform_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('credential_id')->constrained()->onDelete('cascade')->NULL;
+            $table->foreignId('credential_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

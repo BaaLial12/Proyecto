@@ -47,12 +47,12 @@
                         <div class="mb-3">
                             <label class="form-label">Email:</label>
                             <input type="password" id="email-input" class="form-control" placeholder="Enter email"
-                                value="{{ $grupo->credential->email }}" />
+                                value="{{ $grupo->credential ? $grupo->credential->email : '' }}" />
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Password:</label>
                             <input id="password-input" type="password" class="form-control" placeholder="Enter password"
-                                value="{{ $grupo->credential->password }}" />
+                                value="{{ $grupo->credential? $grupo->credential->password : ''}}" />
                         </div>
 
                         <div class="row text-center">
@@ -232,11 +232,11 @@
                         @csrf
                         <label class="form-label">Email:</label>
                         <input type="text" id="email-modal" class="form-control" placeholder="Enter email"
-                            value="{{ $grupo->credential->email }}" name="email" />
+                            value="{{ $grupo->credential? $grupo->credential->email : '' }}" name="email" />
 
                         <label class="form-label">Password:</label>
                         <input id="password-modal" type="text" class="form-control" placeholder="Enter password"
-                            value="{{ $grupo->credential->password }}" name="password" />
+                            value="{{ $grupo->credential ? $grupo->credential->password : '' }}" name="password" />
                         <input type="text" hidden value="{{ $grupo->id }}" name="grupo">
 
                         <div class="modal-footer">

@@ -33,7 +33,20 @@ class CredentialController extends Controller
         //Luego nos traemos todos los datos que estan asociados a las credenciales a traves de la relacion que hay en group
         $credential = $grupo->credential;
 
-        //Actualizamos los campos de credential con lo que mandamos por los campos
+        if(!$credential){
+
+            $credential_id = Credential::create([
+                'email' => $request->email,
+                'password' => $request->password
+            ]);
+
+            $grupo->credential_id = $credential_id->id;
+            $grupo->save();
+            return Redirect::back()->with('success_msg', 'Credenciales Actualizada');
+
+        } else{
+
+             //Actualizamos los campos de credential con lo que mandamos por los campos
         $credential->email = $request->email;
         $credential->password = $request->password;
 
@@ -44,5 +57,9 @@ class CredentialController extends Controller
 
         //Y recargamos la pagina
         return Redirect::back()->with('success_msg', 'Credenciales Actualizada');
+
+        }
+
+
     }
 }
