@@ -64,6 +64,8 @@ class CreateGroup extends Component
         //Al crearlo me creo en un campo en la tabla intermedia para que empiece a reflejarse el usuario ya como miembro
         $grupo->users()->attach($user_id);
 
+        //Y recargamos la pagina
+        return redirect()->route('dashboard')->with('success_msg', 'Grupo Creado');
 
 
     }
