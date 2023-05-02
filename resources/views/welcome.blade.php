@@ -1,14 +1,24 @@
-{{-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
-<head>
+{{-- <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PlataformaX - Ahorra en tus suscripciones digitales</title>
     <!-- Bootstrap 5 CSS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
+</head> --}}
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/assets/logo-vt.svg" />
+    <link rel="icon" type="image/x-icon" href="{{ Storage::url('img/logo/onlylogo.svg') }}" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PayTogether - Ahorra en tus suscripciones digitales</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
 </head>
 
 <body>
@@ -17,7 +27,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h2>PlataformaX</h2>
+                    <h2>PayTogether</h2>
                 </div>
                 <div class="col-md-8">
                     <nav class="navbar navbar-expand-md navbar-light justify-content-end">
@@ -35,10 +45,13 @@
                                     <a class="nav-link" href="#como-funciona">¿Cómo funciona?</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#planes">Planes</a>
+                                    <a class="nav-link" href="#caracteristicas">Caracteristicas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#contacto">Contacto</a>
+                                    <a class="nav-link" href="{{route('login')}}">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('register')}}">Register</a>
                                 </li>
                             </ul>
                         </div>
@@ -54,9 +67,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="display-4">Ahorra en tus suscripciones digitales</h1>
-                    <p class="lead">PlataformaX te permite compartir tus suscripciones digitales con otras personas y
+                    <p class="lead">PayTogether te permite compartir tus suscripciones digitales con otras personas y
                         ahorrar dinero.</p>
-                    <a href="#planes" class="btn btn-primary btn-lg mt-3">Ver planes</a>
                 </div>
             </div>
         </div>
@@ -67,74 +79,48 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="mb-5">¿Cómo funciona PlataformaX?</h2>
+                    <h2 class="mb-5">¿Cómo funciona PayTogether?</h2>
                 </div>
-                <div class="col-lg-4">
-                    <div class="card mb-4 rounded-3 shadow-sm">
-                        <div class="card-header py-3 bg-primary">
-                            <h4 class="my-0 fw-normal text-white">Paso 1</h4>
-                        </div>
-                        <div class="card-body">
-                            <h1 class="card-title pricing-card-title">$9<small
-                                    class="text-muted fw-light">/month</small></h1>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>10 users included</li>
-                                <li>2 GB of storage</li>
-                                <li>Email support</li>
-                                <li>Help center access</li>
-                            </ul>
-                            <button type="button" class="w-100 btn btn-lg btn-primary">Sign up for free</button>
-                        </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <div class="icon-box">
+                        <i class="fas fa-user-plus fa-3x mb-3"></i>
+                        <h4>Registro de usuarios</h4>
+                        <p>Los usuarios se registran en PayTogether para unirse a la comunidad y compartir sus suscripciones digitales.</p>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="card mb-4 rounded-3 shadow-sm">
-                        <div class="card-header py-3 bg-primary">
-                            <h4 class="my-0 fw-normal text-white">Paso 2</h4>
-                        </div>
-                        <div class="card-body">
-                            <h1 class="card-title pricing-card-title">$29<small
-                                    class="text-muted fw-light">/month</small></h1>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>20 users included</li>
-                                <li>10 GB of storage</li>
-                                <li>Priority email support</li>
-                                <li>Help center access</li>
-                            </ul>
-                            <button type="button" class="w-100 btn btn-lg btn-primary">Get started</button>
-                        </div>
+
+                <div class="col-md-4 text-center">
+                    <div class="icon-box">
+                        <i class="fas fa-users fa-3x mb-3"></i>
+                        <h4>Creación de grupos</h4>
+                        <p>Los usuarios pueden crear grupos basados en intereses comunes o compartir sus suscripciones con amigos y familiares.</p>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="card mb-4 rounded-3 shadow-sm">
-                        <div class="card-header py-3 bg-primary">
-                            <h4 class="my-0 fw-normal text-white">Paso 3</h4>
-                        </div>
-                        <div class="card-body">
-                            <h1 class="card-title pricing-card-title">$49<small
-                                    class="text-muted fw-light">/month</small></h1>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>30 users included</li>
-                                <li>15 GB of storage</li>
-                                <li>Phone and email support</li>
-                                <li>Help center access</li>
-                            </ul>
-                            <button type="button" class="w-100 btn btn-lg btn-primary">Contact us</button>
-                        </div>
+
+                <div class="col-md-4 text-center">
+                    <div class="icon-box">
+                        <i class="fas fa-money-bill-wave fa-3x mb-3"></i>
+                        <h4>Ahorro de dinero</h4>
+                        <p>Al unirse a un grupo y compartir sus suscripciones, los usuarios pueden ahorrar dinero en sus facturas mensuales.</p>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
 
 
+
     <!-- Características -->
-    <section class="container-fluid py-5 bg-light">
+    <section id="caracteristicas" class="container-fluid py-5 bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center mb-5">
-                    <h2>Características de PlataformaX</h2>
+                    <h2>Características de PayTogether</h2>
                 </div>
                 <div class="col-lg-4">
                     <div class="card mb-4 rounded-3 shadow-sm">
@@ -171,4 +157,8 @@
                 </div>
             </div>
         </div>
-    </section> --}}
+    </section>
+
+</body>
+
+</html>
