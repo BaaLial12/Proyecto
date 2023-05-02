@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/assets/logo-vt.svg" />
+    <link rel="icon" type="image/x-icon" href="{{Storage::url('img/logo/onlylogo.svg')}}" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
@@ -14,7 +15,7 @@
 <body class="bg-info d-flex justify-content-center align-items-center vh-100">
     <div class="bg-white p-5 rounded-5 text-secondary shadow" style="width: 25rem">
         <div class="d-flex justify-content-center">
-            <img src="{{ Storage::url('img/logo/Netflix.png') }}" alt="login-icon" style="height: 7rem" />
+            <img src="{{ Storage::url('img/logo/logo.svg') }}" alt="login-icon" style="height: 7rem" />
         </div>
         <div class="text-center fs-1 fw-bold">Login</div>
         <form method="POST" action="{{ route('login') }}">
@@ -73,10 +74,10 @@
             <a href="login-facebook" class="fw-semibold text-secondary"><i class="fa-brands fa-facebook"></i>Continue
                 with Facebook</a>
         </div>
-        <div class="btn d-flex gap-2 justify-content-center border mt-3 shadow-sm">
+        {{-- <div class="btn d-flex gap-2 justify-content-center border mt-3 shadow-sm">
             <a href="login-apple" class="fw-semibold text-secondary"><i class="fa-brands fa-apple"></i>Continue with
                 Apple</a>
-        </div>
+        </div> --}}
     </div>
 </body>
 

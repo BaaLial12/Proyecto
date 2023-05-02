@@ -5,8 +5,8 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <a class="navbar-brand mt-4" href="{{ route('dashboard') }}">
-                    <img src="{{ Storage::url('img/logo/Netflix.png') }}" alt="Logo" width="50"
+                <a class="navbar-brand mt-2" href="{{ route('dashboard') }}">
+                    <img src="{{ Storage::url('img/logo/onlylogo.svg') }}" alt="Logo" width="50"
                         class="img-fluid">
                 </a>
 
@@ -14,13 +14,13 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-grid-fill" viewBox="0 0 16 16" style="color: #E8E8E8">
+                            class="bi bi-grid-fill" viewBox="0 0 16 16" style="color: #333333">
                             <path
                                 d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z" />
                         </svg>
                     </x-nav-link>
                     <x-nav-link href="{{ route('marketplace') }}" :active="request()->routeIs('marketplace')">
-                        <i class="fa-solid fa-magnifying-glass" style="color: #E8E8E8"></i>
+                        <i class="fa-solid fa-magnifying-glass" style="color: #333333"></i>
                     </x-nav-link>
                 </div>
             </div>
@@ -84,8 +84,8 @@
                 @endif
 
                 <!-- Settings Dropdown -->
-                <div class="ml-3 relative">
-                    <x-dropdown align="right" width="48">
+                <div class="ml-3 relative" style="background-color: #87CEFA" >
+                    <x-dropdown align="right" width="48" >
 
                         <x-slot name="trigger">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -182,6 +182,9 @@
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('marketplace') }}" :active="request()->routeIs('marketplace')">
+                {{ __('Marketplace') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -204,6 +207,9 @@
                 <!-- Account Management -->
                 <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                     {{ __('Profile') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link href="{{ route('billings.index') }}" :active="request()->routeIs('billings.index')">
+                    {{ __('Metodos de Pago') }}
                 </x-responsive-nav-link>
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())

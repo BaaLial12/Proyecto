@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="icon" type="image/x-icon" href="{{Storage::url('img/logo/Netflix.png')}}" />
+    <link rel="icon" type="image/x-icon" href="{{Storage::url('img/logo/onlylogo.svg')}}" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -107,15 +107,15 @@
     @livewireScripts
 
 
-    <footer class="text-white py-4" style="background-color: #87CEFA">
+    <footer class="py-4" style="background-color: #87CEFA; color: #333333">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
                     <h5>Enlaces útiles</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="{{route('aboutUs')}}">Acerca de nosotros</a></li>
-                        <li><a href="#">Contáctanos</a></li>
+                    <ul class="list-unstyled" >
+                        <li><a href="#" style="color: #333333">Inicio</a></li>
+                        <li><a href="{{route('aboutUs')}}" style="color: #333333">Acerca de nosotros</a></li>
+                        <li><a href="#" style="color: #333333">Contáctanos</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
@@ -129,9 +129,9 @@
                 <div class="col-md-4">
                     <h5>Síguenos en redes sociales</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#"><i class="bi bi-facebook"></i> Facebook</a></li>
-                        <li><a href="#"><i class="bi bi-twitter"></i> Twitter</a></li>
-                        <li><a href="#"><i class="bi bi-instagram"></i> Instagram</a></li>
+                        <li><a href="#" style="color: #333333"><i class="bi bi-facebook"></i> Facebook</a></li>
+                        <li><a href="#" style="color: #333333"><i class="bi bi-twitter"></i> Twitter</a></li>
+                        <li><a href="#" style="color: #333333"><i class="bi bi-instagram"></i> Instagram</a></li>
                     </ul>
                 </div>
             </div>
@@ -140,7 +140,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 text-center">
-                    <p class="fs-6">&copy; 2023 StreamShare, Inc. Todos los derechos reservados.</p>
+                    <p class="fs-6">&copy; 2023 PayTogether, Inc. Todos los derechos reservados.</p>
                 </div>
             </div>
         </div>
