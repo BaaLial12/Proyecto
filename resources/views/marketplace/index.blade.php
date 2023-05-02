@@ -31,7 +31,6 @@
                     <div class="modal-header">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             <div class="d-flex justify-content-center">
-                                <span aria-hidden="true">&times;</span>
                             </div>
                         </button>
                     </div>
