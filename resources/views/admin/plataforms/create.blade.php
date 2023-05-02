@@ -31,7 +31,7 @@
 
             <div class="form-group d-flex flex-column">
                 {!! Form::label('capacidad', 'Capacidad') !!}
-                {!! Form::number('capacidad', null, ['class' => 'form-control', 'placeholder' => 'Capacidad de la Categoria']) !!}
+                {!! Form::number('capacidad', null, ['class' => 'form-control', 'placeholder' => 'Capacidad de la Plataforma']) !!}
 
                 @error('capacidad')
                     <span class="text-danger">{{ $message }}</span>
@@ -40,7 +40,7 @@
 
             <div class="form-group d-flex flex-column">
                 {!! Form::label('suscripcion', 'Suscripción') !!}
-                {!! Form::number('suscripcion', null, ['class' => 'form-control', 'placeholder' => 'Suscripción de la Categoria' , 'step' => '0.01']) !!}
+                {!! Form::number('suscripcion', null, ['class' => 'form-control', 'placeholder' => 'Precio mensual de la Suscripcion' , 'step' => '0.01']) !!}
 
                 @error('suscripcion')
                     <span class="text-danger">{{ $message }}</span>
