@@ -113,9 +113,13 @@
                 <div class="col-md-4">
                     <h5>Enlaces útiles</h5>
                     <ul class="list-unstyled" >
-                        <li><a href="#" style="color: #ffffff">Inicio</a></li>
-                        <li><a href="{{route('aboutUs')}}" style="color: #ffffff">Acerca de nosotros</a></li>
-                        <li><a href="#" style="color: #ffffff">Contáctanos</a></li>
+                        <li><a @if (Auth::user())
+                            href="dashboard" style="color: #ffffff">Inicio</a></li>
+                            @else
+                            <a href="login" style="color: #ffffff">Inicio</a>
+                        @endif
+                        <li><a  href="{{route('aboutUs')}}" style="color: #ffffff">Acerca de nosotros</a></li>
+                        <li><a href="mailto:paytogether.com" style="color: #ffffff">Contáctanos</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
@@ -138,6 +142,11 @@
         </div>
 
         <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 ">
+                    <img src="{{ Storage::url('img/logo/onlylogo.svg') }}" alt="Logo" width="150" class="img-fluid mx-auto">
+                </div>
+            </div>
             <div class="row">
                 <div class="col-12 text-center">
                     <p class="fs-6">&copy; 2023 PayTogether, Inc. Todos los derechos reservados.</p>
