@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{{-- <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Bootstrap 5 CSS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-
-</head> --}}
-
 <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/assets/logo-vt.svg" />
@@ -75,7 +66,7 @@
     </section>
 
     <!-- Cómo funciona Section -->
-    <section id="como-funciona" class="py-5">
+    <section id="como-funciona" class="py-5 shadow-lg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -116,7 +107,7 @@
 
 
     <!-- Características -->
-    <section id="caracteristicas" class="container-fluid py-5 bg-light">
+    <section id="caracteristicas" class="container-fluid py-5">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center mb-5">
