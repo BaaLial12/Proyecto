@@ -49,7 +49,18 @@ class CreateGroup extends Component
         $user_id = Auth::user()->id;
         // dd($plataform_id , $capacidad_seleccionada , $ids_plataform , $capacidad_segun_plataform);
 
-        //Antes de crear hay que hacer una comprobacion previa para evitar que el usuario cree un grupo donde ya sea admin o ppertenenza a el
+
+        //Me traigo todos los ids de usuarios que estan compartiendo la plataforma a la que intentan ser admin
+        $usuarios = Group::where('plataform_id' , $this->plataforma)->pluck('user_id')->toArray();
+
+        //Me guardo en un array todas las plataform_id que tiene un usuario es decir DONDE SE UNE PERO NO ES ADMIN
+        $plataforms_by_user = auth()->user()->groups()->pluck('plataform_id')->toArray();
+
+        //Antes de crear hay que hacer una comprobacion previa para evitar que el usuario cree un grupo donde ya sea admin o pertenezca de la plataforma
+        if(in_array(Auth::user()->id , $usuarios) || in_array($plataform_id, $plataforms_by_user) ){
+            return redirect()->route('dashboard')->with('error_msg', 'Ya perteneces a un grupo de esa plataforma');
+        }
+
 
 
 
