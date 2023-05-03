@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row mb-3">
             <div class="col">
-                <a href="{{ route('dashboard') }}" class="btn btn-outline-dark" style="background-color: #00CDD0">
+                <a href="{{ route('dashboard') }}" class="btn btn-outline-dark" style="background-color: #72C3DC">
                     <i class="bi bi-arrow-left"></i> Back
                 </a>
             </div>
@@ -59,14 +59,14 @@
                             <div class="col">
                                 <div class="mb-3 align-items-center">
                                     <button id="show-credentials-btn" class="btn btn-outline-dark"
-                                        style="background-color: #00CDD0" type="button">Mostrar credenciales</button>
+                                        style="background-color: #72C3DC" type="button">Mostrar credenciales</button>
                                 </div>
                             </div>
                             @if ($grupo->user_id == Auth::user()->id)
                                 <div class="col">
                                     <div class="mb-3 align-items-center">
                                         <button id="show-password-btn" class="btn btn-outline-dark"
-                                            style="background-color: #00CDD0" data-bs-toggle="modal"
+                                            style="background-color: #72C3DC" data-bs-toggle="modal"
                                             data-bs-target="#modal-edit-credentials" type="button">Actualizar
                                             credenciales</button>
                                     </div>
@@ -122,7 +122,7 @@
                                 data-toggle="modal" data-target="#chatModal">
                                 <i class="fa-regular fa-comment-dots fa-flip-horizontal"></i>Mensaje al grupo
                             </button> --}}
-                            <button type="button" class="btn btn-outline-dark" style="background-color: #00CDD0"
+                            <button type="button" class="btn btn-outline-dark" style="background-color: #72C3DC"
                                 data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 <i class="fa-regular fa-comment-dots fa-flip-horizontal"></i>Mensaje al grupo
                             </button>
@@ -242,7 +242,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger text-danger"
                                 data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-outline-dark" style="background-color: #00CDD0">
+                            <button type="submit" class="btn btn-outline-dark" style="background-color: #72C3DC">
                                 <i class="fas fa-save"></i>Almacenar
                             </button>
                         </div>
@@ -289,7 +289,7 @@
                         <div class="input-group">
                             <input type="text" name="message" class="form-control"
                                 placeholder="Escribe un mensaje">
-                            <button type="submit" class="btn btn-outline-dark" style="background-color: #00CDD0">Enviar</button>
+                            <button type="submit" class="btn btn-outline-dark" style="background-color: #72C3DC">Enviar</button>
                         </div>
                     </form>
                 </div>
