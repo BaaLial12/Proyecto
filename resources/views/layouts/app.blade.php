@@ -107,15 +107,15 @@
     @livewireScripts
 
 
-    <footer class="py-4" style="background-color: #87CEFA; color: #333333">
+    <footer class="py-4" style="background-color: #004aad; color: #ffffff">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
                     <h5>Enlaces útiles</h5>
                     <ul class="list-unstyled" >
-                        <li><a href="#" style="color: #333333">Inicio</a></li>
-                        <li><a href="{{route('aboutUs')}}" style="color: #333333">Acerca de nosotros</a></li>
-                        <li><a href="#" style="color: #333333">Contáctanos</a></li>
+                        <li><a href="#" style="color: #ffffff">Inicio</a></li>
+                        <li><a href="{{route('aboutUs')}}" style="color: #ffffff">Acerca de nosotros</a></li>
+                        <li><a href="#" style="color: #ffffff">Contáctanos</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
@@ -129,9 +129,9 @@
                 <div class="col-md-4">
                     <h5>Síguenos en redes sociales</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" style="color: #333333"><i class="bi bi-facebook"></i> Facebook</a></li>
-                        <li><a href="#" style="color: #333333"><i class="bi bi-twitter"></i> Twitter</a></li>
-                        <li><a href="#" style="color: #333333"><i class="bi bi-instagram"></i> Instagram</a></li>
+                        <li><a href="#" style="color: #ffffff"><i class="bi bi-facebook"></i> Facebook</a></li>
+                        <li><a href="#" style="color: #ffffff"><i class="bi bi-twitter"></i> Twitter</a></li>
+                        <li><a href="#" style="color: #ffffff"><i class="bi bi-instagram"></i> Instagram</a></li>
                     </ul>
                 </div>
             </div>

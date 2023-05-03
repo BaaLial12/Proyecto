@@ -11,7 +11,7 @@
             <!-- Agregar clase "mx-auto" -->
             <div class="row">
                 <div class="d-flex justify-content-center mb-3">
-                    <button type="button" class="btn btn-outline-dark" style="background-color: #00CDD0"
+                    <button type="button" class="btn btn-outline-dark" style="background-color: #72C3DC"
                         data-bs-toggle="modal" data-bs-target="#suferirServicio">
                         <i class="fa-regular fa-comment-dots fa-flip-horizontal"></i>Sugerir Servicio
                     </button>

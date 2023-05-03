@@ -1,7 +1,7 @@
 <nav x-data="{ open: false }" class="border-b border-gray-100 fixed-top position-sticky md:fixed-bottom"
-    style="background-color: #87CEFA">
+    style="background-color: #004aad">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " style="background-color: #87CEFA ">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " style="background-color: #004aad ">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -12,22 +12,20 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-grid-fill" viewBox="0 0 16 16" style="color: #333333">
+                            class="bi bi-grid-fill" viewBox="0 0 16 16" style="color: #ffffff">
                             <path
                                 d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z" />
                         </svg>
                     </x-nav-link>
                     <x-nav-link href="{{ route('marketplace') }}" :active="request()->routeIs('marketplace')">
-                        <i class="fa-solid fa-magnifying-glass" style="color: #333333"></i>
+                        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff"></i>
                     </x-nav-link>
                 </div>
             </div>
 
-            <div class="ms-auto text-center mt-3">
-
-            </div>
+            {{--  --}}
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Teams Dropdown -->
@@ -84,7 +82,7 @@
                 @endif
 
                 <!-- Settings Dropdown -->
-                <div class="ml-3 relative" style="background-color: #87CEFA" >
+                <div class="ml-3 relative" style="background-color: #004aad" >
                     <x-dropdown align="right" width="48" >
 
                         <x-slot name="trigger">
@@ -117,7 +115,7 @@
 
 
 
-                        <x-slot name="content">
+                        <x-slot name="content" >
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage Account') }}
