@@ -46,12 +46,12 @@
                         <h2 class="h4">{{ $grupo->plataform->nombre }} Credenciales</h2>
                         <div class="mb-3">
                             <label class="form-label">Email:</label>
-                            <input type="password" id="email-input" class="form-control" placeholder="Enter email"
+                            <input type="password" id="email-input" class="form-control" placeholder="Enter email" disabled
                                 value="{{ $grupo->credential ? $grupo->credential->email : '' }}" />
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Password:</label>
-                            <input id="password-input" type="password" class="form-control" placeholder="Enter password"
+                            <input id="password-input" type="password" class="form-control" placeholder="Enter password" disabled
                                 value="{{ $grupo->credential? $grupo->credential->password : ''}}" />
                         </div>
 
