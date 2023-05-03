@@ -10,17 +10,17 @@
                     <div class="card h-100">
                         <img src="{{ Storage::url($grupo->plataform->logo) }}" alt="{{ $grupo->plataform->nombre }}"
                             class="card-img-top border-2" alt="{{ $grupo->plataform->nombre }}" />
-                        <div class="row card-body align-items-center text-center">
-                            <div class="col col-md-3 col-lg-6 ">
-                                <h5 class="card-title">{{ $grupo->plataform->nombre }}</h5>
+                            <div class="row card-body align-items-center text-center">
+                                <div class="col col-md-3 col-lg-6 ">
+                                    <h5 class="card-title my-0">{{ $grupo->plataform->nombre }}</h5>
+                                </div>
+                                <div class="col col-md-8 col-lg-6 ">
+                                    <p class="card-text">
+                                        Precio por miembro :
+                                        {{ round($grupo->plataform->suscripcion / $grupo->plataform->capacidad, 2) }}€
+                                    </p>
+                                </div>
                             </div>
-                            <div class="col col-md-8 col-lg-6 ">
-                                <p class="card-text">
-                                    Precio por miembro :
-                                    {{ round($grupo->plataform->suscripcion / $grupo->plataform->capacidad, 2) }}€
-                                </p>
-                            </div>
-                        </div>
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-5">
