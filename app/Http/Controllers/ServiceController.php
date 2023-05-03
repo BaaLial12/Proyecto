@@ -31,7 +31,6 @@ class ServiceController extends Controller
     public function create(Request $request)
     {
         //
-        dd("Hola");
         //Validacion de campos
         $request->validate([
             'nombre' => 'required|string|min:2|max:17|unique:plataforms,nombre',

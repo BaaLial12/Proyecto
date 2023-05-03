@@ -21,17 +21,17 @@ class GroupSeeder extends Seeder
 
 
 
-        $user = User::all()->random();
+        // $user = User::all()->random();
 
-        $group = Group::create([
+        // $group = Group::create([
 
-            'capacidad' => 90,
-            'plataform_id' => '1' ,
-            'user_id' => $user->id,
-            'credential_id' => 1
-        ]);
+        //     'capacidad' => 90,
+        //     'plataform_id' => '1' ,
+        //     'user_id' => $user->id,
+        //     'credential_id' => 1
+        // ]);
 
-        $group->users()->attach($user);
+        // $group->users()->attach($user);
 
 
 

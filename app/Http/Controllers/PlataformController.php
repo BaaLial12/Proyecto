@@ -61,7 +61,7 @@ class PlataformController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
 
         //Validacion de campos
         $request->validate([
