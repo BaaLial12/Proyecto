@@ -29,7 +29,7 @@
                 <div class="col-md-4">
                     <h2>PayTogether</h2>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8" >
                     <nav class="navbar navbar-expand-md navbar-light justify-content-end">
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
@@ -37,21 +37,21 @@
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav">
+                            <ul class="navbar-nav" >
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                                    <a class="nav-link active" aria-current="page" href="#" style="color: #ffffff">Inicio</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#como-funciona">¿Cómo funciona?</a>
+                                    <a class="nav-link" href="#como-funciona" style="color: #ffffff">¿Cómo funciona?</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#caracteristicas">Caracteristicas</a>
+                                    <a class="nav-link" href="#caracteristicas" style="color: #ffffff">Caracteristicas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('login')}}">Login</a>
+                                    <a class="nav-link" href="{{route('login')}}" style="color: #ffffff">Login</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('register')}}">Register</a>
+                                    <a class="nav-link" href="{{route('register')}}" style="color: #ffffff">Register</a>
                                 </li>
                             </ul>
                         </div>
