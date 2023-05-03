@@ -30,9 +30,9 @@
                     </div>
                     <form wire:submit.prevent="crearGrupo" class="d-flex justify-content-center">
                         @csrf
-                        <div class="container-fluid mt-4">
+                        <div class="container mt-4">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-sm-12 col-md-6">
                                     <label for="nombre-servicio" class="form-label">Nombre del Servicio</label>
                                     <select class="form-select" wire:model="plataforma">
                                         <option value="">Selecciona una</option>
@@ -41,20 +41,20 @@
                                         @endforeach
                                     </select>
                                 </div>
-
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-6">
-                                    <label for="nombre-servicio" class="form-label">Sitios disponibles(Contandote a
-                                        ti)</label>
-                                    <select id="capacidades" name="capacidades" wire:model="capacidad">
-                                        @for ($i = 1; $i <= $capacidad; $i++)
-                                            <option value="{{ $i }}">{{ $i }}</option>
-                                        @endfor
-                                    </select>
+                                <div class="col-sm-12 col-md-6 mt-3 mt-md-0">
+                                    <label for="nombre-servicio" class="form-label">Sitios disponibles (Contándote a ti)</label>
+                                    <div class="d-flex flex-column">
+                                        <select id="capacidades" name="capacidades" wire:model="capacidad" class="mb-2">
+                                            @for ($i = 1; $i <= $capacidad; $i++)
+                                                <option value="{{ $i }}">{{ $i }}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+
                 </div>
                 <div class="modal-footer">
                     <div class="row">
