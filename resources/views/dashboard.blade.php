@@ -48,7 +48,7 @@
 
                             <div class="row">
                                 <div class="col align-content-center text-center">
-                                    <a class="btn btn-outline-dark" style="background-color: #00CDD0"
+                                    <a class="btn btn-outline-dark" style="background-color: #72C3DC"
                                         href="{{ route('groups.administration', $grupo->id) }}">Administrar
                                         Suscripción</a>
                                 </div>

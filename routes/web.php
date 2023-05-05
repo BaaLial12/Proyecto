@@ -28,9 +28,13 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect('/dashboard');
+    } else {
+        return view('welcome');
+    }
+})->name('welcome');
 
 //Cambio de ruta para que el que quiera acceder a mi pagina web tenga que estar logueado si o si
 //Aparte me llevare una variable llamada contador a la vista dashboard donde le dira al usuario logueado la cantidad de plataformas que esta compartiendo
@@ -45,13 +49,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 
-Route::get('/', function () {
-    if (Auth::check()) {
-        return redirect('/dashboard');
-    } else {
-        return view('welcome');
-    }
-})->name('welcome');
+
 
 Route::middleware([
     'auth:sanctum',

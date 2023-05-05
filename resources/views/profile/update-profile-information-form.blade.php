@@ -94,7 +94,7 @@
             {{ __('Saved.') }}
         </x-action-message>
 
-        <x-button wire:loading.attr="disabled" wire:target="photo">
+        <x-button style="background-color: #72C3DC" wire:loading.attr="disabled" wire:target="photo">
             {{ __('Save') }}
         </x-button>
     </x-slot>
