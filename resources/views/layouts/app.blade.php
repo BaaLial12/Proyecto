@@ -152,6 +152,15 @@
                     <p class="fs-6">&copy; 2023 PayTogether, Inc. Todos los derechos reservados.</p>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+                        <img alt="Licencia de Creative Commons" class="mx-auto mt-3" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" />
+                    </a>
+
+                    <br />Este obra está bajo una <a rel="license" class="text-white" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">licencia de Creative Commons Reconocimiento-NoComercial-SinObraDerivada 4.0 Internacional</a>.
+                </div>
+            </div>
         </div>
 
 
