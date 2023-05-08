@@ -1,8 +1,19 @@
 <x-app-layout>
     <div class="container">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight mb-3">
-            Tus Suscripciones ({{ $contador }})
-        </h2>
+        <div class="row my-4">
+
+            <div class="col-6">
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight mb-3">
+                    Tus Suscripciones ({{ $contador }})
+                </h2>
+            </div>
+
+            <div class="col-6">
+                @livewire('create-group')
+            </div>
+
+        </div>
+
 
         <div class="row row-cols-1 row-cols-md-2 g-4">
             @foreach ($grupos as $grupo)

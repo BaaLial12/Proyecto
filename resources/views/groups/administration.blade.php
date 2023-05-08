@@ -1,13 +1,16 @@
 <x-app-layout>
-@livewire('create-group')
     <div class="container">
-        <div class="row mb-3">
-            <div class="col">
-                <a href="{{ route('dashboard') }}" class="btn btn-outline-dark" style="background-color: #72C3DC">
-                    <i class="bi bi-arrow-left"></i> Back
-                </a>
+
+        <div class="row mt-4">
+            <div class="col-md-12 text-end">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Administrar Grupos</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{$grupo->plataform->nombre}}</li>
+                </ol>
+              </nav>
             </div>
-        </div>
+          </div>
 
         <div class="row mb-3">
             <div class="col-12 border rounded">
