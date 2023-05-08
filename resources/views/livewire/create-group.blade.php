@@ -1,7 +1,7 @@
 <div>
     {{-- The Master doesn't talk, he acts. --}}
 
-    <button class="badge rounded-pill" style="background: #00CDD0" data-bs-toggle="modal" data-bs-target="#createGroup">
+    <button class="btn rounded text-white" style="background: #004aad" data-bs-toggle="modal" data-bs-target="#createGroup">
         <i class="fas fa-add"></i> Crear Grupo
     </button>
 
@@ -32,7 +32,7 @@
                         @csrf
                         <div class="container mt-4">
                             <div class="row">
-                                <div class="col-sm-12 col-md-6">
+                                <div class="col-12 col-lg-6">
                                     <label for="nombre-servicio" class="form-label">Nombre del Servicio</label>
                                     <select class="form-select" wire:model="plataforma">
                                         <option value="">Selecciona una</option>
@@ -41,7 +41,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-sm-12 col-md-6 mt-3 mt-md-0">
+                                <div class="col-12 col-lg-6 mt-3 mt-lg-0">
                                     <label for="nombre-servicio" class="form-label">Sitios disponibles (Contándote a ti)</label>
                                     <div class="d-flex flex-column">
                                         <select id="capacidades" name="capacidades" wire:model="capacidad" class="mb-2">
