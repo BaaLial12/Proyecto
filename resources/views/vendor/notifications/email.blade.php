@@ -1,8 +1,8 @@
 <x-mail::message>
 {{-- Greeting --}}
-@if (! empty($greeting))
+{{-- @if (! empty($greeting))
 # {{ $greeting }}
-@else
+@else --}}
 @if ($level === 'error')
 # @lang('Whoops!')
 @else
@@ -36,12 +36,13 @@
 @endforeach
 
 {{-- Salutation --}}
-@if (! empty($salutation))
+{{-- @if (! empty($salutation))
 {{ $salutation }}
 @else
-@lang('Regards'),<br>
+@lang('Regards'),<br> --}}
 {{ config('app.name') }}
-@endif
+
+{{-- @endif --}}
 
 {{-- Subcopy --}}
 @isset($actionText)
@@ -54,5 +55,5 @@
     ]
 ) <span class="break-all">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span>
 </x-slot:subcopy>
-@endisset
+{{-- @endisset --}}
 </x-mail::message>
