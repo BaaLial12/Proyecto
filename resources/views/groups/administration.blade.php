@@ -29,14 +29,14 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="h4">{{ $grupo->plataform->nombre }} 1 Month</h2>
+                        <h2 class="h4">{{ $grupo->plataform->nombre }} 1 Mes</h2>
                         <p class="mb-0"><strong>{{ $grupo->plataform->suscripcion }}€</strong></p>
                     </div>
                 </div>
 
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="h4">{{ $grupo->plataform->nombre }} Price per Subscriber</h2>
+                        <h2 class="h4">{{ $grupo->plataform->nombre }} Precio Por Subscriptor</h2>
                         <p class="mb-0">
                             <strong>{{ round($grupo->plataform->suscripcion / $grupo->plataform->capacidad, 2) }}€</strong>
                         </p>
@@ -48,7 +48,7 @@
                     <div class="card-body">
                         <h2 class="h4">{{ $grupo->plataform->nombre }} Credenciales</h2>
                         <div class="mb-3">
-                            <label class="form-label">Email:</label>
+                            <label class="form-label">Email/Usuario:</label>
                             <input type="password" id="email-input" class="form-control" placeholder="Enter email" disabled
                                 value="{{ $grupo->credential ? $grupo->credential->email : '' }}" />
                         </div>

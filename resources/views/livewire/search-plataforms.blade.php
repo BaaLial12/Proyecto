@@ -14,7 +14,7 @@
 
     <div class="container">
         <input type="text" wire:model="search" placeholder="Buscar plataforma..."
-            class="search-input form-control rounded ">
+            class="search-input form-control rounded">
         @if ($search != '')
             <div class="card text-center mb-4 mx-auto mt-3 shadow-lg border-0">
                 <div class="row">
@@ -29,7 +29,7 @@
                                         partir de:
                                         {{ round($plataforma->suscripcion / $plataforma->capacidad, 2) }}€
                                     </p>
-                                    <a href="{{ route('groups.showGroups', $plataforma->id) }}"
+                                    <a href="{{ route('groups.showGroups', $plataforma->nombre) }}"
                                         class="btn btn-outline-dark" style="background-color: #72C3DC">Ver
                                         grupos</a>
                                 </div>
@@ -41,22 +41,22 @@
             </div>
         @else
             @foreach ($categorias as $categoria)
-                <div class="card text-center mb-4 mx-auto border-0">
-                    <!-- Agregar clase "text-center" y "mx-auto" -->
-                    <div class="card-header border-0" style="background-color: #72C3DC" >
-                        <strong>{{ $categoria->nombre }}</strong><a
-                            href="{{ route('show-plataforms-by-categorie', $categoria->nombre) }}"
-                            class="float-right text-black">Ver Todo</a>
-                    </div>
+    @if ($plataforms->where('category_id', $categoria->id)->count() > 0)
+        <div class="card text-center mb-4 mt-3 mx-auto border-0">
+            <!-- Agregar clase "text-center" y "mx-auto" -->
+            <div class="card-header border-0" style="background-color: #72C3DC" >
+                <strong>{{ $categoria->nombre }}</strong><a
+                    href="{{ route('show-plataforms-by-categorie', $categoria->nombre) }}"
+                    class="float-right text-black">Ver Todo</a>
+            </div>
 
-
-                    <div class="card-body text-center shadow-lg" style="background-color: #fff">
-                        <div id="carouselExampleControls{{$categoria->nombre}}" class="carousel slide">
-                            <div class="carousel-inner">
-                                @foreach ($plataforms->where('category_id', $categoria->id)->chunk(3) as $chunk)
-                                <div class="carousel-item{{ $loop->first ? ' active' : '' }}">
-                                    <div class="row">
-                                        @foreach ($chunk as $plataforma)
+            <div class="card-body text-center shadow-lg" style="background-color: #fff">
+                <div id="carouselExampleControls{{$categoria->nombre}}" class="carousel slide">
+                    <div class="carousel-inner">
+                        @foreach ($plataforms->where('category_id', $categoria->id)->chunk(3) as $chunk)
+                            <div class="carousel-item{{ $loop->first ? ' active' : '' }}">
+                                <div class="row">
+                                    @foreach ($chunk as $plataforma)
                                         <div class="col-md-4">
                                             <div class="card mb-4" style="background-color: #f0f0f0">
                                                 <div class="card-body">
@@ -71,25 +71,25 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        @endforeach
-                                    </div>
+                                    @endforeach
                                 </div>
-                                @endforeach
                             </div>
-                            <a class="carousel-control-prev" href="#carouselExampleControls{{$categoria->nombre}}" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next " href="#carouselExampleControls{{$categoria->nombre}}" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon " aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
+                        @endforeach
                     </div>
-
-
+                    <a class="carousel-control-prev" href="#carouselExampleControls{{$categoria->nombre}}" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next " href="#carouselExampleControls{{$categoria->nombre}}" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon " aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
-            @endforeach
+            </div>
+        </div>
+    @endif
+@endforeach
+
 
         @endif
     </div>

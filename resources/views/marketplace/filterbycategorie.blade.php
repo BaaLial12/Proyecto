@@ -7,7 +7,7 @@
                     @foreach ($plataforms_by_categorie as $plataforma)
                         @if ($plataforma->category_id == $categoria_id)
                             <div class="col-md-4">
-                                <div class="card mb-4" style="background-color: #D8C3FF">
+                                <div class="card mb-4" style="background-color: #f0f0f0">
                                     <div class="card-body">
                                         <h5 class="card-title" style="font-size: 1.5rem">
                                             <strong>{{ $plataforma->nombre }}</strong>
@@ -17,7 +17,7 @@
                                             {{ round($plataforma->suscripcion / $plataforma->capacidad, 2) }}€
                                         </p>
                                         <a href="{{ route('groups.showGroups', $plataforma->nombre) }}"
-                                            class="btn btn-outline-dark" style="background-color: #00CDD0">Ver
+                                            class="btn btn-outline-dark" style="background-color: #72C3DC">Ver
                                             grupos</a>
                                     </div>
                                 </div>
