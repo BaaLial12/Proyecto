@@ -1,5 +1,13 @@
 <x-app-layout>
     <div class="container">
+
+        
+    <div class="text-center">
+  <h5 class="d-inline-block">PAGINA PRINCIPAL</h5>
+</div>
+
+
+
         <div class="row my-4">
 
             <div class="col-6">
