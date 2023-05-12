@@ -1,5 +1,6 @@
 <x-app-layout>
     <div class="container">
+        @if(count($grupos) > 0)
         <div class="row ">
             @foreach ($grupos as $grupo)
                 @if ($sitios_totales > count($grupo->users))
@@ -33,8 +34,32 @@
                             </div>
                         </div>
                     </div>
+                @else
+                    <div class="col text-center mt-2">
+                        <div class="card shadow-lg border-0">
+                            <div class="card-body py-5">
+                                <div class="alert alert-info mt-4">
+                                    <i class="fas fa-exclamation-triangle fa-lg"></i>Todos los grupos de esta plataforma estan llenos , ¿Quieres crearlo tu?
+                                        @livewire('create-group')
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endif
             @endforeach
         </div>
+        @else
+        <div class="col text-center mt-2">
+            <div class="card shadow-lg border-0">
+                <div class="card-body py-5">
+                    <div class="alert alert-info mt-4">
+                        <i class="fas fa-exclamation-triangle fa-lg"></i>Nadie esta compartiendo esta plataforma...  ¿Te apuntas tu?
+                            @livewire('create-group')
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
+    
 </x-app-layout>
