@@ -1,12 +1,11 @@
 <x-app-layout>
 
     <div class="container">
-        <div class="owl-carousel owl-theme mx-auto">
-            <div class="card text-center mb-4 mx-auto mt-3">
+            <div class="card text-center mb-4 mx-auto mt-3 shadow-lg border-0">
                 <div class="row">
                     @foreach ($plataforms_by_categorie as $plataforma)
                         @if ($plataforma->category_id == $categoria_id)
-                            <div class="col-md-4">
+                        <div class="col-lg-3 col-md-4 col-sm-12">
                                 <div class="card mb-4" style="background-color: #f0f0f0">
                                     <div class="card-body">
                                         <h5 class="card-title" style="font-size: 1.5rem">
@@ -26,7 +25,11 @@
                     @endforeach
                 </div>
             </div>
-        </div>
+
+       
+
+
+
     </div>
 
 
