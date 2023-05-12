@@ -28,13 +28,17 @@
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
-                    @if (!$this->user->avatar)
-                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
-
-                    @else
+                 
+                    @if ($this->user->avatar)
                     <img src="{{ $this->user->avatar }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
+                @elseif ($this->user->profile_photo_path)
+                    <img src="{{ Storage::url($this->user->profile_photo_path) }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
+                @elseif (!$this->user->avatar && !$this->user->profile_photo_path)
+                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
+                @endif
 
-                    @endif
+
+
                 </div>
 
                 <!-- New Profile Photo Preview -->
