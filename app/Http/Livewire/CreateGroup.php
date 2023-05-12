@@ -46,8 +46,12 @@ class CreateGroup extends Component
         $ids_plataform = Plataform::all()->pluck('id')->toArray();
         $capacidad_segun_plataform =  Plataform::where('id', $this->plataforma)->pluck('capacidad')->first();
 
+        //Comprobamos que la caapacidad que ha seleccionado es correcta
+        if($capacidad_seleccionada > $capacidad_segun_plataform){
+            return redirect()->route('dashboard')->with('error_msg', 'Estas introduciendo una capacidad no valida');
+        }
+
         $user_id = Auth::user()->id;
-        // dd($plataform_id , $capacidad_seleccionada , $ids_plataform , $capacidad_segun_plataform);
 
 
         //Me traigo todos los ids de usuarios que estan compartiendo la plataforma a la que intentan ser admin
@@ -81,24 +85,6 @@ class CreateGroup extends Component
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-    // public function updatingPlataform(){
-    //     $this->resetPage();
-    // }
-
-    // public function updatedPlataform($plataform_id){
-    //     $this->capacidad = Plataform::where('id' , $plataform_id)->pluck('capacidad');
-    // }
 
 
 }
