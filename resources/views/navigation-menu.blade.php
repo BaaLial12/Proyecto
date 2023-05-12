@@ -89,14 +89,20 @@
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <button
                                     class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                    @if (!Auth::user()->avatar)
+                                    @if (Auth::user()->avatar)
                                         <img class="h-12 w-12 rounded-full object-cover"
-                                            src="{{ Auth::user()->profile_photo_url }}"
+                                            src="{{ Auth::user()->avatar }}"
                                             alt="{{ Auth::user()->name }}" />
-                                    @else
+                                    @elseif(Auth::user()->profile_photo_path)
                                         <img class="h-12 w-12 rounded-full object-cover"
-                                            src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" />
+                                            src="{{Storage::url(Auth::user()->profile_photo_path)}}" alt="{{ Auth::user()->name }}" />
+
+                                    @elseif (!Auth::user()->avatar && !Auth::user()->profile_photo_path)
+                                    <img class="h-12 w-12 rounded-full object-cover"
+                                            src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+
                                     @endif
+
                                 </button>
                             @else
                                 <span class="inline-flex rounded-md">
@@ -190,14 +196,25 @@
             <div class="flex items-center px-4">
                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                     <div class="shrink-0 mr-3">
-                        <img class="h-10 w-10 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}"
-                            alt="{{ Auth::user()->name }}" />
+                                    @if (Auth::user()->avatar)
+                                        <img class="h-10 w-10 rounded-full object-cover"
+                                            src="{{ Auth::user()->avatar }}"
+                                            alt="{{ Auth::user()->name }}" />
+                                    @elseif(Auth::user()->profile_photo_path)
+                                        <img class="h-10 w-10 rounded-full object-cover"
+                                            src="{{Storage::url(Auth::user()->profile_photo_path)}}" alt="{{ Auth::user()->name }}" />
+
+                                    @elseif (!Auth::user()->avatar && !Auth::user()->profile_photo_path)
+                                    <img class="h-10 w-10 rounded-full object-cover"
+                                            src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+
+                                    @endif
                     </div>
                 @endif
 
                 <div>
-                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                    <div class="font-medium text-base text-white">{{ Auth::user()->name }}</div>
+                    <div class="font-medium text-sm text-white">{{ Auth::user()->email }}</div>
                 </div>
             </div>
 
