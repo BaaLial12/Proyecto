@@ -23,12 +23,12 @@
         </div>
 
 
-        <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="row">
             @foreach ($grupos as $grupo)
-                <div class="col mb-3">
-                    <div class="card h-100">
+                <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
+                    <div class="card">
                         <img src="{{ Storage::url($grupo->plataform->logo) }}" alt="{{ $grupo->plataform->nombre }}"
-                            class="card-img-top border-2" alt="{{ $grupo->plataform->nombre }}" />
+                        class="card-img-top border-2 img-fluid" />
                         <div class="row card-body align-items-center text-center">
                             <div class="col col-md-3 col-lg-6 ">
                                 <h5 class="card-title my-0">{{ $grupo->plataform->nombre }}</h5>
@@ -87,11 +87,7 @@
                 </div>
             @endforeach
         </div>
-
-
-
-
-
+        
     </div>
 
 
@@ -100,13 +96,7 @@
 
 
 
-    {{--
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-            </div>
-        </div>
-    </div> --}}
+   
 </x-app-layout>
 
 
@@ -131,3 +121,19 @@
     const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
     const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 </script>
+
+
+
+<style>
+.card-img-top {
+  max-height: 300px;
+  min-height: 100px;
+  object-fit: cover;
+  height: 200px
+}
+
+.card{
+    height:400px
+}
+
+</style>
