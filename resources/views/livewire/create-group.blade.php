@@ -61,7 +61,7 @@
                         <div class="col">
                             <div class="input-group">
                                 <button type="submit" class="btn btn-outline-dark mx-auto"
-                                    style="background-color: #00CDD0">Enviar</button>
+                                    style="background-color: #72C3DC">Crear</button>
                             </div>
                         </div>
                     </div>
