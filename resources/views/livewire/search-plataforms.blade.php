@@ -43,8 +43,8 @@
                         </div>
                     @endforeach
                 </div>
-
             </div>
+            
         @else
             @foreach ($categorias as $categoria)
                 @if ($plataforms->where('category_id', $categoria->id)->count() > 0)
@@ -88,18 +88,18 @@
                                 <a class="carousel-control-prev"
                                     href="#carouselExampleControls{{ $categoria->nombre }}" role="button"
                                     data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="carousel-control-prev-icon " style="background-color: #72C3DC" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                 </a>
                                 <a class="carousel-control-next "
                                     href="#carouselExampleControls{{ $categoria->nombre }}" role="button"
                                     data-slide="next">
-                                    <span class="carousel-control-next-icon " aria-hidden="true"></span>
+                                    <span class="carousel-control-next-icon " style="background-color: #72C3DC"  aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div>                    
                 @endif
             @endforeach
 
