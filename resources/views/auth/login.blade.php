@@ -7,8 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body class="bg-info d-flex justify-content-center align-items-center vh-100">
@@ -25,7 +26,7 @@
                         style="height: 1rem" />
                 </div>
                 <input class="form-control bg-light" type="email" name="email" :value="old('email')" required
-                    autofocus autocomplete="username" />
+                    autofocus autocomplete="username" placeholder="Email" />
             </div>
             <div class="input-group mt-1">
                 <div class="input-group-text bg-info">
@@ -33,7 +34,7 @@
                         style="height: 1rem" />
                 </div>
                 <input class="form-control bg-light" type="password" name="password" required
-                    autocomplete="current-password" />
+                    autocomplete="current-password" placeholder="Password" />
             </div>
             <div class="d-flex justify-content-around mt-1">
                 <div class="d-flex align-items-center gap-1">
@@ -48,6 +49,10 @@
                     @endif
                 </div>
             </div>
+
+                <div>
+                <x-validation-errors class="p-2" />
+                </div>
 
             <button type="submit" class="btn btn text-white w-100 mt-4 fw-semibold shadow-sm" style="background-color:  #00CDD0">
                 {{ __('Log in') }}
