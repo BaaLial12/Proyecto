@@ -28,7 +28,7 @@
                                     </p>
                                 </div>
                                 <div class="col-3">
-                                    <a class="btn btn-lg w-100" style="background-color: #00CDD0"
+                                    <a class="btn btn-lg w-100" style="background-color: #72C3DC"
                                         href="{{ route('unirse-grupo', $grupo->id) }}">Únete</a>
                                 </div>
                             </div>
