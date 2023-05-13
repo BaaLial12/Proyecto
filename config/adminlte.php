@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'StreamShare Panel',
+    'title' => 'PayTogether Panel',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,12 +63,11 @@ return [
     |
     */
 
-    'logo' => '<b>StreamShare</b>Panel',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
-    'logo_img_xl' => null,
-    'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'StreamShare Logo',
+    // 'logo' => '<b>PayTogether</b>Panel',
+    // 'logo_img' => 'public/img/logo/logo.svg',
+    // 'logo_img_class' => 'brand-image img-circle elevation-3',
+    // 'logo_img_xl' => null,
+    // 'logo_img_xl_class' => 'brand-image-xs',
 
     /*
     |--------------------------------------------------------------------------
