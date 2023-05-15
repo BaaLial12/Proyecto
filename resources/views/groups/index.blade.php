@@ -3,7 +3,7 @@
         @if(count($grupos) > 0)
         <div class="row ">
             @foreach ($grupos as $grupo)
-                @if ($sitios_totales > count($grupo->users))
+                @if ($sitios_totales >= count($grupo->users))
                     <div class="col-lg-6 mb-4">
                         <div class="card">
                             <div class="card-body d-flex align-items-center">

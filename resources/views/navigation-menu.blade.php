@@ -227,6 +227,10 @@
                     {{ __('Metodos de Pago') }}
                 </x-responsive-nav-link>
 
+                <x-responsive-nav-link href="{{ route('admin.home') }}" :active="request()->routeIs('admin.home')">
+                    {{ __('Panel de Administracion') }}
+                </x-responsive-nav-link>
+
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
                         {{ __('API Tokens') }}

@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/assets/logo-vt.svg" />
     <link rel="icon" type="image/x-icon" href="{{ Storage::url('img/logo/onlylogo.svg') }}" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,6 +11,8 @@
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
+    <meta name="google-site-verification" content="W7SuK9EN1Jrdhlx4rRN7kBNPvVC03fdI3DzUWipDafA" />
+
 </head>
 
 <body>
@@ -19,15 +20,17 @@
     <header class="py-3 bg-primary text-white">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <h2>PayTogether</h2>
-                </div>
-                <div class="col-md-8" >
-                    <nav class="navbar navbar-expand-md navbar-light justify-content-end">
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                
+                <div class="col-md-8">
+                    <nav class="navbar navbar-expand-md navbar-light">
+                    <div class="container-fluid">
+
+                            <h2 class="text-white pe-4">PayTogether</h2>
+
+                        <button class="navbar-toggler border-white " type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                             aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
+                            <span class="navbar-toggler-icon" ></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav" >
@@ -47,6 +50,7 @@
                                     <a class="nav-link" href="{{route('register')}}" style="color: #ffffff">Register</a>
                                 </li>
                             </ul>
+                        </div>
                         </div>
                     </nav>
                 </div>
