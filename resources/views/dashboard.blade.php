@@ -53,18 +53,26 @@
                                                 <div class="block-subscribers__subscriber d-inline-block"
                                                     bis_skin_checked="1">
                                                     <div class="circle-subscriber">
-                                                        @if (!$user->avatar)
-                                                            <img src="{{ $user->profile_photo_url }}"
+                                                        @if ($user->avatar)
+                                                            <img src="{{ $user->avatar }}"
                                                                 class="rounded-circle" alt="{{ $user->name }}"
                                                                 style="height: 3rem " data-bs-toggle="popover"
                                                                 data-bs-trigger="hover focus" data-bs-placement="bottom"
                                                                 data-bs-content="{{ $user->name }}">
-                                                        @else
-                                                            <img src="{{ $user->avatar }}" class="rounded-circle "
+                                                        @elseif($user->profile_photo_path)
+                                                            <img src="{{ Storage::url($user->profile_photo_path) }}" class="rounded-circle "
                                                                 alt="{{ $user->name }}" style="height: 3rem"
                                                                 data-bs-toggle="popover" data-bs-trigger="hover focus"
                                                                 data-bs-placement="bottom"
                                                                 data-bs-content="{{ $user->name }}">
+
+                                                        @elseif(!$user->avatar && !$user->profile_photo_path)
+                                                            <img src="{{$user->profile_photo_url }}" class="rounded-circle "
+                                                                alt="{{ $user->name }}" style="height: 3rem"
+                                                                data-bs-toggle="popover" data-bs-trigger="hover focus"
+                                                                data-bs-placement="bottom"
+                                                                data-bs-content="{{ $user->name }}">
+
                                                         @endif
                                                     </div>
                                                 </div>
