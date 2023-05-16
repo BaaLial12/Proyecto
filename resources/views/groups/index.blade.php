@@ -3,17 +3,28 @@
         @if(count($grupos) > 0)
         <div class="row ">
             @foreach ($grupos as $grupo)
-                @if ($sitios_totales >= count($grupo->users))
+                {{-- Evitamos que se muestren los grupos de los usuarios logueados o los que sean propietarios --}}
+                {{-- Para eso al ser relacion BelongsToMany no podemos usar el contains , usando el wherePivot puedo acceder a los datos de la tabla intermedia --}}
+                {{-- Y luego con el count verificacion que haya algun registro que coincida con la "consulta" --}}
+                @if($grupo->owner->id != Auth::user()->id && !$grupo->users()->wherePivot('user_id', Auth::user()->id)->count() )
+                {{-- @dd($grupo->users->contains(Auth::user()->id)) --}}
+                @if ($sitios_totales >= $grupo->users()->count())
                     <div class="col-lg-6 mb-4">
                         <div class="card">
                             <div class="card-body d-flex align-items-center">
                                 <div class="col-3">
-                                    @if (!$grupo->owner->avatar)
-                                        <img src="{{ $grupo->owner->profile_photo_url }}" alt="Avatar de usuario"
-                                            class="img-fluid rounded-circle">
-                                    @else
-                                        <img src="{{ $grupo->owner->avatar }}" alt="Avatar de usuario"
-                                            class="img-fluid rounded-circle">
+                                    @if ($grupo->owner->avatar)
+                                        <img class="img-fluid rounded-circle"
+                                            src="{{ $grupo->owner->avatar }}"
+                                            alt="{{ $grupo->owner->name }}" />
+                                    @elseif($grupo->owner->profile_photo_path)
+                                        <img class="img-fluid rounded-circle  w-12"
+                                            src="{{Storage::url($grupo->owner->profile_photo_path)}}" alt="{{ $grupo->owner->name }}" />
+
+                                    @elseif (!$grupo->owner->avatar && !$grupo->owner->profile_photo_path)
+                                    <img class="img-fluid rounded-circle"
+                                            src="{{ $grupo->owner->profile_photo_url }}" alt="{{ $grupo->owner->name }}" />
+
                                     @endif
 
                                 </div>
@@ -46,6 +57,10 @@
                         </div>
                     </div>
                 @endif
+                @endif
+
+                    
+
             @endforeach
         </div>
         @else
