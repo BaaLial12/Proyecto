@@ -9,7 +9,7 @@
     <title>PayTogether - Ahorra en tus suscripciones digitales</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
     <meta name="google-site-verification" content="W7SuK9EN1Jrdhlx4rRN7kBNPvVC03fdI3DzUWipDafA" />
 
@@ -20,37 +20,42 @@
     <header class="py-3 bg-primary text-white">
         <div class="container">
             <div class="row">
-                
+
                 <div class="col-md-8">
                     <nav class="navbar navbar-expand-md navbar-light">
-                    <div class="container-fluid">
+                        <div class="container-fluid">
 
                             <h2 class="text-white pe-4">PayTogether</h2>
 
-                        <button class="navbar-toggler border-white " type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                            aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon" ></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav" >
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#" style="color: #ffffff">Inicio</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#como-funciona" style="color: #ffffff">¿Cómo funciona?</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#caracteristicas" style="color: #ffffff">Caracteristicas</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{route('login')}}" style="color: #ffffff">Login</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{route('register')}}" style="color: #ffffff">Register</a>
-                                </li>
-                            </ul>
-                        </div>
+                            <button class="navbar-toggler border-white" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="#"
+                                            style="color: #ffffff">Inicio</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#como-funciona"
+                                            style="color: #ffffff">¿Cómo funciona?</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#caracteristicas"
+                                            style="color: #ffffff">Caracteristicas</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{route('login')}}"
+                                            style="color: #ffffff">Login</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{route('register')}}"
+                                            style="color: #ffffff">Register</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </nav>
                 </div>
@@ -109,9 +114,6 @@
         </div>
     </section>
 
-
-
-
     <!-- Características -->
     <section id="caracteristicas" class="container-fluid py-5">
         <div class="container">
@@ -159,3 +161,4 @@
 </body>
 
 </html>
+
