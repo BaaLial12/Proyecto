@@ -39,7 +39,10 @@ Route::get('/', function () {
 //Cambio de ruta para que el que quiera acceder a mi pagina web tenga que estar logueado si o si
 //Aparte me llevare una variable llamada contador a la vista dashboard donde le dira al usuario logueado la cantidad de plataformas que esta compartiendo
 Route::get('/dashboard', function () {
+    //Contador de grupos en los que esta unido/creado
     $contador = auth()->user()->groups()->count();
+
+    //Informacion de los grupos
     $grupos = Group::where('user_id', auth()->user()->id)
                 ->orWhereHas('users', function($query) {
                     $query->where('user_id', auth()->user()->id);
