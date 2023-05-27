@@ -9,66 +9,69 @@
     <div class="card">
         <div class="card-body">
 
-            {!! Form::open(['route' => 'admin.plataforms.store' , 'files' => true]) !!}
-
-            <div class="form-group d-flex flex-column">
-                {!! Form::label('nombre', 'Nombre') !!}
-                {!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Nombre de la Categoria']) !!}
-
-                @error('nombre')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="form-group d-flex flex-column">
-                {!! Form::label('descripcion', 'Descripción') !!}
-                {!! Form::textarea('descripcion', null, ['class' => 'form-control', 'placeholder' => 'Descripción de la Categoria']) !!}
-
-                @error('descripcion')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="form-group d-flex flex-column">
-                {!! Form::label('capacidad', 'Capacidad') !!}
-                {!! Form::number('capacidad', null, ['class' => 'form-control', 'placeholder' => 'Capacidad de la Plataforma']) !!}
-
-                @error('capacidad')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="form-group d-flex flex-column">
-                {!! Form::label('suscripcion', 'Suscripción') !!}
-                {!! Form::number('suscripcion', null, ['class' => 'form-control', 'placeholder' => 'Precio mensual de la Suscripcion' , 'step' => '0.01']) !!}
-
-                @error('suscripcion')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="form-group d-flex flex-column">
-                {!! Form::label('categoria', 'Categoría') !!}
-                {!! Form::select('categoria', $categorias, null, ['class' => 'form-control', 'placeholder' => 'Seleccione una categoría']) !!}
-
-                @error('categoria')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="form-group d-flex flex-column">
-                {!! Form::label('imagen', 'Imagen (PNG)') !!}
-                {!! Form::file('imagen', ['class' => 'form-control-file', 'accept' => 'image/png', 'onchange' => 'previsualizarImagen(event)' ]) !!}
-                <img id="imagen-previa" src="#" alt="Vista previa de la imagen" style="display: none; max-width: 400px; max-height: 400px; margin-top: 10px;">
-                @error('imagen')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
+            <form action="{{ route('admin.plataforms.store') }}" method="post" enctype="multipart/form-data">
+                @csrf
 
 
-            {!! Form::submit('Crear Plataforma', ['class' => 'btn btn-success']) !!}
+                <div class="form-group d-flex flex-column">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre de la Plataforma">
+                    @error('nombre')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
 
-            {!! Form::close() !!}
+
+                <div class="form-group d-flex flex-column">
+                    <label for="descripcion">Descripcion</label>
+                    <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Descripcion de la Plataforma">
+                    @error('descripcion')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group d-flex flex-column">
+                    <label for="capacidad">Capacidad</label>
+                    <input type="number" step="1" name="capacidad" id="capacidad" class="form-control" placeholder="Capacidad de la Plataforma">
+                    @error('capacidad')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group d-flex flex-column">
+                    <label for="suscripcion">Suscripcion</label>
+                    <input type="number" step="0.01" name="suscripcion" id="suscripcion" class="form-control" placeholder="Precio mensual de la Suscripcion">
+                    @error('suscripcion')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group d-flex flex-column">
+                    <label for="categoria">Categoria</label>
+                    <select name="categoria" id="categoria">
+                        <option value="-1">Selecciona una categoria</option>
+                        @foreach ($categorias as $categoria)
+                        <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+                        @endforeach
+                    </select>
+                    @error('categoria')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group d-flex flex-column">
+                    <label for="imagen">Imagen (PNG)</label>
+                    <input type="file"  name="imagen" id="imagen" class="form-control-file" accept="image/png" onchange="previsualizarImagen(event)">
+                    <img id="imagen-previa" src="#" alt="Vista previa de la imagen" style="display: none; max-width: 400px; max-height: 400px; margin-top: 10px;">
+                    @error('imagen')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+
+
+                <button type="submit" class="btn btn-success">Crear Plataforma</button>
+            </form>
         </div>
     </div>
 @stop
@@ -89,27 +92,3 @@
         reader.readAsDataURL(input.files[0]);
     }
 </script>
-
-
-{{-- Necesito decidir si quedarme esto o ponerlo normal que es responsive --}}
-
-<style>
-
-
-@media screen and (min-width: 768px) {
-    .form-group {
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .form-group label {
-        flex-basis: 30%;
-    }
-
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-        flex-basis: 70%;
-    }
-}
-</style>

@@ -47,7 +47,7 @@ class PlataformController extends Controller
         //
 
 
-        $categorias = Category::pluck('nombre', 'id')->toArray();
+        $categorias = Category::all();
 
 
         return view('admin.plataforms.create', compact('categorias'));
@@ -78,7 +78,7 @@ class PlataformController extends Controller
 
         //Guardamos la imagen
 
-        $img = $request->imagen->store('plataformas');
+        $img = $request->imagen->store('public/plataformas');
 
 
         //Creamos el registro en la BD
@@ -137,7 +137,7 @@ class PlataformController extends Controller
     {
         //
 
-        $categorias = Category::pluck('nombre', 'id')->toArray();
+        $categorias = Category::all();
         $plataform = Plataform::where('nombre', $plataform)->first();
         if ($plataform == null || !$plataform) {
             return redirect()->route('admin.plataforms.index')->with('error_msg', 'La plataforma a la que intentas acceder no existe');

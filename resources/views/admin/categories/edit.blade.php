@@ -8,23 +8,20 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            
-            {!! Form::model($category , ['route' => ['admin.categories.update' , $category], 'method' => 'put']) !!}
 
-            <div class="form-group">
-                {!! Form::label('nombre', 'Nombre') !!}
-                {!! Form::text('nombre', null, ['class' => 'form-control' , 'placeholder' => 'Nombre de la Categoria']) !!}
+            <form action="{{ route('admin.categories.update',$category) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre de la Categoria" value="{{$category->nombre}}">
+                    @error('nombre')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+                <button type="submit" class="btn btn-success">Actualizar Categoria</button>
+            </form>
 
-                @error('nombre')
-                    <span class="text-danger">{{$message}}</span>
-                @enderror
-
-
-            </div>
-
-            {!! Form::submit('Actualizar Categoria', ['class' => 'btn btn-success']) !!}
-
-            {!! Form::close() !!}
         </div>
     </div>
 @stop
