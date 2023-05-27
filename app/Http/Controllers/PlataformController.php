@@ -158,7 +158,7 @@ class PlataformController extends Controller
         $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
 
 
-        $plataform = Plataform::where('nombre', $plataform)->first();
+        $plataform = Plataform::where('id', $plataform)->first();
 
 
         //Validacion de campos
@@ -175,19 +175,16 @@ class PlataformController extends Controller
         //Si salimos de aqui las validaciones han ido bien
 
         //Si se ha subido una imagen se guarda en fotos , si no mantenemos la antigua
-        $img = ($request->imagen) ? $request->imagen->store('plataformas') : $plataform->logo;
+        $img = ($request->imagen) ? $request->imagen->store('public/plataformas') : $plataform->logo;
         $img1 = $plataform->logo;
 
 
-        $plan_id = $request->route('nombre');
+        $plan_id = $plataform->nombre;
+
 
         $default_price = $stripe->products->retrieve($plataform->nombre);
 
-        // dd($default_price->default_price);
 
-
-
-        // dd("Hola");
 
         //Actualizamos el registro en la BD
 
@@ -212,32 +209,54 @@ class PlataformController extends Controller
 
 
         Stripe::setApiKey(env('STRIPE_SECRET'));
+
         //Actualizamos la suscripcion
+
         $stripe->products->update(
+
             $plan_id,
-            [
-                'name' => $request->nombre,
-                'description' => $request->descripcion,
-                'statement_descriptor' => $request->nombre . ' 1 mes'
-            ],
-
-        );
-
-
-
-        $stripe->prices->update(
-            $default_price->default_price,
             ['active' => false]
+
         );
 
-        $stripe->prices->create(
-            [
-                'unit_amount' => $precio_segun_capacidad,
+        $stripe->products->create([
+            'name' => trim($request->nombre),
+            'description' => $request->descripcion,
+            'id' => $request->nombre,
+            'default_price_data' => [
                 'currency' => 'eur',
-                'recurring' => ['interval' => 'month'],
-                'product' => $request->nombre
-            ]
-        );
+                'unit_amount' => $precio_segun_capacidad,
+                'recurring' => ['interval' => 'month']
+
+            ],
+            'statement_descriptor' => 'Subs to : ' . $request->nombre
+        ]);
+
+        // $stripe->products->update(
+        //     $plan_id,
+        //     [
+        //         'name' => $request->nombre,
+        //         'description' => $request->descripcion,
+        //         'statement_descriptor' => $request->nombre . ' 1 mes'
+        //     ],
+
+        // );
+
+
+
+        // $stripe->prices->update(
+        //     $default_price->default_price,
+        //     ['active' => false]
+        // );
+
+        // $stripe->prices->create(
+        //     [
+        //         'unit_amount' => $precio_segun_capacidad,
+        //         'currency' => 'eur',
+        //         'recurring' => ['interval' => 'month'],
+        //         'product' => $request->nombre
+        //     ]
+        // );
 
         return redirect()->route('admin.plataforms.index')->with('success_msg', 'Plataforma Actualizada');
     }
@@ -264,6 +283,8 @@ class PlataformController extends Controller
             ['active' => false]
 
         );
+
+      
 
 
 
