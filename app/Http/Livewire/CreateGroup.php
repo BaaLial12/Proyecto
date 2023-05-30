@@ -10,16 +10,12 @@ use Livewire\Component;
 class CreateGroup extends Component
 {
 
-
-
-
-    // public $selectedPlataform = null;
-    // public $capacidades = [];
     public $plataforma = '';
 
     public $capacidad = null;
 
-
+    //Arreglado el select que me eliminaba una capacidad mayor el select
+    public $capacidad_seleccion=null;
 
     public function render()
     {
@@ -41,7 +37,7 @@ class CreateGroup extends Component
     public function crearGrupo(){
 
         $plataform_id = $this->plataforma;
-        $capacidad_seleccionada = $this->capacidad;
+        $capacidad_seleccionada = $this->capacidad_seleccion;
 
         $ids_plataform = Plataform::all()->pluck('id')->toArray();
         $capacidad_segun_plataform =  Plataform::where('id', $this->plataforma)->pluck('capacidad')->first();
