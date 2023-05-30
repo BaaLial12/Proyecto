@@ -44,7 +44,7 @@
                     @endforeach
                 </div>
             </div>
-            
+
         @else
             @foreach ($categorias as $categoria)
                 @if ($plataforms->where('category_id', $categoria->id)->count() > 0)
@@ -99,7 +99,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 @endif
             @endforeach
 

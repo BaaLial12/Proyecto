@@ -44,7 +44,7 @@
                                 <div class="col-12 col-lg-6 mt-3 mt-lg-0">
                                     <label for="nombre-servicio" class="form-label">Sitios disponibles (Contándote a ti)</label>
                                     <div class="d-flex flex-column">
-                                        <select id="capacidades" name="capacidades" wire:model="capacidad" class="mb-2">
+                                        <select id="capacidades" name="capacidades" wire:model="capacidad_seleccion" class="mb-2" >
                                             @for ($i = 1; $i <= $capacidad; $i++)
                                                 <option value="{{ $i }}">{{ $i }}</option>
                                             @endfor
