@@ -63,17 +63,18 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
+
+                {{-- SOLUCIONAR IMAGEN URGENTE --}}
                 <div class="form-group d-flex flex-column">
                     <label for="imagen">Imagen (PNG)</label>
                     <input type="file" name="imagen" id="imagen" class="form-control-file" accept="image/png"
                         onchange="previsualizarImagen(event)">
-                    <img id="imagen-previa" src="{{ asset('storage/'.$plataform->logo) }}" alt="Vista previa de la imagen"
-                        style="display: none; max-width: 400px; max-height: 400px; margin-top: 10px;">
+                    <img id="imagen-previa" src="{{ Storage::url($plataform->logo)}}" alt="Vista previa de la imagen" class="img-fluid rounded mx-auto d-block"
+                        style=" max-width: 400px; max-height: 400px; margin-top: 10px;">
                     @error('imagen')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-
 
 
                 <button type="submit" class="btn btn-success">Actualizar Plataforma</button>
