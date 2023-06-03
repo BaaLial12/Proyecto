@@ -7,7 +7,7 @@
 
 
         @livewire('search-plataforms')
-        <div class="owl-carousel owl-theme mx-auto">
+        <div class="mx-auto">
             <!-- Agregar clase "mx-auto" -->
             <div class="row">
                 <div class="d-flex justify-content-center mb-3">
