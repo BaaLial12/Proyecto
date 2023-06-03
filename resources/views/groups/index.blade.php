@@ -8,7 +8,7 @@
                 {{-- Y luego con el count verificacion que haya algun registro que coincida con la "consulta" --}}
                 @if($grupo->owner->id != Auth::user()->id && !$grupo->users()->wherePivot('user_id', Auth::user()->id)->count() )
                 {{-- @dd($grupo->users->contains(Auth::user()->id)) --}}
-                @if ($sitios_totales >= $grupo->users()->count())
+                @if ($sitios_totales > $grupo->users()->count())
                     <div class="col-lg-6 mb-4">
                         <div class="card">
                             <div class="card-body d-flex align-items-center">
@@ -59,7 +59,7 @@
                 @endif
                 @endif
 
-                    
+
 
             @endforeach
         </div>
@@ -76,5 +76,5 @@
         </div>
         @endif
     </div>
-    
+
 </x-app-layout>
