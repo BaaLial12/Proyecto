@@ -3,42 +3,37 @@
 
 
     <section class="bg-white rounded shadow-lg mb-12">
-
-        <div class="px-8 py-6">
-
-            <h1 class="text-gray-700 text-xl font-semibold mb-4">Agregar Metodo de pago</h1>
-
-            <div class="flex" wire:ignore>
-
-                <p class="text-gray-600 mr-6">Informacion de tarjeta</p>
-
-
-                <div class="flex-1">
-                    <input id="card-holder-name" class="form-control mb-4" placeholder="Nombre del Titular de la Tarjeta">
-
-                    <!-- Stripe Elements Placeholder -->
-                    <div id="card-element" class="form-control mb-2"></div>
-
-                    {{-- MENSAJE DE ERROR --}}
-                    <span id="card-error-message" class="text-red-600 text-sm">
-
-                    </span>
+        <div class="container-lg px-4 py-6"> <!-- Modificación: container-lg -->
+            <h1 class="text-gray-700 text-xl font-semibold mb-4">Agregar Método de Pago</h1>
+            <div class="row">
+                <div class="col ">
+                    <p class="text-gray-600 mr-6">Información de tarjeta</p>
+                    <div class="flex-1">
+                        <input id="card-holder-name" class="form-control mb-4" placeholder="Nombre del Titular de la Tarjeta">
+                        <!-- Stripe Elements Placeholder -->
+                        <div id="card-element" class="form-control mb-2"></div>
+                        {{-- MENSAJE DE ERROR --}}
+                        <span id="card-error-message" class="text-red-600 text-sm"></span>
+                    </div>
                 </div>
-
             </div>
-
         </div>
-
-        <footer class="px-8 py-6 bg-gray-50 border-t border-gray-200">
-            <div class="flex justify-end">
-                <x-button id="card-button" data-secret="{{ $intent->client_secret }}" style="background-color: #00CDD0">
-                    Update Payment Method
-                </x-button>
-            </div>
-
+        <footer class="px-4 py-6 bg-gray-50 border-t border-gray-200">
+                <div class="row justify-content-end">
+                    <div class="col ">
+                        <button id="card-button" data-secret="{{ $intent->client_secret }}" class="btn btn-primary w-100" style="background-color: #72C3DC">Update Payment Method</button>
+                    </div>
+                </div>
         </footer>
-
     </section>
+
+
+
+
+
+
+
+
 
     {{-- EL SPINNER SOLO APARECERA CUANDO SE INICIE EL METODO addPaymentMethod Y CUANDO ESTE CARGANDO --}}
     <div class="mb-12  justify-center" wire:target="addPaymentMethod" wire:loading.flex>
