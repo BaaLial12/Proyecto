@@ -1,7 +1,7 @@
 <div>
     {{-- The Master doesn't talk, he acts. --}}
 
-    <button class="btn rounded text-white" style="background: #72C3DC" data-bs-toggle="modal" data-bs-target="#createGroup">
+    <button class="btn btn-outline-dark" style="background: #72C3DC" data-bs-toggle="modal" data-bs-target="#createGroup">
         <i class="fas fa-add"></i> Crear Grupo
     </button>
 
