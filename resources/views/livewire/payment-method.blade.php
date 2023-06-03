@@ -21,7 +21,7 @@
         <footer class="px-4 py-6 bg-gray-50 border-t border-gray-200">
                 <div class="row justify-content-end">
                     <div class="col ">
-                        <button id="card-button" data-secret="{{ $intent->client_secret }}" class="btn btn-primary w-100" style="background-color: #72C3DC">Update Payment Method</button>
+                        <button id="card-button" data-secret="{{ $intent->client_secret }}" class="btn btn-outline-dark w-100" style="background-color: #72C3DC">Update Payment Method</button>
                     </div>
                 </div>
         </footer>
