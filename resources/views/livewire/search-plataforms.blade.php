@@ -24,26 +24,40 @@
         @if ($search != '')
             <div class="card text-center mb-4 mx-auto mt-3 shadow-lg border-0">
                 <div class="row">
+                    @if (count($plataforms)>0)
                     @foreach ($plataforms as $plataforma)
-                        <div class="col-lg-3 col-md-4 col-sm-12">
-                            <div class="card mb-4" style="background-color: #f0f0f0">
-                                <div class="card-body">
-                                    <h5 class="card-title" style="font-size: 1.5rem">
-                                        <strong>{{ $plataforma->nombre }}</strong>
-                                    </h5>
-                                    <p class="card-text" style="margin-top: 30px; font-size: 1.2rem">A
-                                        partir de:
-                                        {{ round($plataforma->suscripcion / $plataforma->capacidad, 2) }}€
-                                    </p>
-                                    <a href="{{ route('groups.showGroups', $plataforma->nombre) }}"
-                                        class="btn btn-outline-dark" style="background-color: #72C3DC">Ver
-                                        grupos</a>
+                    <div class="col-lg-3 col-md-4 col-sm-12">
+                        <div class="card mb-4" style="background-color: #f0f0f0">
+                            <div class="card-body">
+                                <h5 class="card-title" style="font-size: 1.5rem">
+                                    <strong>{{ $plataforma->nombre }}</strong>
+                                </h5>
+                                <p class="card-text" style="margin-top: 30px; font-size: 1.2rem">A
+                                    partir de:
+                                    {{ round($plataforma->suscripcion / $plataforma->capacidad, 2) }}€
+                                </p>
+                                <a href="{{ route('groups.showGroups', $plataforma->nombre) }}"
+                                    class="btn btn-outline-dark" style="background-color: #72C3DC">Ver
+                                    grupos</a>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    @else
+                    <div class="col text-center mt-2">
+                        <div class="card shadow-lg border-0">
+                            <div class="card-body py-5">
+                                <div class="alert alert-info mt-4">
+                                    <i class="fas fa-exclamation-triangle fa-lg"></i>Lamentablemente no disponemos de la plataforma que intentas buscar , ¿porque no nos envias una solicitud para agregarla?
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    </div>
+                    @endif
+
                 </div>
             </div>
+
 
         @else
             @foreach ($categorias as $categoria)
