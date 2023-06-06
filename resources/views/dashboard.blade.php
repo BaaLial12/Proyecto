@@ -44,7 +44,7 @@
                             <div class="row">
                                 <div class="col-5">
                                     <p class="card-text">Miembros:
-                                        {{ count($grupo->users) }}/{{ $grupo->plataform->capacidad }}</p>
+                                        {{ count($grupo->users) }}/{{ $grupo->capacidad }}</p>
                                 </div>
                                 <div class="col">
                                     <div class="row">
