@@ -114,7 +114,7 @@
                     <h5>Enlaces útiles</h5>
                     <ul class="list-unstyled" >
                         <li><a @if (Auth::user())
-                            href="dashboard" style="color: #ffffff">Inicio</a></li>
+                            href="{{route('dashboard')}}" style="color: #ffffff">Inicio</a></li>
                             @else
                             <a href="login" style="color: #ffffff">Inicio</a>
                         @endif
