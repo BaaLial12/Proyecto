@@ -174,13 +174,13 @@ class GroupController extends Controller
             return redirect()->route('dashboard')->with('error_msg', 'Ya perteneces a este grupo.');
         }
 
+
         if (!in_array($plataform_id, $plataforms_by_user)) {
-            //Me guardo en una variable la capacidad de la plataforma en funcion del id de grupo que le esta pasando al intentar unirse
-            $capcidad_plataform = Plataform::where('id', $plataform_id)->first();
             //Comprobamos por ultimo que no este lleno el grupo
-            if ($grupo->users()->count() > $capcidad_plataform->capacidad) {
+            if ($grupo->users()->count() >= $grupo->capacidad) {
                 return redirect()->route('dashboard')->with('error_msg', 'Lo sentimos el grupo al que intentas unirte esta lleno!');
             }
+
             // Si llega aquí, el usuario puede unirse al grupo
 
             // ESTO DE AQUI FUNCIONA-----------------------------------------
@@ -221,22 +221,25 @@ class GroupController extends Controller
             // $platformName = "Pruebita";
             $platformName = $grupo->plataform->nombre;
 
-            $prices = Price::all(['active' => true, 'expand' => ['data.product']]);
+            $prices = Price::all([
+                'active' => true,
+                'product' => $platformName
+            ]);
             $priceData = null;
 
-
             foreach ($prices as $price) {
-                $product = $price->product;
+                $product = \Stripe\Product::retrieve($price->product);
                 if ($product->name == $platformName) {
                     $priceData = $price;
-                    // dd($priceData);
                     break;
                 }
             }
 
+
+
             if (!$priceData) {
                 // no se encontró el precio para esa plataforma
-                return redirect()->back()->withErrors(['No se encontró el precio para la plataforma especificada.']);
+                return redirect()->back()->with('error_msg', 'No se encontró el precio para la plataforma especificada.');
             }
 
             // ahora que tienes el objeto de precio para esa plataforma, puedes crear la sesión de pago con el precio correspondiente
