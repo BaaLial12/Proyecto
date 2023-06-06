@@ -120,8 +120,9 @@
 
                         </td>
                         <td class="py-3 px-6">
-                            <form action="{{ route('admin.services.destroy', $service) }}" method="post">
+                            <form action="{{ route('admin.services.destroy', $service) }}" method="POST">
                                 @csrf
+                                @method('DELETE')
                                 <button type="submit" class="btn btn-danger" class="text-white">
                                     <i class="fas fa-trash text-white"></i>Rechazar
                                 </button>

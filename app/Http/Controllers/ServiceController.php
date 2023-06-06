@@ -153,6 +153,7 @@ class ServiceController extends Controller
         //Si me intentan mandar un id que no exista le dire que no puede borrarlo
 
 
+
         $ids = Service::all()->pluck('id')->toArray();
 
         //Con esto me "protejo" para que no puedan borrar algo que no exista
@@ -160,11 +161,13 @@ class ServiceController extends Controller
             return redirect()->route('admin.services.index')->with('error_msg', 'Estás intentando borrar algo que no existe');
         }
 
+        //Me traigo el objeto y lo elimino
+        $service_obj=Service::find($service);
 
 
-        dd("uy");
 
-        $service->delete();
+
+        $service_obj->delete();
 
         return redirect()->route('admin.services.index')->with('success_msg', 'El servicio ha sido rechazado');
     }
