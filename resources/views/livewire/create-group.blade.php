@@ -35,7 +35,7 @@
                                 <div class="col-12 col-lg-6">
                                     <label for="nombre-servicio" class="form-label">Nombre del Servicio</label>
                                     <select class="form-select" wire:model="plataforma">
-                                        <option value="">Selecciona una</option>
+                                        <option value="">Selecciona una plataforma</option>
                                         @foreach ($plataforms as $plataform)
                                             <option value="{{ $plataform->id }}">{{ $plataform->nombre }}</option>
                                         @endforeach
@@ -45,7 +45,8 @@
                                     <label for="nombre-servicio" class="form-label">Sitios disponibles (Contándote a ti)</label>
                                     <div class="d-flex flex-column">
                                         <select id="capacidades" name="capacidades" wire:model="capacidad_seleccion" class="mb-2" >
-                                            @for ($i = 1; $i <= $capacidad; $i++)
+                                            <option value="">Selecciona la capacidad</option>
+                                            @for ($i = 2; $i <= $capacidad; $i++)
                                                 <option value="{{ $i }}">{{ $i }}</option>
                                             @endfor
                                         </select>
