@@ -41,7 +41,6 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     //Contador de grupos en los que esta unido/creado
     $contador = auth()->user()->groups()->count();
-
     //Informacion de los grupos
     $grupos = Group::where('user_id', auth()->user()->id)
                 ->orWhereHas('users', function($query) {
