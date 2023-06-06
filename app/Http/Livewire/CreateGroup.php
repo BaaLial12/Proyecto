@@ -37,13 +37,16 @@ class CreateGroup extends Component
     public function crearGrupo(){
 
         $plataform_id = $this->plataforma;
+        if($plataform_id==null){
+            return redirect()->route('dashboard')->with('error_msg', 'Estas introduciendo una plataforma no valida');
+        }
         $capacidad_seleccionada = $this->capacidad_seleccion;
 
         $ids_plataform = Plataform::all()->pluck('id')->toArray();
         $capacidad_segun_plataform =  Plataform::where('id', $this->plataforma)->pluck('capacidad')->first();
 
         //Comprobamos que la caapacidad que ha seleccionado es correcta
-        if($capacidad_seleccionada > $capacidad_segun_plataform){
+        if($capacidad_seleccionada > $capacidad_segun_plataform || $capacidad_seleccionada==null){
             return redirect()->route('dashboard')->with('error_msg', 'Estas introduciendo una capacidad no valida');
         }
 
@@ -60,7 +63,6 @@ class CreateGroup extends Component
         if(in_array(Auth::user()->id , $usuarios) || in_array($plataform_id, $plataforms_by_user) ){
             return redirect()->route('dashboard')->with('error_msg', 'Ya perteneces a un grupo de esa plataforma');
         }
-
 
 
 
