@@ -13,7 +13,7 @@
           </div>
 
         <div class="row mb-3">
-            <div class="col-12 border rounded">
+            <div class="col-12 border rounded shadow-lg">
                 <div class="d-flex justify-content-between align-items-center py-3 px-4">
                     <h1 class="h3">{{ $grupo->plataform->nombre }}</h1>
                     <span class="badge bg-primary">{{ count($grupo->users) }}/{{ $grupo->plataform->capacidad }}</span>
@@ -126,7 +126,7 @@
                                 <i class="fa-regular fa-comment-dots fa-flip-horizontal"></i>Mensaje al grupo
                             </button> --}}
                             <button type="button" class="btn btn-outline-dark" style="background-color: #72C3DC"
-                                data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                data-bs-toggle="modal" data-bs-target="#chat">
                                 <i class="fa-regular fa-comment-dots fa-flip-horizontal"></i>Mensaje al grupo
                             </button>
                         </div>
@@ -260,7 +260,7 @@
     {{-- MODAL PARA EL CHAT --}}
 
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="chat" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -306,7 +306,7 @@
     {{-- SCRIPT PARA BAJAR EL SCROLL AUTOMATICAMENTE AL FINAL --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var modal = document.getElementById('staticBackdrop');
+            var modal = document.getElementById('chat');
             modal.addEventListener('shown.bs.modal', function() {
                 var messagesContainer = modal.querySelector('.modal-body');
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
