@@ -105,17 +105,16 @@
 
         </div>
 
+
         <style>
             .card {
                 min-height: 300px;
-            }
-
-            .owl-carousel .owl-item .card {
                 height: auto;
                 width: 100%;
             }
 
-            .owl-carousel .owl-item .card-body {
+
+            .card-body {
                 height: 100%;
                 display: flex;
                 flex-direction: column;
