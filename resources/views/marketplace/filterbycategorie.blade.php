@@ -26,7 +26,21 @@
                 </div>
             </div>
 
-       
+            <style>
+                .card {
+                    min-height: 300px;
+                    height: auto;
+                    width: 100%;
+                }
+
+
+                .card-body {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
+            </style>
 
 
 
