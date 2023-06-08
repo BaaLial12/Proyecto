@@ -24,7 +24,7 @@ class UserIndex extends Component
     public function render()
     {
         $users = User::where('name' , 'like' , "%{$this->busqueda}%")->
-                orWhere('email' , 'like' , "%{$this->busqueda}%")->paginate(2);
+                orWhere('email' , 'like' , "%{$this->busqueda}%")->paginate(10);
         return view('livewire.admin.user-index' , compact('users'));
     }
 

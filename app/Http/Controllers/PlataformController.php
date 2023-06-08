@@ -7,6 +7,9 @@ use App\Models\Plataform;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Livewire\WithPagination;
+use App\Models\User;
+use App\Notifications\NotificacionNewPlataform;
+
 use Stripe\Stripe;
 
 class PlataformController extends Controller
@@ -111,6 +114,11 @@ class PlataformController extends Controller
             'statement_descriptor' => 'Subs to : ' . $request->nombre
         ]);
 
+        $usuarios = User::get();
+        foreach($usuarios as $usuario){
+            $usuario->notify(new NotificacionNewPlataform($request->nombre));
+        }
+
         return redirect()->route('admin.plataforms.index')->with('success_msg', 'Plataforma Creada');
     }
 
@@ -182,7 +190,6 @@ class PlataformController extends Controller
         $plan_id = $plataform->nombre;
 
 
-        $default_price = $stripe->products->retrieve($plataform->nombre);
 
 
 
@@ -232,31 +239,6 @@ class PlataformController extends Controller
             'statement_descriptor' => 'Subs to : ' . $request->nombre
         ]);
 
-        // $stripe->products->update(
-        //     $plan_id,
-        //     [
-        //         'name' => $request->nombre,
-        //         'description' => $request->descripcion,
-        //         'statement_descriptor' => $request->nombre . ' 1 mes'
-        //     ],
-
-        // );
-
-
-
-        // $stripe->prices->update(
-        //     $default_price->default_price,
-        //     ['active' => false]
-        // );
-
-        // $stripe->prices->create(
-        //     [
-        //         'unit_amount' => $precio_segun_capacidad,
-        //         'currency' => 'eur',
-        //         'recurring' => ['interval' => 'month'],
-        //         'product' => $request->nombre
-        //     ]
-        // );
 
         return redirect()->route('admin.plataforms.index')->with('success_msg', 'Plataforma Actualizada');
     }
@@ -284,7 +266,7 @@ class PlataformController extends Controller
 
         );
 
-      
+
 
 
 
