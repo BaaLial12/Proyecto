@@ -74,10 +74,10 @@
             <a href="login-google" class="fw-semibold text-secondary"><i class="fa-brands fa-google"></i>Continue with
                 Google</a>
         </div>
-        <div class="btn d-flex gap-2 justify-content-center border mt-3 shadow-sm">
+        {{-- <div class="btn d-flex gap-2 justify-content-center border mt-3 shadow-sm">
             <a href="login-facebook" class="fw-semibold text-secondary"><i class="fa-brands fa-facebook"></i>Continue
                 with Facebook</a>
-        </div>
+        </div> --}}
         {{-- <div class="btn d-flex gap-2 justify-content-center border mt-3 shadow-sm">
             <a href="login-apple" class="fw-semibold text-secondary"><i class="fa-brands fa-apple"></i>Continue with
                 Apple</a>
