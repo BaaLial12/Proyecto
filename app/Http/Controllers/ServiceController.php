@@ -31,6 +31,7 @@ class ServiceController extends Controller
     public function create(Request $request)
     {
         //
+        $this->middleware('can:admin.home');
         //Validacion de campos
         $request->validate([
             'nombre' => 'required|string|min:2|max:17|unique:plataforms,nombre',
@@ -150,8 +151,7 @@ class ServiceController extends Controller
     public function destroy($service)
     {
         //
-        //Si me intentan mandar un id que no exista le dire que no puede borrarlo
-
+        $this->middleware('can:admin.home');
 
 
         $ids = Service::all()->pluck('id')->toArray();

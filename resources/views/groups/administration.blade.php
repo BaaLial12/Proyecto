@@ -305,11 +305,14 @@
 
     {{-- SCRIPT PARA BAJAR EL SCROLL AUTOMATICAMENTE AL FINAL --}}
     <script>
+        // Escucha el evento 'DOMContentLoaded', que se dispara cuando el navegador ha terminado de cargar y mostrar el documento HTML.
         document.addEventListener('DOMContentLoaded', function() {
             var modal = document.getElementById('chat');
             modal.addEventListener('shown.bs.modal', function() {
-                var messagesContainer = modal.querySelector('.modal-body');
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                // Este evento se dispara cuando el modal se muestra completamente.
+                var cuerpoMensajes = modal.querySelector('.modal-body');
+                // . Esto buscará un elemento dentro del modal con la clase 'modal-body'.
+                cuerpoMensajes.scrollTop = cuerpoMensajes.scrollHeight;
             });
         });
     </script>

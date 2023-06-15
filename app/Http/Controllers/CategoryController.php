@@ -23,7 +23,7 @@ class CategoryController extends Controller
     public function showbycategorie($nombre){
         $categoria_id = Category::where('nombre' , $nombre)->pluck('id')->first();
         $plataforms_by_categorie = Plataform::all();
-        return view('marketplace.filterbycategorie' , compact('categoria_id' , 'plataforms_by_categorie'));
+        return view('marketplace.filterbycategorie' , compact('categoria_id' , 'plataforms_by_categorie' , 'nombre'));
     }
 
     /**

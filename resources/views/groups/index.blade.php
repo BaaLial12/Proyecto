@@ -1,6 +1,17 @@
 <x-app-layout>
     <div class="container">
+        <div class="row mt-4">
+            <div class="col-md-12 text-end">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{{route('marketplace')}}">Marketplace</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{$plataforma}}</li>
+                </ol>
+              </nav>
+            </div>
+        </div>
         @if(count($grupos) > 0)
+
         <div class="row ">
 
             @foreach ($grupos as $grupo)
@@ -8,8 +19,7 @@
                 {{-- Para eso al ser relacion BelongsToMany no podemos usar el contains , usando el wherePivot puedo acceder a los datos de la tabla intermedia --}}
                 {{-- Y luego con el count verificacion que haya algun registro que coincida con la "consulta" --}}
                 @if($grupo->owner->id != Auth::user()->id && !$grupo->users()->wherePivot('user_id', Auth::user()->id)->count() )
-                {{-- @dd($grupo->users->contains(Auth::user()->id)) --}}
-                @if ($sitios_totales >= $grupo->users()->count())
+                {{-- @if ($sitios_totales >= $grupo->users()->count()) --}}
                     <div class="col-lg-6 mb-4">
                         <div class="card">
                             <div class="card-body d-flex align-items-center">
@@ -49,7 +59,7 @@
                             </div>
                         </div>
                     </div>
-                @else
+                {{-- @else
                     <div class="col text-center mt-2">
                         <div class="card shadow-lg border-0">
                             <div class="card-body py-5">
@@ -60,7 +70,7 @@
                             </div>
                         </div>
                     </div>
-                @endif
+                @endif --}}
                 @endif
 
 

@@ -24,8 +24,7 @@
                     </div>
                     <div class="row bg-danger">
                         <div class="col m-3">
-                            <p>Analizamos cada servicio para verificar si cumple con los requisitos y está
-                                disponible para compartir. Envíanos la información a continuación.</p>
+                            <p>Reconozco y acepto que PayTogether y la plataforma seleccionada no están en ningún caso vinculados por los servicios prestados en la plataforma. A este respecto, confirmo que he leído los Términos y Condiciones de la plataforma seleccionada y me comprometo a respetarlos, siendo yo el único responsable.</p>
                         </div>
                     </div>
                     <form wire:submit.prevent="crearGrupo" class="d-flex justify-content-center">

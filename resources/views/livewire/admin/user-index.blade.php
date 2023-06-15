@@ -22,7 +22,7 @@
                                 <th class="py-3 px-6 text-left">Nombre</th>
                                 <th class="py-3 px-6 text-left">Email</th>
                                 <th class="py-3 px-6 text-left">Ultima vez</th>
-                                <th class="py-3 px-6 text-center">Status</th>
+                                {{-- <th class="py-3 px-6 text-center">Status</th> --}}
                                 <th class="py-3 px-6 text-center">Acciones</th>
                             </tr>
 
@@ -36,7 +36,7 @@
                                     <td class="py-3 px-6">{{ $user->email }}</td>
                                     <td class="py-3 px-6">{{ Carbon\Carbon::parse($user->last_seen)->diffForHumans() }}
                                     </td>
-                                    <td class="py-3 px-6 text-center">
+                                    {{-- <td class="py-3 px-6 text-center">
 
                                         @if ($user->last_seen >= now()->subSeconds(30))
                                             <span class="badge badge-pill badge-success py-1 px-3  text-lg">
@@ -49,7 +49,7 @@
                                         @endif
 
 
-                                    </td>
+                                    </td> --}}
                                     <td class="py-3 px-6 text-center" style="width: 2vw" >
                                         <a class="btn btn-primary"
                                             href="{{ route('admin.users.edit', $user) }}">Editar</a>

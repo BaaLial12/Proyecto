@@ -43,6 +43,7 @@ Route::get('/dashboard', function () {
     $contador = auth()->user()->groups()->count();
     //Informacion de los grupos
     $grupos = Group::where('user_id', auth()->user()->id)
+                //Con el whereHas buscamos grupos que tengan asociado al usuaario auth en la relacion de users
                 ->orWhereHas('users', function($query) {
                     $query->where('user_id', auth()->user()->id);
                 })->get();
@@ -108,6 +109,9 @@ Route::get('/login-google', function () {
 });
 
 Route::get('/google-callback', function () {
+
+    //Cojo el metodo driver de socialite para el controlador de google .
+    //Me traera informacion que necesitare mas abajo
     $user = Socialite::driver('google')->user();
 
     $userExists = User::where('external_id' , $user->id)->where('external_auth' , 'google')->first();

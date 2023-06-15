@@ -27,7 +27,7 @@ class GroupController extends Controller
         //
     }
 
-    public function showGroups($plataforma)
+    public function showGroups($plataforma) //Lo que seria el index de groups
     {
 
 
@@ -41,13 +41,13 @@ class GroupController extends Controller
 
 
         //Con esto lo que hago es traerme todos los grupos que tienen de plataform_id la variable arriba creada y ademas cuento los usuarios
-        $grupos = Group::where('plataform_id',  $plataform_id)->withCount('users')->get();
+        $grupos = Group::where('plataform_id',  $plataform_id)->get();
 
         //Me guardo en una variable los sitios totales(capacidad) de cada plataforma
-        $sitios_totales = Plataform::where('nombre', $plataforma)->pluck('capacidad')->first();
+        // $sitios_totales = Plataform::where('nombre', $plataforma)->pluck('capacidad')->first();
 
 
-        return view('groups.index', compact('grupos', 'plataform_id', 'sitios_totales'));
+        return view('groups.index', compact('grupos', 'plataform_id' , 'plataforma'));
     }
 
     /**
@@ -115,16 +115,19 @@ class GroupController extends Controller
         //Me guardo en una variable todas las ids de grupo que pertenecen al usuario logueado
         $groups_ids_user = auth()->user()->groups()->pluck('group_id')->toArray();
         $id_del_grupo_que_tiene_esa_id_plataforma = Group::where('user_id', $user_id)->where('plataform_id', $plataform_id)->first();
+
         //Comprobamos que exista el id del grupo en todos los ids de grupos
         if (!in_array($group->id, $groups_ids)) {
             return redirect()->route('dashboard')->with('error_msg', 'No puedes borrar algo que no existe ;( ');
         }
+
         if ($group->owner->id != $user_id && in_array($group->id, $groups_ids_user)) {
             // dd("No eres propietario pero estas en el grupo y quieres salir");
             Auth::user()->groups()->wherePivot('group_id', $group->id)->detach();
             $group->owner->notify(new UsuarioSalioDeGrupo($group->id, $group->plataform->nombre));
             return redirect()->route('dashboard')->with('success_msg', 'Has salido del grupo');
         }
+
         if ($group->owner->id == $user_id && $group->id == $id_del_grupo_que_tiene_esa_id_plataforma->id) {
             //Necesito traerme todos los usuarios que estan en el grupo
             $admin = $group->owner->id;
@@ -136,6 +139,7 @@ class GroupController extends Controller
             $group->delete();
             return redirect()->route('dashboard')->with('success_msg', 'Grupo eliminado');
         }
+
     }
 
 
@@ -221,6 +225,7 @@ class GroupController extends Controller
             // $platformName = "Pruebita";
             $platformName = $grupo->plataform->nombre;
 
+            //Me traigo todos los precios de los productos que cumplen las siguientes condiciones
             $prices = Price::all([
                 'active' => true,
                 'product' => $platformName
@@ -229,7 +234,10 @@ class GroupController extends Controller
 
             foreach ($prices as $price) {
                 $product = \Stripe\Product::retrieve($price->product);
+                //Me traigo toda la informacion del producto asociado al precio
                 if ($product->name == $platformName) {
+                    //Si el nombre del producto es igual a la plataforma a la que nos intentamos unir
+                    // Guardamos en priceData el precio y paramos el bucle
                     $priceData = $price;
                     break;
                 }

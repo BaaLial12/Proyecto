@@ -136,7 +136,7 @@
 .card-img-top {
   max-height: 300px;
   min-height: 100px;
-  object-fit: cover;
+  object-fit: scale-down;
   height: 200px
 }
 

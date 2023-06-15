@@ -1,6 +1,18 @@
 <x-app-layout>
 
+
+
     <div class="container">
+        <div class="row mt-4">
+            <div class="col-md-12 text-end">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{{route('marketplace')}}">Marketplace</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">{{$nombre}}</li>
+                </ol>
+              </nav>
+            </div>
+        </div>
             <div class="card text-center mb-4 mx-auto mt-3 shadow-lg border-0">
                 <div class="row">
                     @foreach ($plataforms_by_categorie as $plataforma)
